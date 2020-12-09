@@ -15,4 +15,14 @@
     align-items: center;
     color: white;
   }
+
+  &__overview-header {
+    font-weight: bold;
+    font-variant: small-caps;
+  }
+
+  &__overview-subheader {
+    color: rgb(155, 155, 155);
+    font-size: 0.8rem;
+  }
 }
