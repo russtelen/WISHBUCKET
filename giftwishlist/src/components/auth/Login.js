@@ -13,11 +13,22 @@ class Login extends Component {
     },
   };
 
+  // helper function...be sure to list the state variables specific to the form
+  clearErrors = () => {
+    this.setState({
+      errors: {
+        blankfield: false,
+        //matchedpassword: false
+      },
+    });
+  };
+
   handleSubmit = async (event) => {
     //Prevent page reload
     event.preventDefault();
 
     //Form validation
+    this.clearErrors();
     const error = validateForm(event, this.state);
 
     if (error) {
@@ -33,6 +44,7 @@ class Login extends Component {
     this.setState({
       [event.target.id]: event.target.value,
     });
+    document.getElementById(event.target.id).classList.remove("is-danger");
   };
 
   render() {
