@@ -23,7 +23,7 @@ export default class Navbar extends Component {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active">
+            <li className="nav-item">
               <NavLink to="/login" className="nav-link">
                 Login
               </NavLink>
