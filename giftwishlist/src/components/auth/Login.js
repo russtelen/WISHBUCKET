@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "animate.css";
 
+const LOCALHOST = 44361;
+
 class Login extends Component {
   state = {
     email: "",
@@ -14,6 +16,35 @@ class Login extends Component {
     //Form validation
 
     //Integrate Auth here on valid form submission
+    fetch(`https://localhost:${LOCALHOST}/Auth/Login`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email: this.state.email,
+        Password: this.state.password,
+      }),
+    })
+      // Response received.
+      .then((response) => response.json())
+      // Data retrieved.
+      .then((json) => {
+        console.log(JSON.stringify(json));
+        // Store token with session data.
+        if (json["status"] === "OK") {
+          sessionStorage.setItem("bearer-token", json["token"]);
+          console.log(sessionStorage.getItem("bearer-token"));
+        } else {
+          // error message handling
+          console.log("Error in Auth/Login");
+        }
+      })
+      // Data not retrieved.
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   onInputChange = (event) => {

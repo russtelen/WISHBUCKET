@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "animate.css";
 
+const LOCALHOST = 44361;
+
 class Register extends Component {
   //state variables for form inputs and errors
   state = {
@@ -16,6 +18,36 @@ class Register extends Component {
     //Perform Validation here
 
     //Integrate Auth here on valid form submission
+    fetch(`https://localhost:${LOCALHOST}/Auth/Register`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Email: this.state.email,
+        Password: this.state.password,
+        ConfirmPassword: this.state.confirmpassword,
+      }),
+    })
+      // Response received.
+      .then((response) => response.json())
+      // Data retrieved.
+      .then((json) => {
+        console.log(JSON.stringify(json));
+        // Store token with session data.
+        if (json["status"] === "OK") {
+          sessionStorage.setItem("bearer-token", json["token"]);
+          console.log(sessionStorage.getItem("bearer-token"));
+        } else {
+          // error message handling
+          console.log("Error in Auth/Register");
+        }
+      })
+      // Data not retrieved.
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   onInputChange = (event) => {
@@ -23,6 +55,7 @@ class Register extends Component {
       [event.target.id]: event.target.value,
     });
   };
+
   render() {
     return (
       <section className="section auth animate__animated animate__fadeInDown">
