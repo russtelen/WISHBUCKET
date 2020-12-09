@@ -9,7 +9,7 @@ import "./App.css";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Wishlists from "./Wishlists";
-import Register from "./Register";
+import Register from "./auth/Register";
 
 function App() {
   return (
