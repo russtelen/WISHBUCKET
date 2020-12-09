@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import "animate.css";
+import FormErrors from "../util/FormErrors";
 
 class Login extends Component {
   state = {
     email: "",
     password: "",
+    errors: {
+      blankfield: false,
+      matchedpassword: false,
+    },
   };
 
   handleSubmit = async (event) => {
@@ -27,6 +32,7 @@ class Login extends Component {
       <section className="section auth animate__animated animate__fadeInDown">
         <div className="container">
           <h1 className="display-4 mb-4">Login</h1>
+          <FormErrors formerrors={this.state.errors} />
           <form onSubmit={this.handleSubmit}>
             <div className="field">
               <p className="control">
