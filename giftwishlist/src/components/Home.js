@@ -7,12 +7,14 @@ import "animate.css";
 
 export default function Wishlists() {
   const [route, setRoute] = useState("");
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState("");
 
   useEffect(() => {
     setRoute("/register");
+    setIsUserLoggedIn(false);
   }, []);
 
-  //  if user isLoggedIn -> setRoute("/wishlist")
+  //  if user isLoggedIn -> setRoute("/wishlist") and setIsUserLoggedIn(true);
 
   return (
     <div className="home">
