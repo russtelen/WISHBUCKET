@@ -10,6 +10,7 @@ import Home from "./Home";
 import Navbar from "./Navbar";
 import Wishlists from "./Wishlists";
 import Register from "./auth/Register";
+import Login from "./auth/Login";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/wishlist" component={Wishlists} />
             <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         </div>
       </Router>
