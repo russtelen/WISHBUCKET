@@ -1,5 +1,18 @@
 .home {
-	&__header {
-		color: red;
-	}
+  &__jumbotron-custom {
+    background: rgb(247, 146, 208);
+    background: linear-gradient(
+      54deg,
+      rgba(247, 146, 208, 1) 0%,
+      rgba(165, 151, 189, 1) 22%,
+      rgba(165, 151, 189, 1) 25%,
+      rgba(36, 158, 160, 1) 100%
+    );
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
 }
