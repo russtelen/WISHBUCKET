@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "animate.css";
+import FormErrors from "../util/FormErrors";
+import validateForm from "../util/Validation";
 
 class Register extends Component {
   //state variables for form inputs and errors
@@ -7,6 +9,20 @@ class Register extends Component {
     email: "",
     password: "",
     confirmpassword: "",
+    errors: {
+      blankfield: false,
+      matchedpassword: false,
+    },
+  };
+
+  // helper function...be sure to list the state variables specific to the form
+  clearErrors = () => {
+    this.setState({
+      errors: {
+        blankfield: false,
+        //matchedpassword: false
+      },
+    });
   };
 
   handleSubmit = async (event) => {
@@ -14,20 +30,30 @@ class Register extends Component {
     event.preventDefault();
 
     //Perform Validation here
+    this.clearErrors();
+    const error = validateForm(event, this.state);
 
-    //Integrate Auth here on valid form submission
+    if (error) {
+      this.setState({
+        errors: { ...this.state.errors, ...error },
+      });
+    } else {
+      //Integrate Auth here on valid form submission
+    }
   };
 
   onInputChange = (event) => {
     this.setState({
       [event.target.id]: event.target.value,
     });
+    document.getElementById(event.target.id).classList.remove("is-danger");
   };
   render() {
     return (
       <section className="section auth animate__animated animate__fadeInDown">
         <div className="container">
           <h1 className="display-4 mb-4">Register</h1>
+          <FormErrors formerrors={this.state.errors} />
           <form onSubmit={this.handleSubmit}>
             <div className="field">
               <p className="control">
