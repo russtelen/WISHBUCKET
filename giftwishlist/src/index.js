@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
+import './styles/styles.scss'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
