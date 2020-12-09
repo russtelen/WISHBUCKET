@@ -9,6 +9,7 @@ import "./App.css";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Wishlists from "./Wishlists";
+import Register from "./auth/Register";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/wishlist" component={Wishlists} />
+            <Route exact path="/register" component={Register} />
           </Switch>
         </div>
       </Router>
