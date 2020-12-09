@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "animate.css";
 import FormErrors from "../util/FormErrors";
+import validateForm from "../util/Validation";
 
 class Register extends Component {
   //state variables for form inputs and errors
@@ -19,8 +20,15 @@ class Register extends Component {
     event.preventDefault();
 
     //Perform Validation here
+    const error = validateForm(event, this.state);
 
-    //Integrate Auth here on valid form submission
+    if (error) {
+      this.setState({
+        errors: { ...this.state.errors, ...error },
+      });
+    } else {
+      //Integrate Auth here on valid form submission
+    }
   };
 
   onInputChange = (event) => {
