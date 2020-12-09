@@ -6,10 +6,10 @@ import { GiStairsCake, GiTakeMyMoney } from "react-icons/gi";
 import "animate.css";
 
 export default function Wishlists() {
-  const [createButton, setCreateButton] = useState("");
+  const [route, setRoute] = useState("");
 
   useEffect(() => {
-    setCreateButton("/register");
+    setRoute("/register");
   }, []);
 
   return (
@@ -29,7 +29,7 @@ export default function Wishlists() {
           instantly with friends and family
         </p>
         <p className="lead my-3  animate__animated animate__fadeInUp">
-          <NavLink to={createButton} className="btn btn-success btn-lg">
+          <NavLink to={route} className="btn btn-success btn-lg">
             Create Wish List
           </NavLink>
         </p>
