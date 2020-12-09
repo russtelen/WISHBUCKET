@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 
-const Register = () => {
-  return (
-    <div>
-      <h1>Register Page Works</h1>
-    </div>
-  );
-};
-
+class Register extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Register Page works</h1>
+      </div>
+    );
+  }
+}
 export default Register;
