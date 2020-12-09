@@ -27,7 +27,7 @@ export default class Home extends Component {
           </p>
         </div>
         {/* Quick Overview */}
-        <div className="home__overview">
+        <div className="home__overview pb-5">
           <div className="home__overview-cards container row">
             <div className="home__overview-card col-sm-12 col-md-3 mx-auto my-2">
               <IoStorefrontOutline size={50} />
