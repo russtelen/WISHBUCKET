@@ -12,6 +12,8 @@ export default function Wishlists() {
     setRoute("/register");
   }, []);
 
+  //  if user isLoggedIn -> setRoute("/wishlist")
+
   return (
     <div className="home">
       {/* jumbotron */}
