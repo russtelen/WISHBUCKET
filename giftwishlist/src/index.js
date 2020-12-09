@@ -6,6 +6,7 @@ import 'jquery';
 import 'popper.js';
 import 'bootstrap/dist/js/bootstrap';
 import './styles/styles.scss'
+import 'bulma/css/bulma.min.css'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
