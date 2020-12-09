@@ -64,7 +64,7 @@ class Login extends Component {
             console.log("Error in Auth/Login");
           }
         })
-        // Data not retrieved.
+        // Data not retrieved
         .catch(function (error) {
           console.log(error);
         });
