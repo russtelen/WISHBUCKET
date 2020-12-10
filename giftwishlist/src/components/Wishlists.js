@@ -1,59 +1,125 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-
-const BASE_URL = 'https://localhost:44361/api/';
+const BASE_URL = "https://localhost:44361/api/";
 
 export default function Wishlists() {
-    
-    const [wishlists, setWishlists] = useState([]);
+  const [wishlists, setWishlists] = useState([]);
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
-    const fetchWishlists = () => {
-        fetch(BASE_URL+'wishlist') // this should be changed to 'wishlists' (plural)
-        .then(response => response.json())
-        .then((data) => {
-            setWishlists(data);
-        })
-        .catch ((err) => {
-            console.log(`An error has occurred: ${err}`);
+  const fetchWishlists = () => {
+    fetch(BASE_URL + "wishlist") // this should be changed to 'wishlists' (plural)
+      .then((response) => response.json())
+      .then((data) => {
+        setWishlists(data);
+      })
+      .catch((err) => {
+        console.log(`An error has occurred: ${err}`);
       });
-    }
+  };
 
-    useEffect(() => {
+  useEffect(() => {
+    fetchWishlists();
+  }, []); // empty [] dependancy list to stop infinite loop
+
+  //Create Wishlist (POST API)
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setName(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    console.log(e.target.value);
+    setPassword(e.target.value);
+  };
+
+  const handleDueDateChange = (e) => {
+    console.log(e.target.value);
+    setDueDate(e.target.value);
+  };
+
+  const createWishlist = () => {
+    fetch(BASE_URL + "wishlist", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Name: name,
+        Password: password,
+        DueDate: dueDate,
+      }),
+    })
+      // Response received.
+      .then((response) => response.json())
+      // Data retrieved.
+      .then((json) => {
+        console.log(JSON.stringify(json));
+        setName("");
+        setPassword("");
+        setDueDate(""); // Clear input.
         fetchWishlists();
-    }, []); // empty [] dependancy list to stop infinite loop
+      })
+      // Data not retrieved.
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
-    return (
-        <div>
-            <h1>Wishlists</h1>
-            {/* Pending change to CARD Format, instead of Table */}
-            {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
-            <table className="table is-fullwidth"> 
-                <thead>
-                    <tr>
-                        {/* <th>Id</th> */}
-                        <th>Name</th>
-                        <th>Password</th>
-                        <th>DueDate</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    {wishlists.map(wishlist =>
-                        <tr>
-                            {console.log(wishlist.id)}
-                            {/* <td>{wishlist.Id}</td>  */}
-                            <td><NavLink to={"/wishlist/" + wishlist.id} className="nav-link__wishlist">{wishlist.name}</NavLink></td>
-                            <td>{wishlist.password}</td>
-                            <td>{wishlist.dueDate}</td>
-                        </tr>
-                    )}
-                </tbody>
-            </table>
+  return (
+    <div>
+      <h1>Wishlists</h1>
+      {/* Pending change to CARD Format, instead of Table */}
+      {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
+      <input
+        placeholder="Wishlist Name"
+        type="text"
+        value={name}
+        onChange={handleNameChange}
+      />
+      <input
+        placeholder="Wishlist Password"
+        type="text"
+        value={password}
+        onChange={handlePasswordChange}
+      />
+      <input type="date" value={dueDate} onChange={handleDueDateChange} />
+      <button className="button" onClick={createWishlist}>
+        Create Wishlist
+      </button>
 
-
-        </div>
-    )
-
+      <table className="table is-fullwidth">
+        <thead>
+          <tr>
+            {/* <th>Id</th> */}
+            <th>Name</th>
+            <th>Password</th>
+            <th>DueDate</th>
+          </tr>
+        </thead>
+        <tbody>
+          {wishlists.map((wishlist) => (
+            <tr>
+              {console.log(wishlist.id)}
+              {/* <td>{wishlist.Id}</td>  */}
+              <td>
+                <NavLink
+                  to={"/wishlist/" + wishlist.id}
+                  className="nav-link__wishlist"
+                >
+                  {wishlist.name}
+                </NavLink>
+              </td>
+              <td>{wishlist.password}</td>
+              <td>{wishlist.dueDate}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
