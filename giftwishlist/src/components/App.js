@@ -35,6 +35,8 @@ export default function App() {
     } else {
       setUserAuthenticated(true);
     }
+    // reloads page when called
+    // window.location.reload(false);
   }
 
   const value = {
