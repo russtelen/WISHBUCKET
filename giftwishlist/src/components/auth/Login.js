@@ -60,6 +60,8 @@ class Login extends Component {
           if (json["status"] === "OK") {
             sessionStorage.setItem("bearer-token", json["token"]);
             console.log(sessionStorage.getItem("bearer-token"));
+            // rediredt to Wishlist AFTER sessionStorage updated
+            window.location.href="/wishlist";
           } else {
             // error message handling
             console.log("Error in Auth/Login");
@@ -116,19 +118,16 @@ class Login extends Component {
               <p className="control">
                 <UserAuthContext.Consumer>
                   {({userAuthenticated, updateUserAuthenticated}) => {
-                    
                     return (
-                      <button 
-                        className="button is-success"
-                        onClick = {updateUserAuthenticated}
-                      >
-                        Login
-                      </button>
+                        <button 
+                          className="button is-success"
+                          onClick ={updateUserAuthenticated}
+                        >
+                          Login
+                        </button>
                     );
-                    
                   }}
                 </UserAuthContext.Consumer>
-                
               </p>
             </div>
           </form>
