@@ -67,15 +67,14 @@ export default function Wishlists() {
   };
 
   //Update Wishlist (PUT)
-  const updateToDo = (id, name, password, dueDate) => {
-    fetch(BASE_URL + "wishlist/update", {
+  const updateToDo = (name, password, dueDate) => {
+    fetch(BASE_URL + "wishlist", {
       method: "PUT",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        OwnerId: id,
         Name: name,
         Password: password,
         DueDate: dueDate,
@@ -95,7 +94,7 @@ export default function Wishlists() {
 
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
-    fetch(BASE_URL + "wishlist/Delete?OwnerId=" + id, {
+    fetch(BASE_URL + "wishlist/" + id + "/", {
       method: "DELETE",
       headers: {
         Accept: "application/json",
