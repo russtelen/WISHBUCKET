@@ -93,6 +93,26 @@ export default function Wishlists() {
       });
   };
 
+  // Delete Wishlist (DELETE)
+  const deleteWishlist = (id) => {
+    fetch(BASE_URL + "wishlist/Delete?OwnerId=" + id, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      // Data retrieved.
+      .then((data) => {
+        console.log(JSON.stringify(data));
+        fetchWishlists();
+      })
+      // Data not retrieved.
+      .catch((e) => {
+        console.log(e);
+      });
+  };
   return (
     <div>
       <h1>Wishlists</h1>
@@ -123,6 +143,8 @@ export default function Wishlists() {
             <th>Name</th>
             <th>Password</th>
             <th>DueDate</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -140,6 +162,14 @@ export default function Wishlists() {
               </td>
               <td>{wishlist.password}</td>
               <td>{wishlist.dueDate}</td>
+              <td>
+                <button
+                  className="button is-danger is-light"
+                  onClick={() => deleteWishlist(wishlist.id)}
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
