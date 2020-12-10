@@ -116,7 +116,7 @@ class Login extends Component {
               <p className="control">
                 <UserAuthContext.Consumer>
                   {({userAuthenticated, updateUserAuthenticated}) => {
-                    {console.log(userAuthenticated)}
+                    
                     return (
                       <button 
                         className="button is-success"
@@ -125,6 +125,7 @@ class Login extends Component {
                         Login
                       </button>
                     );
+                    
                   }}
                 </UserAuthContext.Consumer>
                 
