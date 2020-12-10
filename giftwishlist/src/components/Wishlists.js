@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { NavLink } from "react-router-dom";
+
 
 const BASE_URL = 'https://localhost:44361/api/';
 
@@ -29,7 +31,7 @@ export default function Wishlists() {
             <table className="table is-fullwidth"> 
                 <thead>
                     <tr>
-                        <th>Id</th>
+                        {/* <th>Id</th> */}
                         <th>Name</th>
                         <th>Password</th>
                         <th>DueDate</th>
@@ -38,11 +40,12 @@ export default function Wishlists() {
                 </thead>
                 <tbody>
                     {wishlists.map(wishlist =>
-                        <tr key={wishlist.Id}>
-                            <td>{wishlist.Id}</td> 
-                            <td>{wishlist.Name}</td>
-                            <td>{wishlist.Password}</td>
-                            <td>{wishlist.DueDate}</td>
+                        <tr>
+                            {console.log(wishlist.id)}
+                            {/* <td>{wishlist.Id}</td>  */}
+                            <td><NavLink to={"/wishlist/" + wishlist.id} className="nav-link__wishlist">{wishlist.name}</NavLink></td>
+                            <td>{wishlist.password}</td>
+                            <td>{wishlist.dueDate}</td>
                         </tr>
                     )}
                 </tbody>

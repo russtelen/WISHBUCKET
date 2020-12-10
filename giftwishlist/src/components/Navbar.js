@@ -33,6 +33,11 @@ export default class Navbar extends Component {
                 Register
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/wishlist" className="nav-link">
+                Wishlist
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
