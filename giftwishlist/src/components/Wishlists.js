@@ -26,17 +26,14 @@ export default function Wishlists() {
 
   //Create Wishlist (POST API)
   const handleNameChange = (e) => {
-    console.log(e.target.value);
     setName(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    console.log(e.target.value);
     setPassword(e.target.value);
   };
 
   const handleDueDateChange = (e) => {
-    console.log(e.target.value);
     setDueDate(e.target.value);
   };
 
@@ -66,6 +63,33 @@ export default function Wishlists() {
       // Data not retrieved.
       .catch(function (error) {
         console.log(error);
+      });
+  };
+
+  //Update Wishlist (PUT)
+  const updateToDo = (id, name, password, dueDate) => {
+    fetch(BASE_URL + "wishlist/update", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        OwnerId: id,
+        Name: name,
+        Password: password,
+        DueDate: dueDate,
+      }),
+    })
+      .then((res) => res.json())
+      // Data retrieved.
+      .then((data) => {
+        console.log(JSON.stringify(data));
+        fetchWishlists();
+      })
+      // Data not retrieved.
+      .catch((e) => {
+        console.log(e);
       });
   };
 
@@ -122,4 +146,15 @@ export default function Wishlists() {
       </table>
     </div>
   );
+}
+
+{
+  /* <td>
+  <input
+    type="checkbox"
+    value={todo.isComplete}
+    checked={todo.isComplete}
+    onChange={(e) => updateToDo(todo.id, e.target.checked)}
+  />
+</td>; */
 }
