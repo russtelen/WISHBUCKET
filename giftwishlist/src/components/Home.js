@@ -8,7 +8,7 @@ import { UserAuthContext } from './UserAuthContext';
 
 export default function Wishlists() {
   const [route, setRoute] = useState("");
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState("");
+  // const [isUserLoggedIn, setIsUserLoggedIn] = useState("");
 
   const { userAuthenticated } = useContext(UserAuthContext);
 
