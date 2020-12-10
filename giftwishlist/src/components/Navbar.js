@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { ImGift } from "react-icons/im";
 import { NavLink } from "react-router-dom";
+import { UserAuthContext } from './UserAuthContext';
 
 export default class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        
         <NavLink to="/" className="navbar-brand">
           <ImGift className="mr-2" /> WishBucket
         </NavLink>
@@ -20,26 +22,23 @@ export default class Navbar extends Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
+        <UserAuthContext.Consumer>
+          {(value) => (value.userAuthenticated ? <NavLink to="/wishlist">Wishlist</NavLink> : <NavLink to="/login">Login</NavLink>)}
+        </UserAuthContext.Consumer>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <NavLink to="/login" className="nav-link">
-                Login
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/register" className="nav-link">
-                Register
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to="/wishlist" className="nav-link">
-                Wishlist
-              </NavLink>
-            </li>
-          </ul>
-        </div>
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <NavLink to="/login" className="nav-link">
+                  Login
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/register" className="nav-link">
+                  Register
+                </NavLink>
+              </li>
+            </ul>
+          </div>
       </nav>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ImGift } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 import { IoStorefrontOutline } from "react-icons/io5";
@@ -9,10 +9,14 @@ export default function Wishlists() {
   const [route, setRoute] = useState("");
   const [isUserLoggedIn, setIsUserLoggedIn] = useState("");
 
-  useEffect(() => {
-    setRoute("/register");
-    setIsUserLoggedIn(false);
-  }, []);
+  // useEffect(() => {
+  //   if (userAuthenticated) {
+  //     setRoute("/wishlist");
+  //   } else {
+  //     setRoute("/login");
+  //   }
+  //   // setIsUserLoggedIn(false);
+  // }, []);
 
   //  if user isLoggedIn -> setRoute("/wishlist") and setIsUserLoggedIn(true);
 
@@ -33,6 +37,7 @@ export default function Wishlists() {
           instantly with friends and family
         </p>
         <p className="lead my-3  animate__animated animate__fadeInUp">
+          {/* {console.log(userAuthenticated)} */}
           <NavLink to={route} className="btn btn-success btn-lg">
             Create Wish List
           </NavLink>

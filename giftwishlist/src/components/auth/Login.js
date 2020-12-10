@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "animate.css";
 import FormErrors from "../util/FormErrors";
 import validateForm from "../util/Validation";
+import { UserAuthContext } from '../UserAuthContext';
 
 const LOCALHOST = 44361;
 
@@ -14,7 +15,7 @@ class Login extends Component {
       matchedpassword: false,
     },
   };
-
+  
   // helper function...be sure to list the state variables specific to the form
   clearErrors = () => {
     this.setState({
@@ -79,6 +80,8 @@ class Login extends Component {
   };
 
   render() {
+    const { userAuthenticated, updateUserAuthenticated } = this.context
+
     return (
       <section className="section auth animate__animated animate__fadeInDown">
         <div className="container">
@@ -111,7 +114,20 @@ class Login extends Component {
             </div>
             <div className="field">
               <p className="control">
-                <button className="button is-success">Login</button>
+                <UserAuthContext.Consumer>
+                  {({userAuthenticated, updateUserAuthenticated}) => {
+                    {console.log(userAuthenticated)}
+                    return (
+                      <button 
+                        className="button is-success"
+                        onClick = {updateUserAuthenticated}
+                      >
+                        Login
+                      </button>
+                    );
+                  }}
+                </UserAuthContext.Consumer>
+                
               </p>
             </div>
           </form>
