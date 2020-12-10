@@ -23,7 +23,15 @@ export default class Navbar extends Component {
           <span className="navbar-toggler-icon"></span>
         </button>
         <UserAuthContext.Consumer>
-          {(value) => (value.userAuthenticated ? <NavLink to="/wishlist">Wishlist</NavLink> : <NavLink to="/login">Login</NavLink>)}
+          {(value) => (value.userAuthenticated ? 
+            <div>
+              <NavLink to="/wishlist">Wishlist</NavLink>
+            </div> : 
+            <div>
+              <NavLink to="/register">Register</NavLink>
+              <NavLink to="/login">Login</NavLink>
+            </div>
+          )}
         </UserAuthContext.Consumer>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
