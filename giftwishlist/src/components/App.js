@@ -9,6 +9,7 @@ import "./App.css";
 import Home from "./Home";
 import Navbar from "./Navbar";
 import Wishlists from "./Wishlists";
+import Wishlist from "./wishlist/Wishlist";
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import React, {useState, useEffect} from 'react';
@@ -51,6 +52,7 @@ export default function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <Route exact path="/wishlist" component={Wishlists} />
+              <Route exact path="/wishlist/:id" component={Wishlist} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
             </Switch>
