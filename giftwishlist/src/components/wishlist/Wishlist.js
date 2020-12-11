@@ -40,6 +40,30 @@ export default function Wishlist({ match }) {
     fetchWishlists();
   }, []); // empty [] dependancy list to stop infinite loop
 
+  // Create Wishlist / Item
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleDescChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.value);
+  };
+
+  const handlePurchaseLinkChange = (e) => {
+    setPurchaseLink(e.target.value);
+  };
+
+  const handlePriceChange = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleCompleteChange = (e) => {
+    setComplete(e.target.value);
+  };
   return (
     <div>
       <table className="table is-fullwidth">
@@ -65,37 +89,37 @@ export default function Wishlist({ match }) {
           placeholder="Item Name"
           type="text"
           value={name}
-          onChange={() => {}}
+          onChange={handleNameChange}
         />
         <input
           placeholder="Description"
           type="text"
           value={description}
-          onChange={() => {}}
+          onChange={handleDescChange}
         />
         <input
           placeholder="Image Link"
           type="url"
           value={image}
-          onChange={() => {}}
+          onChange={handleImageChange}
         />
         <input
           placeholder="Purchase Link"
           type="url"
           value={purchaseLink}
-          onChange={() => {}}
+          onChange={handlePurchaseLinkChange}
         />
         <input
           placeholder="Price"
           type="text"
           value={price}
-          onChange={() => {}}
+          onChange={handlePriceChange}
         />
         <input
           placeholder="Wishlist Name"
           type="checkbox"
           value={complete}
-          onChange={() => {}}
+          onChange={handleCompleteChange}
         />
 
         <button className="button" onClick={() => {}}>
