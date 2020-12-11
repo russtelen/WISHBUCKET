@@ -22,19 +22,19 @@ export default function Wishlist({ match }) {
       .catch((error) => console.log(error));
   };
 
-  const createItem = () => {
-    wishlistService
-      .createItem(createdItem, wishlistId)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-  };
+  // const createItem = () => {
+  //   wishlistService
+  //     .createItem(createdItem, wishlistId)
+  //     .then((response) => console.log(response))
+  //     .catch((error) => console.log(error));
+  // };
 
-  const handleNameChange = (e) => {
-    setCreatedItem({
-      ...createdItem,
-      name: e.target.value,
-    });
-  };
+  // const handleNameChange = (e) => {
+  //   setCreatedItem({
+  //     ...createdItem,
+  //     name: e.target.value,
+  //   });
+  // };
 
   useEffect(() => {
     fetchWishlists();
@@ -62,14 +62,44 @@ export default function Wishlist({ match }) {
 
       <div className="container has-text-centered">
         <input
-          placeholder="Wishlist Name"
+          placeholder="Item Name"
           type="text"
-          value={createdItem.name}
-          onChange={handleNameChange}
+          value={name}
+          onChange={() => {}}
+        />
+        <input
+          placeholder="Description"
+          type="text"
+          value={description}
+          onChange={() => {}}
+        />
+        <input
+          placeholder="Image Link"
+          type="url"
+          value={image}
+          onChange={() => {}}
+        />
+        <input
+          placeholder="Purchase Link"
+          type="url"
+          value={purchaseLink}
+          onChange={() => {}}
+        />
+        <input
+          placeholder="Price"
+          type="text"
+          value={price}
+          onChange={() => {}}
+        />
+        <input
+          placeholder="Wishlist Name"
+          type="checkbox"
+          value={complete}
+          onChange={() => {}}
         />
 
-        <button className="button" onClick={createItem}>
-          Create Wishlist
+        <button className="button" onClick={() => {}}>
+          Add Item
         </button>
       </div>
     </div>
