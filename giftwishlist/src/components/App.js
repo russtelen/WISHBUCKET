@@ -3,7 +3,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  NavLink,
 } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
@@ -32,11 +31,10 @@ export default function App() {
   const updateUserAuthenticated = () => {
     if(sessionStorage.getItem("bearer-token") == null) {
       setUserAuthenticated(false);
+
     } else {
       setUserAuthenticated(true);
-    }
-    // reloads page when called
-    // window.location.reload(false);
+    }    
   }
 
   const value = {
