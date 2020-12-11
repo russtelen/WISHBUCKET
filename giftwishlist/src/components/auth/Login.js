@@ -41,7 +41,7 @@ class Login extends Component {
       });
     } else {
       //Integrate Auth here on valid form submission
-      fetch(`https://localhost:${LOCALHOST}/Auth/Login`, {
+      fetch(`https://giftwishlist1.azurewebsites.net/Auth/Login`, {
         method: "POST",
         headers: {
           Accept: "application/json",

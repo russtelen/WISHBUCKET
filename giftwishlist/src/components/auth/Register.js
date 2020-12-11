@@ -41,7 +41,7 @@ class Register extends Component {
       });
     } else {
       //Integrate Auth here on valid form submission
-      fetch(`https://localhost:${LOCALHOST}/Auth/Register`, {
+      fetch(`https://giftwishlist1.azurewebsites.net/Auth/Register`, {
         method: "POST",
         headers: {
           Accept: "application/json",
