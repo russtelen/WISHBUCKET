@@ -10,7 +10,12 @@ export default function Wishlists() {
   const [dueDate, setDueDate] = useState("");
 
   const fetchWishlists = () => {
-    fetch(BASE_URL + "wishlist") // this should be changed to 'wishlists' (plural)
+    fetch(BASE_URL + "wishlist", {
+      method: "GET",
+      header: {
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+      },
+    }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
         setWishlists(data);
@@ -38,10 +43,11 @@ export default function Wishlists() {
   };
 
   const createWishlist = () => {
-    fetch(BASE_URL + "wishlist", {
+    fetch(BASE_URL + "wishlist/", {
       method: "POST",
       headers: {
         Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -51,7 +57,7 @@ export default function Wishlists() {
       }),
     })
       // Response received.
-      .then((response) => response.json())
+      .then((response) => {})
       // Data retrieved.
       .then((json) => {
         console.log(JSON.stringify(json));
@@ -72,6 +78,7 @@ export default function Wishlists() {
       method: "PUT",
       headers: {
         Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -98,6 +105,7 @@ export default function Wishlists() {
       method: "DELETE",
       headers: {
         Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
         "Content-Type": "application/json",
       },
     })
