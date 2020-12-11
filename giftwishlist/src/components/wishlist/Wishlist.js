@@ -1,26 +1,18 @@
 import React, { useState, useEffect } from "react";
 import Item from './item/Item';
+import wishlistService from '../../services/wishlists.js';
 
 const BASE_URL = "https://localhost:44361/api/";
 
-export default function Wishlists({ match }) {
-  const [wishlist, setWishlist] = useState({});
-
-  const mockItems =[ {
-    Name: "Test item",
-    Description: "Test description",
-    Price: 12.99
-  }]
+export default function Wishlist({ match }) {
+  const [wishlist, setWishlist] = useState([]);
 
   const fetchWishlists = () => {
-    fetch(BASE_URL + "wishlist") // this should be changed to 'wishlists' (plural)
-      .then((response) => response.json())
-      .then((data) => {
-        setWishlist(data);
-      })
-      .catch((err) => {
-        console.log(`An error has occurred: ${err}`);
-      });
+    const wishlistId = match.params.id;
+    wishlistService.getById(wishlistId)
+      .then(response =>
+        setWishlist(response))
+      .catch(error => console.log(error))
   };
 
   useEffect(() => {
@@ -33,7 +25,6 @@ export default function Wishlists({ match }) {
       <table className="table is-fullwidth">
         <thead>
           <tr>
-            {/* <th>Id</th> */}
             <th>Name</th>
             <th>Description</th>
             <th>Image</th>
@@ -43,7 +34,7 @@ export default function Wishlists({ match }) {
           </tr>
         </thead>
         <tbody>
-          {mockItems.map(i => <Item item={i} />)}
+          {wishlist.items ? wishlist.items.map(w => <Item key={w.Name} item={w}/>) : ''}
         </tbody>
       </table>
     </div>

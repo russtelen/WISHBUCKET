@@ -2,7 +2,7 @@ import React from 'react';
 
 const Item = (props) => {
     const itemData = props.item;
-
+  console.log(props.item)
     const formatPrice = (price) => {
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -15,11 +15,11 @@ const Item = (props) => {
 
     return (
         <tr>
-            <td>{itemData.Name}</td>
-            <td>{itemData.Description}</td>
-            <td><img src={itemData.ImageURL} alt={itemData.Name}></img></td>
-            <td><a href={itemData.PurchaseURL}>Purchase</a></td>
-            <td>{formatPrice(itemData.Price)}</td>
+            <td>{itemData.name}</td>
+            <td>{itemData.description}</td>
+            <td><img src={itemData.imageURL} alt={itemData.name}></img></td>
+            <td><a href={itemData.purchaseURL}>Purchase</a></td>
+            <td>{formatPrice(itemData.price)}</td>
             <td>{itemData.isComplete ? '✔' : '❌'}</td>
         </tr>
     )
