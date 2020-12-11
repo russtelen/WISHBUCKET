@@ -2,7 +2,6 @@ import React from 'react';
 
 const Item = (props) => {
     const itemData = props.item;
-  console.log(props.item)
     const formatPrice = (price) => {
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
