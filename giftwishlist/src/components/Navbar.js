@@ -3,7 +3,15 @@ import { ImGift } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 import { UserAuthContext } from './UserAuthContext';
 
+
+
 export default class Navbar extends Component {
+  
+  handleLogoutClick () {
+    sessionStorage.clear();
+    window.location.href="/";
+  }
+  
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -26,7 +34,13 @@ export default class Navbar extends Component {
           {(value) => (value.userAuthenticated ? 
             <div>
               <NavLink to="/wishlist">Wishlist</NavLink>
-            </div> : 
+              <NavLink to="/">
+                <button onClick={this.handleLogoutClick}>
+                  Logout
+                </button>
+              </NavLink>
+            </div> 
+              : 
             <div>
               <NavLink to="/register">Register</NavLink>
               <NavLink to="/login">Login</NavLink>
