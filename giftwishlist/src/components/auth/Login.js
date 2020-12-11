@@ -3,6 +3,7 @@ import "animate.css";
 import FormErrors from "../util/FormErrors";
 import validateForm from "../util/Validation";
 import { UserAuthContext } from '../UserAuthContext';
+import { NavLink } from "react-router-dom";
 
 const LOCALHOST = 44361;
 
@@ -131,6 +132,9 @@ class Login extends Component {
               </p>
             </div>
           </form>
+          <NavLink to="/register">
+              Register
+          </NavLink>
         </div>
       </section>
     );
