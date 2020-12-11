@@ -30,37 +30,36 @@ export default class Navbar extends Component {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <UserAuthContext.Consumer>
-          {(value) => (value.userAuthenticated ? 
-            <div>
-              <NavLink to="/wishlist">Wishlist</NavLink>
-              <NavLink to="/">
-                <button onClick={this.handleLogoutClick}>
-                  Logout
-                </button>
-              </NavLink>
-            </div> 
-              : 
-            <div>
-              <NavLink to="/register">Register</NavLink>
-              <NavLink to="/login">Login</NavLink>
-            </div>
-          )}
-        </UserAuthContext.Consumer>
+
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <NavLink to="/login" className="nav-link">
-                  Login
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="/register" className="nav-link">
-                  Register
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+          <ul className="navbar-nav ml-auto">
+            <UserAuthContext.Consumer>
+              {(value) => (value.userAuthenticated ? 
+                // (if userAuthenticated is true)
+                <div>
+                  <NavLink to="/wishlist">
+                    Wishlist
+                  </NavLink>
+
+                  <NavLink to="/">
+                    <button onClick={this.handleLogoutClick}>
+                      Logout
+                    </button>
+                  </NavLink>
+                </div> 
+                  : // OR (if userAuthenticated is false) 
+                <div>
+                  <NavLink to="/register">
+                    Register
+                  </NavLink>
+                  <NavLink to="/login">
+                    Login
+                  </NavLink>
+                </div>
+              )}
+            </UserAuthContext.Consumer>
+          </ul>
+        </div>
       </nav>
     );
   }
