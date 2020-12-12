@@ -13,7 +13,7 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
-  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
+  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api";
 
   const fetchWishlists = () => {
     wishlistService
@@ -30,6 +30,7 @@ export default function Wishlist({ match }) {
   // };
 
   useEffect(() => {
+    console.log("rendered wishlist.js with id:" + wishlistId);
     fetchWishlists();
   }, []); // empty [] dependancy list to stop infinite loop
 
@@ -60,6 +61,12 @@ export default function Wishlist({ match }) {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };
+
+const deleteWishlist = (id) => {
+
+  console.log("delete clicked" + id);
+}
+
 
   // const createItem = () => {
   //   fetch(`${BASE_URL}/${wishlistId}/item/`, {
@@ -94,7 +101,7 @@ export default function Wishlist({ match }) {
   //       console.log(error);
   //     });
   // };
-
+  
   return (
     <div>
       <table className="table is-fullwidth">
