@@ -10,10 +10,11 @@ export default function Wishlist({ match }) {
   const [image, setImage] = useState("");
   const [purchaseLink, setPurchaseLink] = useState("");
   const [price, setPrice] = useState("");
-  const [complete, setComplete] = useState(false);
+  const [isComplete, setComplete] = useState(false);
 
   // Taken from the url
   const wishlistId = match.params.id;
+  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
 
   const fetchWishlists = () => {
     wishlistService
@@ -64,6 +65,43 @@ export default function Wishlist({ match }) {
   const handleCompleteChange = (e) => {
     setComplete(e.target.value);
   };
+
+  const createItem = () => {
+    fetch(`${BASE_URL}/${wishlistId}/item/`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Name: name,
+        Description: description,
+        ImageURL: image,
+        PurchaseUrl: purchaseLink,
+        Price: price,
+        IsComplete: isComplete,
+      }),
+    })
+      // Response received.
+      .then((response) => {})
+      // Data retrieved.
+      .then((json) => {
+        console.log(JSON.stringify(json));
+        setName("");
+        setDescription("");
+        setPurchaseLink("");
+        setPrice("");
+        setComplete("");
+        setImage("");
+        fetchWishlists();
+      })
+      // Data not retrieved.
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <table className="table is-fullwidth">
@@ -118,11 +156,11 @@ export default function Wishlist({ match }) {
         <input
           placeholder="Wishlist Name"
           type="checkbox"
-          value={complete}
+          value={isComplete}
           onChange={handleCompleteChange}
         />
 
-        <button className="button" onClick={() => {}}>
+        <button className="button" onClick={createItem}>
           Add Item
         </button>
       </div>
