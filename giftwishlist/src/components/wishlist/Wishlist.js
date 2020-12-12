@@ -10,7 +10,6 @@ export default function Wishlist({ match }) {
   const [image, setImage] = useState("");
   const [purchaseLink, setPurchaseLink] = useState("");
   const [price, setPrice] = useState("");
-  const [isComplete, setComplete] = useState(false);
 
   // Taken from the url
   const wishlistId = match.params.id;
@@ -62,10 +61,6 @@ export default function Wishlist({ match }) {
     setPrice(e.target.value);
   };
 
-  const handleCompleteChange = (e) => {
-    setComplete(e.target.value);
-  };
-
   const createItem = () => {
     fetch(`${BASE_URL}/${wishlistId}/item/`, {
       method: "POST",
@@ -80,7 +75,6 @@ export default function Wishlist({ match }) {
         ImageURL: image,
         PurchaseUrl: purchaseLink,
         Price: price,
-        IsComplete: isComplete,
       }),
     })
       // Response received.
@@ -92,7 +86,6 @@ export default function Wishlist({ match }) {
         setDescription("");
         setPurchaseLink("");
         setPrice("");
-        setComplete("");
         setImage("");
         fetchWishlists();
       })
@@ -152,12 +145,6 @@ export default function Wishlist({ match }) {
           type="text"
           value={price}
           onChange={handlePriceChange}
-        />
-        <input
-          placeholder="Wishlist Name"
-          type="checkbox"
-          value={isComplete}
-          onChange={handleCompleteChange}
         />
 
         <button className="button" onClick={createItem}>
