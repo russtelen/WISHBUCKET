@@ -22,13 +22,6 @@ export default function Wishlist({ match }) {
       .catch((error) => console.log(error));
   };
 
-  // const createItem = () => {
-  //   wishlistService
-  //     .createItem(createdItem, wishlistId)
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error));
-  // };
-
   // const handleNameChange = (e) => {
   //   setCreatedItem({
   //     ...createdItem,
@@ -62,38 +55,45 @@ export default function Wishlist({ match }) {
   };
 
   const createItem = () => {
-    fetch(`${BASE_URL}/${wishlistId}/item/`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Name: name,
-        Description: description,
-        ImageURL: image,
-        PurchaseUrl: purchaseLink,
-        Price: price,
-      }),
-    })
-      // Response received.
-      .then((response) => {})
-      // Data retrieved.
-      .then((json) => {
-        console.log(JSON.stringify(json));
-        setName("");
-        setDescription("");
-        setPurchaseLink("");
-        setPrice("");
-        setImage("");
-        fetchWishlists();
-      })
-      // Data not retrieved.
-      .catch(function (error) {
-        console.log(error);
-      });
+    wishlistService
+      .createItem(name, description, image, purchaseLink, price, wishlistId)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
+
+  // const createItem = () => {
+  //   fetch(`${BASE_URL}/${wishlistId}/item/`, {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       Name: name,
+  //       Description: description,
+  //       ImageURL: image,
+  //       PurchaseUrl: purchaseLink,
+  //       Price: price,
+  //     }),
+  //   })
+  //     // Response received.
+  //     .then((response) => {})
+  //     // Data retrieved.
+  //     .then((json) => {
+  //       console.log(JSON.stringify(json));
+  //       setName("");
+  //       setDescription("");
+  //       setPurchaseLink("");
+  //       setPrice("");
+  //       setImage("");
+  //       fetchWishlists();
+  //     })
+  //     // Data not retrieved.
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   return (
     <div>
