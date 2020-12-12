@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Item from "./item/Item";
 import wishlistService from "../../services/wishlists.js";
+import { NavLink } from "react-router-dom";
+
 
 export default function Wishlist({ match }) {
   const [wishlist, setWishlist] = useState([]);
@@ -104,6 +106,9 @@ const deleteWishlist = (id) => {
   
   return (
     <div>
+      <NavLink to="/wishlist">
+        Return to Wishlists
+      </NavLink>
       <table className="table is-fullwidth">
         <thead>
           <tr>
