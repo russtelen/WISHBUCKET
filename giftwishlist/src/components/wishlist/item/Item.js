@@ -38,6 +38,29 @@ const Item = (props) => {
             window.location.href="/wishlist/" + wishlistId;
     }
 
+    const handleCompletedStatus = (wishlistId, itemId) => {
+        console.log("completed button clickedfor" + itemId + "in wishlistId" + wishlistId);
+        fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
+            method: "PUT",
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            // Data retrieved.
+            .then((data) => {
+              console.log(JSON.stringify(data));
+            //   fetchWishlists();
+            })
+            // Data not retrieved.
+            .catch((e) => {
+              console.log(e);
+            });
+            window.location.href="/wishlist/" + wishlistId;
+    }
+
     return (
         <tr>
             <td>{itemData.name}</td>
@@ -45,7 +68,11 @@ const Item = (props) => {
             <td><img src={itemData.imageURL} alt={itemData.name}></img></td>
             <td><a href={itemData.purchaseURL}>Purchase</a></td>
             <td>{formatPrice(itemData.price)}</td>
-            <td>{itemData.isComplete ? '✔' : '❌'}</td>
+            <td>
+                <button className="button" onClick={() => handleCompletedStatus(itemData.wishlistID, itemData.id)}>
+                    {itemData.isComplete ? '✔' : '❌'}
+                </button>
+            </td>
             <td>
                 <buttom className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
                     Delete
