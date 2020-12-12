@@ -1,8 +1,6 @@
 import React from 'react';
 
-const deleteItem = (itemId) => {
-    console.log("deleteItm button clicked for" + itemId);
-}
+const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
 
 const Item = (props) => {
     const itemData = props.item;
@@ -16,6 +14,30 @@ const Item = (props) => {
         return formatter.format(price);
     }
 
+    const deleteItem = (wishlistId, itemId) => {
+        
+        console.log("deleteItm button clicked for" + itemId + "in wishlistId" + wishlistId);
+        fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.json())
+            // Data retrieved.
+            .then((data) => {
+              console.log(JSON.stringify(data));
+            //   fetchWishlists();
+            })
+            // Data not retrieved.
+            .catch((e) => {
+              console.log(e);
+            });
+            window.location.href="/wishlist/" + wishlistId;
+    }
+
     return (
         <tr>
             <td>{itemData.name}</td>
@@ -25,7 +47,7 @@ const Item = (props) => {
             <td>{formatPrice(itemData.price)}</td>
             <td>{itemData.isComplete ? '✔' : '❌'}</td>
             <td>
-                <buttom className="button" onClick={() => deleteItem(itemData.id)}>
+                <buttom className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
                     Delete
                 </buttom>
             </td>
