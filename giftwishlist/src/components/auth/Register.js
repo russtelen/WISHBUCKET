@@ -62,6 +62,7 @@ class Register extends Component {
           if (json["status"] === "OK") {
             sessionStorage.setItem("bearer-token", json["token"]);
             console.log(sessionStorage.getItem("bearer-token"));
+            window.location.href="/login";
           } else {
             // error message handling
             console.log("Error in Auth/Register");
