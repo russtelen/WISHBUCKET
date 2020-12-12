@@ -1,5 +1,9 @@
 import React from 'react';
 
+const deleteItem = (itemId) => {
+    console.log("deleteItm button clicked for" + itemId);
+}
+
 const Item = (props) => {
     const itemData = props.item;
     const formatPrice = (price) => {
@@ -20,6 +24,11 @@ const Item = (props) => {
             <td><a href={itemData.purchaseURL}>Purchase</a></td>
             <td>{formatPrice(itemData.price)}</td>
             <td>{itemData.isComplete ? '✔' : '❌'}</td>
+            <td>
+                <buttom className="button" onClick={() => deleteItem(itemData.id)}>
+                    Delete
+                </buttom>
+            </td>
         </tr>
     )
 }
