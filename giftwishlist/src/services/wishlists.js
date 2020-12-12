@@ -1,5 +1,5 @@
 const BASE = "https://giftwishlist1.azurewebsites.net/api/";
-const BASE_URL = BASE + "/api/wishlist";
+const BASE_URL = BASE + "wishlist";
 
 const getById = async (id) => {
   const response = await fetch(`${BASE_URL}/${id}`).catch((err) =>

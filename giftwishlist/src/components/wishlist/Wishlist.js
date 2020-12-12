@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Item from "./item/Item";
 import wishlistService from "../../services/wishlists.js";
+import { NavLink } from "react-router-dom";
+
 
 export default function Wishlist({ match }) {
   const [wishlist, setWishlist] = useState([]);
@@ -13,7 +15,7 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
-  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
+  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api";
 
   const fetchWishlists = () => {
     wishlistService
@@ -30,6 +32,7 @@ export default function Wishlist({ match }) {
   // };
 
   useEffect(() => {
+    console.log("rendered wishlist.js with id:" + wishlistId);
     fetchWishlists();
   }, []); // empty [] dependancy list to stop infinite loop
 
@@ -60,6 +63,12 @@ export default function Wishlist({ match }) {
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };
+
+const deleteWishlist = (id) => {
+
+  console.log("delete clicked" + id);
+}
+
 
   // const createItem = () => {
   //   fetch(`${BASE_URL}/${wishlistId}/item/`, {
@@ -94,9 +103,12 @@ export default function Wishlist({ match }) {
   //       console.log(error);
   //     });
   // };
-
+  
   return (
     <div>
+      <NavLink to="/wishlist">
+        Return to Wishlists
+      </NavLink>
       <table className="table is-fullwidth">
         <thead>
           <tr>
@@ -149,6 +161,9 @@ export default function Wishlist({ match }) {
 
         <button className="button" onClick={createItem}>
           Add Item
+        </button>
+        <button className="button" onClick={deleteWishlist}>
+          Delete Wishlist
         </button>
       </div>
     </div>

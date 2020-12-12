@@ -122,6 +122,7 @@ export default function Wishlists() {
   };
   return (
     <div>
+      <h1>Hello, User (get from AuthDb?)</h1>
       <h1>Wishlists</h1>
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
@@ -147,6 +148,7 @@ export default function Wishlists() {
         <thead>
           <tr>
             {/* <th>Id</th> */}
+            <th>Owner (WishDb)</th>
             <th>Name</th>
             <th>Password</th>
             <th>DueDate</th>
@@ -159,6 +161,9 @@ export default function Wishlists() {
             <tr>
               {console.log(wishlist.id)}
               {/* <td>{wishlist.Id}</td>  */}
+              <td>
+                {wishlist.ownerId}
+              </td>
               <td>
                 <NavLink
                   to={"/wishlist/" + wishlist.id}
