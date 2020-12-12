@@ -62,6 +62,7 @@ export default function Wishlist({ match }) {
       .createItem(name, description, image, purchaseLink, price, wishlistId)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
+      window.location.href="/wishlist/" + wishlistId;
   };
 
 const deleteWishlist = (id) => {
@@ -118,6 +119,7 @@ const deleteWishlist = (id) => {
             <th>Purchase Link</th>
             <th>Price</th>
             <th>Completed</th>
+            <th>Delete Item</th>
           </tr>
         </thead>
         <tbody>
