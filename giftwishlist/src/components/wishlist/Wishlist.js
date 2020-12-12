@@ -157,6 +157,9 @@ const deleteWishlist = (id) => {
         <button className="button" onClick={createItem}>
           Add Item
         </button>
+        <button className="button" onClick={deleteWishlist}>
+          Delete Wishlist
+        </button>
       </div>
     </div>
   );
