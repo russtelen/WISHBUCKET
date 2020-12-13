@@ -39,15 +39,11 @@ const Item = (props) => {
     }
 
     const toggleCompletedStatus = async (
-            name,
-            description,
-            image,
-            purchaseLink,
-            price,
-            wishlistId
+            wishlistId,
+            itemId,        
         ) => {
         console.log("completed button clickedfor" + itemId + "in wishlistId" + wishlistId);
-        
+        console.log(itemData.isComplete)
         const response = await fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
             method: "PUT",
             headers: {
@@ -56,11 +52,9 @@ const Item = (props) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                Name: name,
-                Description: description,
-                ImageURL: image,
-                PurchaseUrl: purchaseLink,
-                Price: price,
+                Id: itemId,
+                isComplete: !itemData.isComplete,
+                wishlistID: wishlistId,
               }),
           }).catch((err) => console.log(err));
             if (response.status > 400) {
