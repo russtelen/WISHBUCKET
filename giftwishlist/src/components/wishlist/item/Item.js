@@ -38,26 +38,29 @@ const Item = (props) => {
             window.location.href="/wishlist/" + wishlistId;
     }
 
-    const handleCompletedStatus = (wishlistId, itemId) => {
+    const toggleCompletedStatus = async (
+            wishlistId,
+            itemId,        
+        ) => {
         console.log("completed button clickedfor" + itemId + "in wishlistId" + wishlistId);
-        fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
+        console.log(itemData.isComplete)
+        const response = await fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
             method: "PUT",
             headers: {
               Accept: "application/json",
               Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
               "Content-Type": "application/json",
             },
-          })
-            .then((res) => res.json())
-            // Data retrieved.
-            .then((data) => {
-              console.log(JSON.stringify(data));
-            //   fetchWishlists();
-            })
-            // Data not retrieved.
-            .catch((e) => {
-              console.log(e);
-            });
+            body: JSON.stringify({
+                Id: itemId,
+                isComplete: !itemData.isComplete,
+                wishlistID: wishlistId,
+              }),
+          }).catch((err) => console.log(err));
+            if (response.status > 400) {
+                return response;
+              }
+            return await response.json();
             window.location.href="/wishlist/" + wishlistId;
     }
 
@@ -69,7 +72,7 @@ const Item = (props) => {
             <td><a href={itemData.purchaseURL}>Purchase</a></td>
             <td>{formatPrice(itemData.price)}</td>
             <td>
-                <button className="button" onClick={() => handleCompletedStatus(itemData.wishlistID, itemData.id)}>
+                <button className="button" onClick={() => toggleCompletedStatus(itemData.wishlistID, itemData.id)}>
                     {itemData.isComplete ? '✔' : '❌'}
                 </button>
             </td>
