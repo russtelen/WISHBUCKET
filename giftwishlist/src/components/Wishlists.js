@@ -18,7 +18,7 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        if (wishlists.length == 0 || wishlists == undefined) {
+        if (wishlists == undefined) {
           setWishlists([]);
         } else {
           setWishlists(data);
@@ -61,7 +61,9 @@ export default function Wishlists() {
       }),
     })
       // Response received.
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       // Data retrieved.
       .then((json) => {
         console.log(JSON.stringify(json));
