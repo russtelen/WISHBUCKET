@@ -105,6 +105,10 @@ export default function Wishlists() {
       });
   };
 
+  const showEditInputs = () => {
+    console.log("clicked!");
+  };
+
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
     fetch(BASE_URL + "wishlist/" + id + "/", {
@@ -181,7 +185,7 @@ export default function Wishlists() {
               <td>
                 <button
                   className="button is-info is-light"
-                  onClick={() => deleteWishlist(wishlist.id)}
+                  onClick={showEditInputs}
                 >
                   Update
                 </button>
@@ -192,6 +196,18 @@ export default function Wishlists() {
                   onClick={() => deleteWishlist(wishlist.id)}
                 >
                   Delete
+                </button>
+              </td>
+              <td>
+                <input placeholder="Wishlist Name" type="text" value={name} />
+                <input
+                  placeholder="Wishlist Password"
+                  type="text"
+                  value={password}
+                />
+                <input type="date" value={dueDate} />
+                <button className="button" onClick={createWishlist}>
+                  Confirm
                 </button>
               </td>
             </tr>
