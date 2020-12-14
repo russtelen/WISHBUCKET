@@ -18,7 +18,11 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        setWishlists(data);
+        if (wishlists.length == 0 || wishlists == undefined) {
+          setWishlists([]);
+        } else {
+          setWishlists(data);
+        }
       })
       .catch((err) => {
         console.log(`An error has occurred: ${err}`);
@@ -159,7 +163,7 @@ export default function Wishlists() {
         <tbody>
           {wishlists.map((wishlist) => (
             <tr>
-              {console.log(wishlist.id)}
+              {/* {console.log(wishlist.id)} */}
               {/* <td>{wishlist.Id}</td>  */}
               <td>{wishlist.ownerId}</td>
               <td>
