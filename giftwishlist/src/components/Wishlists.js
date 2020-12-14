@@ -106,8 +106,7 @@ export default function Wishlists() {
       });
   };
 
-  const showEditInputs = (e) => {
-    console.log("clicked!");
+  const showEditInputs = () => {
     showInputs ? setShowInputs(false) : setShowInputs(true);
   };
 
@@ -172,8 +171,13 @@ export default function Wishlists() {
           value={password}
         />
         <input id="editInputDate" type="date" value={dueDate} />
-        <button className="button" onClick={createWishlist}>
-          Confirm
+        <button
+          className="button"
+          onClick={() => {
+            console.log("wishlist updated");
+          }}
+        >
+          Edit Wishlist
         </button>
       </div>
 
