@@ -35,7 +35,7 @@ const Item = (props) => {
             .catch((e) => {
               console.log(e);
             });
-            //window.location.href="/wishlist/" + wishlistId;
+            window.location.href="/wishlist/" + wishlistId;
     }
 
     const toggleCompletedStatus = async (
