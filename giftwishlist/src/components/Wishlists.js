@@ -83,7 +83,7 @@ export default function Wishlists() {
   };
 
   //Update Wishlist (PUT)
-  const updateToDo = (name, password, dueDate) => {
+  const updateWishlist = (name, password, dueDate) => {
     fetch(BASE_URL + "wishlist", {
       method: "PUT",
       headers: {
@@ -195,7 +195,7 @@ export default function Wishlists() {
         <button
           className="button"
           onClick={() => {
-            console.log("wishlist updated");
+            console.log("Wishtlist Updated");
           }}
         >
           Edit Wishlist
