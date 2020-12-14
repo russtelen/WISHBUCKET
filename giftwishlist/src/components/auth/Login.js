@@ -7,6 +7,8 @@ import { NavLink } from "react-router-dom";
 
 const LOCALHOST = 44361;
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 class Login extends Component {
   state = {
     email: "",
@@ -41,7 +43,7 @@ class Login extends Component {
       });
     } else {
       //Integrate Auth here on valid form submission
-      fetch(`https://giftwishlist1.azurewebsites.net/Auth/Login`, {
+      fetch(`${BASE_URL}Auth/Login`, {
         method: "POST",
         headers: {
           Accept: "application/json",

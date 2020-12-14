@@ -15,7 +15,7 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
-  const BASE_URL = "https://giftwishlist1.azurewebsites.net/api";
+  const BASE_URL = process.env.REACT_APP_BASE_URL;
 
   const fetchWishlists = () => {
     wishlistService

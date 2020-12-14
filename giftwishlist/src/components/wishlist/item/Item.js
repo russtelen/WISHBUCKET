@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const Item = (props) => {
     const itemData = props.item;
@@ -35,7 +35,7 @@ const Item = (props) => {
             .catch((e) => {
               console.log(e);
             });
-            window.location.href="/wishlist/" + wishlistId;
+            //window.location.href="/wishlist/" + wishlistId;
     }
 
     const toggleCompletedStatus = async (
@@ -77,9 +77,9 @@ const Item = (props) => {
                 </button>
             </td>
             <td>
-                <buttom className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
+                <button className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
                     Delete
-                </buttom>
+                </button>
             </td>
         </tr>
     )

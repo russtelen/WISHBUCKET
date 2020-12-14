@@ -4,6 +4,7 @@ import FormErrors from "../util/FormErrors";
 import validateForm from "../util/Validation";
 
 const LOCALHOST = 44361;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Register extends Component {
   //state variables for form inputs and errors
@@ -41,7 +42,7 @@ class Register extends Component {
       });
     } else {
       //Integrate Auth here on valid form submission
-      fetch(`https://giftwishlist1.azurewebsites.net/Auth/Register`, {
+      fetch(`${BASE_URL}/Auth/Register`, {
         method: "POST",
         headers: {
           Accept: "application/json",

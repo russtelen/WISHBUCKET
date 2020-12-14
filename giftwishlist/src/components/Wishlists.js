@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const BASE_URL = "https://giftwishlist1.azurewebsites.net/api/";
+const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 
 export default function Wishlists() {
   const [wishlists, setWishlists] = useState([]);
