@@ -8,6 +8,7 @@ export default function Wishlists() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [showInputs, setShowInputs] = useState(false);
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
@@ -107,13 +108,7 @@ export default function Wishlists() {
 
   const showEditInputs = (e) => {
     console.log("clicked!");
-
-    // var name = document.getElementById("editInputName");
-    // var password = document.getElementById("editInputPassword");
-    // var date = document.getElementById("editInputDate");
-    // name.type = "text";
-    // password.type = "text";
-    // date.type = "date";
+    showInputs ? setShowInputs(false) : setShowInputs(true);
   };
 
   // Delete Wishlist (DELETE)
@@ -163,7 +158,7 @@ export default function Wishlists() {
         </button>
       </div>
 
-      <div id="editInputs">
+      <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
         <input
           id="editInputName"
           placeholder="Wishlist Name"
