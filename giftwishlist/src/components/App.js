@@ -18,34 +18,35 @@ export default function App() {
   
   // state variable to track whether User is logged-in;
   // -- passed to any other Components via UserAuthContext
-  const [userAuthenticated, setUserAuthenticated] = useState(false);
+  const [userAuthenticated, setUserAuthenticated] = useState("");
+  // const [userLoggedInEmail, setUserLoggedInEmail] = useState("");
   // update the state variable based on SessionStorage AT RENDER
   useEffect(() => {
     if(sessionStorage.getItem("bearer-token") == null) {
-      setUserAuthenticated(false);
+      setUserAuthenticated("");
     } else {
-      setUserAuthenticated(true);
+      setUserAuthenticated(sessionStorage.getItem("loggedIn-email"));
     }
   }, [])
   // update the state variable based on SessionStorage WHEN CALLED 
   //  -- i.e. at Login-Button-onClick, Logout-Button-onClick
   const updateUserAuthenticated = () => {
-    if(sessionStorage.getItem("bearer-token") == null) {
-      setUserAuthenticated(false);
+    if(sessionStorage.getItem("bearer-token") == "") {
+      setUserAuthenticated("");
 
     } else {
-      setUserAuthenticated(true);
+      setUserAuthenticated(sessionStorage.getItem("loggedIn-email"));
     }    
   }
 
-  const value = {
+  const userAuthValue = {
     userAuthenticated: userAuthenticated,
     updateUserAuthenticated: updateUserAuthenticated,
   }
 
   return (
     <div className="App">
-      <UserAuthContext.Provider value={value}>
+      <UserAuthContext.Provider value={userAuthValue}>
         <Router>
           <div>
             <Navbar />

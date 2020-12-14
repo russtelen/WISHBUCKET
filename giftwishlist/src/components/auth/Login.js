@@ -62,7 +62,7 @@ class Login extends Component {
           // Store token with session data.
           if (json["status"] === "OK") {
             sessionStorage.setItem("bearer-token", json["token"]);
-            console.log(sessionStorage.getItem("bearer-token"));
+            sessionStorage.setItem("loggedIn-email", this.state.email);
             // rediredt to Wishlist AFTER sessionStorage updated
             window.location.href="/wishlist";
           } else {
