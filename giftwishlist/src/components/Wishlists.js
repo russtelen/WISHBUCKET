@@ -9,6 +9,9 @@ export default function Wishlists() {
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
   const [showInputs, setShowInputs] = useState(false);
+  const [editNameInput, setEditNameInput] = useState("");
+  const [editPasswordInput, setEditPasswordInput] = useState("");
+  const [editDateInput, setEditDateInput] = useState("");
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
@@ -106,8 +109,26 @@ export default function Wishlists() {
       });
   };
 
-  const showEditInputs = () => {
+  const showEditInputs = (name, password, duedate) => {
+    //Hide/show inputs
     showInputs ? setShowInputs(false) : setShowInputs(true);
+
+    //Set name input
+    setEditNameInput(name);
+
+    //Set password input
+    if (password !== null) {
+      setEditPasswordInput(password);
+    } else {
+      setEditPasswordInput("");
+    }
+
+    //Set date input
+    if (duedate !== null) {
+      setEditDateInput(duedate.split("T")[0].slice(0, 10));
+    } else {
+      setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
+    }
   };
 
   // Delete Wishlist (DELETE)
@@ -162,15 +183,15 @@ export default function Wishlists() {
           id="editInputName"
           placeholder="Wishlist Name"
           type="text"
-          value={name}
+          value={editNameInput}
         />
         <input
           id="editInputPassword"
           placeholder="Wishlist Password"
           type="text"
-          value={password}
+          value={editPasswordInput}
         />
-        <input id="editInputDate" type="date" value={dueDate} />
+        <input id="editInputDate" type="date" value={editDateInput} />
         <button
           className="button"
           onClick={() => {
@@ -212,7 +233,13 @@ export default function Wishlists() {
               <td>
                 <button
                   className="button is-info is-light"
-                  onClick={showEditInputs}
+                  onClick={() =>
+                    showEditInputs(
+                      wishlist.name,
+                      wishlist.password,
+                      wishlist.dueDate
+                    )
+                  }
                 >
                   Update
                 </button>
