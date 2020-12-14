@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
+const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default function Wishlists() {
   const [wishlists, setWishlists] = useState([]);
@@ -161,9 +161,7 @@ export default function Wishlists() {
             <tr>
               {console.log(wishlist.id)}
               {/* <td>{wishlist.Id}</td>  */}
-              <td>
-                {wishlist.ownerId}
-              </td>
+              <td>{wishlist.ownerId}</td>
               <td>
                 <NavLink
                   to={"/wishlist/" + wishlist.id}
@@ -174,6 +172,14 @@ export default function Wishlists() {
               </td>
               <td>{wishlist.password}</td>
               <td>{wishlist.dueDate}</td>
+              <td>
+                <button
+                  className="button is-info is-light"
+                  onClick={() => deleteWishlist(wishlist.id)}
+                >
+                  Update
+                </button>
+              </td>
               <td>
                 <button
                   className="button is-danger is-light"
