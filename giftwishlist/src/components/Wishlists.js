@@ -105,8 +105,15 @@ export default function Wishlists() {
       });
   };
 
-  const showEditInputs = () => {
+  const showEditInputs = (e) => {
     console.log("clicked!");
+
+    // var name = document.getElementById("editInputName");
+    // var password = document.getElementById("editInputPassword");
+    // var date = document.getElementById("editInputDate");
+    // name.type = "text";
+    // password.type = "text";
+    // date.type = "date";
   };
 
   // Delete Wishlist (DELETE)
@@ -137,22 +144,43 @@ export default function Wishlists() {
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
-      <input
-        placeholder="Wishlist Name"
-        type="text"
-        value={name}
-        onChange={handleNameChange}
-      />
-      <input
-        placeholder="Wishlist Password"
-        type="text"
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <input type="date" value={dueDate} onChange={handleDueDateChange} />
-      <button className="button" onClick={createWishlist}>
-        Create Wishlist
-      </button>
+      <div id="createInputs">
+        <input
+          placeholder="Wishlist Name"
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <input
+          placeholder="Wishlist Password"
+          type="text"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <input type="date" value={dueDate} onChange={handleDueDateChange} />
+        <button className="button" onClick={createWishlist}>
+          Create Wishlist
+        </button>
+      </div>
+
+      <div id="editInputs">
+        <input
+          id="editInputName"
+          placeholder="Wishlist Name"
+          type="text"
+          value={name}
+        />
+        <input
+          id="editInputPassword"
+          placeholder="Wishlist Password"
+          type="text"
+          value={password}
+        />
+        <input id="editInputDate" type="date" value={dueDate} />
+        <button className="button" onClick={createWishlist}>
+          Confirm
+        </button>
+      </div>
 
       <table className="table is-fullwidth">
         <thead>
@@ -196,18 +224,6 @@ export default function Wishlists() {
                   onClick={() => deleteWishlist(wishlist.id)}
                 >
                   Delete
-                </button>
-              </td>
-              <td>
-                <input placeholder="Wishlist Name" type="text" value={name} />
-                <input
-                  placeholder="Wishlist Password"
-                  type="text"
-                  value={password}
-                />
-                <input type="date" value={dueDate} />
-                <button className="button" onClick={createWishlist}>
-                  Confirm
                 </button>
               </td>
             </tr>
