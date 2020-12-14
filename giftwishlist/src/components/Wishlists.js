@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
+const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default function Wishlists() {
   const [wishlists, setWishlists] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [showInputs, setShowInputs] = useState(false);
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
@@ -18,7 +19,11 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        setWishlists(data);
+        if (wishlists == undefined) {
+          setWishlists([]);
+        } else {
+          setWishlists(data);
+        }
       })
       .catch((err) => {
         console.log(`An error has occurred: ${err}`);
@@ -57,7 +62,9 @@ export default function Wishlists() {
       }),
     })
       // Response received.
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       // Data retrieved.
       .then((json) => {
         console.log(JSON.stringify(json));
@@ -99,6 +106,10 @@ export default function Wishlists() {
       });
   };
 
+  const showEditInputs = () => {
+    showInputs ? setShowInputs(false) : setShowInputs(true);
+  };
+
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
     fetch(BASE_URL + "wishlist/" + id + "/", {
@@ -127,22 +138,48 @@ export default function Wishlists() {
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
-      <input
-        placeholder="Wishlist Name"
-        type="text"
-        value={name}
-        onChange={handleNameChange}
-      />
-      <input
-        placeholder="Wishlist Password"
-        type="text"
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <input type="date" value={dueDate} onChange={handleDueDateChange} />
-      <button className="button" onClick={createWishlist}>
-        Create Wishlist
-      </button>
+      <div id="createInputs">
+        <input
+          placeholder="Wishlist Name"
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <input
+          placeholder="Wishlist Password"
+          type="text"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <input type="date" value={dueDate} onChange={handleDueDateChange} />
+        <button className="button" onClick={createWishlist}>
+          Create Wishlist
+        </button>
+      </div>
+
+      <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
+        <input
+          id="editInputName"
+          placeholder="Wishlist Name"
+          type="text"
+          value={name}
+        />
+        <input
+          id="editInputPassword"
+          placeholder="Wishlist Password"
+          type="text"
+          value={password}
+        />
+        <input id="editInputDate" type="date" value={dueDate} />
+        <button
+          className="button"
+          onClick={() => {
+            console.log("wishlist updated");
+          }}
+        >
+          Edit Wishlist
+        </button>
+      </div>
 
       <table className="table is-fullwidth">
         <thead>
@@ -159,11 +196,9 @@ export default function Wishlists() {
         <tbody>
           {wishlists.map((wishlist) => (
             <tr>
-              {console.log(wishlist.id)}
+              {/* {console.log(wishlist.id)} */}
               {/* <td>{wishlist.Id}</td>  */}
-              <td>
-                {wishlist.ownerId}
-              </td>
+              <td>{wishlist.ownerId}</td>
               <td>
                 <NavLink
                   to={"/wishlist/" + wishlist.id}
@@ -174,6 +209,14 @@ export default function Wishlists() {
               </td>
               <td>{wishlist.password}</td>
               <td>{wishlist.dueDate}</td>
+              <td>
+                <button
+                  className="button is-info is-light"
+                  onClick={showEditInputs}
+                >
+                  Update
+                </button>
+              </td>
               <td>
                 <button
                   className="button is-danger is-light"
