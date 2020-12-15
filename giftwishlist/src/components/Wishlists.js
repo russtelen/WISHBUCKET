@@ -193,7 +193,9 @@ export default function Wishlists() {
   };
   return (
     <div>
-      <h1>Hello, User (get from AuthDb?)</h1>
+      <h1>
+          {"Hello, you're logged-in as "} <span>${sessionStorage.getItem("loggedIn-email")}</span>
+      </h1>
       <h1>Wishlists</h1>
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
