@@ -8,6 +8,7 @@ export default function Wishlists() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [id, setId] = useState(0);
   const [showInputs, setShowInputs] = useState(false);
   const [editNameInput, setEditNameInput] = useState("");
   const [editPasswordInput, setEditPasswordInput] = useState("");
@@ -84,7 +85,7 @@ export default function Wishlists() {
   };
 
   //Update Wishlist (PUT)
-  const updateWishlist = (name, password, dueDate) => {
+  const updateWishlist = (id, name, password, dueDate) => {
     fetch(BASE_URL + "wishlist", {
       method: "PUT",
       headers: {
@@ -93,6 +94,7 @@ export default function Wishlists() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        Id: id,
         Name: name,
         Password: password,
         DueDate: dueDate,
@@ -110,6 +112,12 @@ export default function Wishlists() {
       });
   };
 
+  const handleSubmit = () => {
+    updateWishlist(id, editNameInput, editPasswordInput, editDateInput);
+
+    console.log("Wishlist Updated");
+  };
+
   const handleNameChangeEdit = (e) => {
     setEditNameInput(e.target.value);
   };
@@ -122,9 +130,12 @@ export default function Wishlists() {
     setEditDateInput(e.target.value);
   };
 
-  const showEditInputs = (name, password, duedate) => {
+  const showEditInputs = (id, name, password, duedate) => {
     //Hide/show inputs
     showInputs ? setShowInputs(false) : setShowInputs(true);
+
+    setId(id);
+    console.log(id);
 
     //Set name input
     setEditNameInput(name);
@@ -251,13 +262,8 @@ export default function Wishlists() {
           value={editDateInput}
           onChange={handleDueDateChangeEdit}
         />
-        <button
-          className="button"
-          onClick={() => {
-            console.log("Wishtlist Updated");
-          }}
-        >
-          Edit Wishlist
+        <button className="button" onClick={handleSubmit}>
+          Submit
         </button>
       </div>
 
@@ -294,6 +300,7 @@ export default function Wishlists() {
                   className="button is-info is-light"
                   onClick={() =>
                     showEditInputs(
+                      wishlist.id,
                       wishlist.name,
                       wishlist.password,
                       wishlist.dueDate
