@@ -263,8 +263,8 @@ export default function Wishlists() {
           </tr>
         </thead>
         <tbody>
-          {userWishlists.map((wishlist) => (
-            <tr>
+          {userWishlists.map((wishlist, index) => (
+            <tr key={index}>
               {/* {console.log(wishlist.id)} */}
               {/* <td>{wishlist.Id}</td>  */}
               <td>{wishlist.ownerId}</td>
