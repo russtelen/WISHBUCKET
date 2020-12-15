@@ -1,6 +1,15 @@
 const BASE = "https://giftwishlist1.azurewebsites.net/api/";
 const BASE_URL = BASE + "wishlist";
 
+// const getById = async (id) => {
+//   const response = await fetch(`${BASE_URL}/${id}`).catch((err) =>
+//     console.log(err)
+//   );
+//   const data = await response.json();
+
+//   return data;
+// };
+
 const getById = async (id) => {
   const response = await fetch(`${BASE_URL}/${id}`).catch((err) =>
     console.log(err)
@@ -35,7 +44,14 @@ const createItem = async (
   if (response.status > 400) {
     return response;
   }
-  return await response.json();
+  const data = await response.json()
+
+  return data;
 };
 
-export default { getById, createItem };
+const wishlistService = {
+  getById,
+  createItem
+}
+
+export default wishlistService;

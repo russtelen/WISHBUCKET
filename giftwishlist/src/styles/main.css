@@ -129,6 +129,32 @@ table {
   border-spacing: 0;
 }
 
+.navbar__title__name {
+  font-family: 'GloriaHallelujah-Regular';
+  font-size: 2.6em;
+}
+
+.navbar__toggler {
+  margin: auto;
+}
+
+.navbar__links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.navbar__links__ulist {
+  width: 100%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
 .home__jumbotron-custom {
   background: #f792d0;
   background: linear-gradient(54deg, #f792d0 0%, #a597bd 22%, #a597bd 25%, #249ea0 100%);
@@ -147,5 +173,20 @@ table {
       -ms-flex-align: center;
           align-items: center;
   color: white;
+}
+
+.home__overview-header {
+  font-weight: bold;
+  font-variant: small-caps;
+}
+
+.home__overview-subheader {
+  color: #646464;
+  font-size: 0.8rem;
+}
+
+@font-face {
+  font-family: 'GloriaHallelujah-Regular';
+  src: url("../fonts/GloriaHallelujah-Regular.ttf");
 }
 /*# sourceMappingURL=main.css.map */

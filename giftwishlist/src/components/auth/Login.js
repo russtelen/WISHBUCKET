@@ -5,8 +5,7 @@ import validateForm from "../util/Validation";
 import { UserAuthContext } from '../UserAuthContext';
 import { NavLink } from "react-router-dom";
 
-const LOCALHOST = 44361;
-
+// const LOCALHOST = 44361;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Login extends Component {
@@ -94,7 +93,7 @@ class Login extends Component {
   };
 
   render() {
-    const { userAuthenticated, updateUserAuthenticated } = this.context
+    // const { userAuthenticated, updateUserAuthenticated } = this.context
 
     return (
       <section className="section auth animate__animated animate__fadeInDown">
@@ -134,6 +133,7 @@ class Login extends Component {
                         <button 
                           className="button is-success"
                           onClick ={updateUserAuthenticated}
+                          style={userAuthenticated ? {backgroundColor: "green"}: {backgroundColor: "blue"}}
                         >
                           Login
                         </button>

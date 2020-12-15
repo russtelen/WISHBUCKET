@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 
 export default function Wishlist({ match }) {
   const [wishlist, setWishlist] = useState([]);
-  const [createdItem, setCreatedItem] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -15,7 +14,7 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
   const fetchWishlists = () => {
     wishlistService
@@ -24,16 +23,9 @@ export default function Wishlist({ match }) {
       .catch((error) => console.log(error));
   };
 
-  // const handleNameChange = (e) => {
-  //   setCreatedItem({
-  //     ...createdItem,
-  //     name: e.target.value,
-  //   });
-  // };
-
   useEffect(() => {
-    console.log("rendered wishlist.js with id:" + wishlistId);
     fetchWishlists();
+    console.log(wishlist.id)
   }, []); // empty [] dependancy list to stop infinite loop
 
   // Create Wishlist / Item
@@ -66,44 +58,26 @@ export default function Wishlist({ match }) {
   };
 
 const deleteWishlist = (id) => {
-
-  console.log("delete clicked" + id);
+  fetch(BASE_URL + "wishlist/" + wishlist.id, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    // Data retrieved.
+    .then((data) => {
+      console.log(JSON.stringify(data));
+      window.location.href="/wishlist";
+    })
+    // Data not retrieved.
+    .catch((e) => {
+      console.log(e);
+    });
+    
 }
-
-
-  // const createItem = () => {
-  //   fetch(`${BASE_URL}/${wishlistId}/item/`, {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       Name: name,
-  //       Description: description,
-  //       ImageURL: image,
-  //       PurchaseUrl: purchaseLink,
-  //       Price: price,
-  //     }),
-  //   })
-  //     // Response received.
-  //     .then((response) => {})
-  //     // Data retrieved.
-  //     .then((json) => {
-  //       console.log(JSON.stringify(json));
-  //       setName("");
-  //       setDescription("");
-  //       setPurchaseLink("");
-  //       setPrice("");
-  //       setImage("");
-  //       fetchWishlists();
-  //     })
-  //     // Data not retrieved.
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
   
   return (
     <div>
@@ -123,9 +97,7 @@ const deleteWishlist = (id) => {
           </tr>
         </thead>
         <tbody>
-          {wishlist.items
-            ? wishlist.items.map((w) => <Item key={w.name} item={w} />)
-            : ""}
+          {wishlist.items ? wishlist.items.map((w) => <Item key={w.name} item={w}/>) : null}
         </tbody>
       </table>
 

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { ImGift } from "react-icons/im";
+// import { ImGift } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 import { UserAuthContext } from './UserAuthContext';
-
-
 
 export default class Navbar extends Component {
   
@@ -14,13 +12,19 @@ export default class Navbar extends Component {
   
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
         
-        <NavLink to="/" className="navbar-brand">
-          <ImGift className="mr-2" /> WishBucket
+        <NavLink to="/" className="navbar__title navbar-brand">
+          {/* <ImGift className="mr-2" />  */}
+          <img 
+            className="navbar__title__logo" 
+            src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
+            width="74em"
+          />
+          <h1 className="navbar__title__name">WishBucket</h1>
         </NavLink>
         <button
-          className="navbar-toggler"
+          className="navbar__toggler navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -28,31 +32,31 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar__toggler__icon navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
-            <UserAuthContext.Consumer>
+        <div className="navbar__links collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar__links__ulist navbar-nav">
+            <UserAuthContext.Consumer className="navbar__links__ulist__context">
               {(value) => (value.userAuthenticated ? 
                 // (if userAuthenticated is true)
                 <div>
-                  <NavLink to="/wishlist">
+                  <NavLink to="/wishlist" className="btn btn-success navbar__links__ulist__context__link mx-2">
                     Wishlist
                   </NavLink>
 
-                  <NavLink to="/">
-                    <button onClick={this.handleLogoutClick}>
+                  <NavLink to="/" className="navbar__links__ulist__context__link mx-2">
+                    <button className="btn btn-success" onClick={this.handleLogoutClick}>
                       Logout
                     </button>
                   </NavLink>
                 </div> 
                   : // OR (if userAuthenticated is false) 
                 <div>
-                  <NavLink to="/register">
+                  <NavLink to="/register" className="btn btn-success navbar__links__ulist__context__link mx-2">
                     Register
                   </NavLink>
-                  <NavLink to="/login">
+                  <NavLink to="/login" className="btn btn-success navbar__links__ulist__context__link mx-2">
                     Login
                   </NavLink>
                 </div>

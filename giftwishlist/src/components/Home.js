@@ -18,13 +18,13 @@ export default function Wishlists() {
     } else {
       setRoute("/login");
     }
-  }, []);
+  }, [userAuthenticated]);
 
   return (
     <div className="home">
         {/* jumbotron */}
         <div className="home__jumbotron-custom jumbotron">
-          <h1 className="display-4  animate__animated animate__fadeInDown">
+          <h1 className="display-4 animate__animated animate__fadeInDown">
             <ImGift className="mr-2 my-2" />
             WishBucket
           </h1>
