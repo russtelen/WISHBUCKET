@@ -238,6 +238,7 @@ export default function Wishlists() {
 
       {/* EDIT WISHLIST INPUTS */}
       <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
+        <p className="display-4 text-info">EDIT WISHLIST</p>
         <input
           id="editInputName"
           placeholder="Wishlist Name"
