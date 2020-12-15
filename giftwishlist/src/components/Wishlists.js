@@ -61,7 +61,7 @@ export default function Wishlists() {
   useEffect(() => {
     // re-fetch User's Wishlists
     fetchUserWishlists();
-  }); // empty [] dependancy list to stop infinite loop
+  }, []); // empty [] dependancy list to stop infinite loop
 
   //Create Wishlist (POST API)
   const handleNameChange = (e) => {
@@ -200,6 +200,7 @@ export default function Wishlists() {
         console.log(e);
       });
   };
+
   return (
     <div>
       <h1>

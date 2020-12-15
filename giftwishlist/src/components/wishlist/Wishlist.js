@@ -6,7 +6,6 @@ import { NavLink } from "react-router-dom";
 
 export default function Wishlist({ match }) {
   const [wishlist, setWishlist] = useState([]);
-  // const [createdItem, setCreatedItem] = useState({});
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -15,7 +14,7 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
-  // const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
   const fetchWishlists = () => {
     wishlistService
@@ -26,7 +25,8 @@ export default function Wishlist({ match }) {
 
   useEffect(() => {
     fetchWishlists();
-  }); // empty [] dependancy list to stop infinite loop
+    console.log(wishlist.id)
+  }, []); // empty [] dependancy list to stop infinite loop
 
   // Create Wishlist / Item
   const handleNameChange = (e) => {
@@ -58,8 +58,25 @@ export default function Wishlist({ match }) {
   };
 
 const deleteWishlist = (id) => {
-
-  console.log("delete clicked" + id);
+  fetch(BASE_URL + "wishlist/" + wishlist.id, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    // Data retrieved.
+    .then((data) => {
+      console.log(JSON.stringify(data));
+      window.location.href="/wishlist";
+    })
+    // Data not retrieved.
+    .catch((e) => {
+      console.log(e);
+    });
+    
 }
   
   return (
