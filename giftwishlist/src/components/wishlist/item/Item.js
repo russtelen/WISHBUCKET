@@ -74,7 +74,7 @@ const Item = (props) => {
 
     const updateItem = () => {
       console.log("update clicked")
-      fetch(BASE_URL + "wishlist/" + itemData.wishlistID + "/item/" + itemData.id, {
+      fetch(BASE_URL + "api/wishlist/" + itemData.wishlistID + "/item/" + itemData.id, {
         method: "PUT",
         headers: {
           Accept: "application/json",
@@ -96,6 +96,7 @@ const Item = (props) => {
         // Data retrieved.
         .then((data) => {
           console.log(JSON.stringify(data));
+          setShowInputs(!showInputs);
           // fetchUserWishlists();
         })
         // Data not retrieved.
@@ -108,8 +109,13 @@ const Item = (props) => {
     const showEditInputs = () => {
       setShowInputs(!showInputs);
     }
+    // const initializeNameChangeEdit = () => {
+    //   setEditNameInput("");
+    // }
+
     const handleNameChangeEdit = (e) => {
       setEditNameInput(e.target.value);
+      console.log("name changed")
     };
   
     const handleDescriptionChangeEdit = (e) => {
@@ -126,7 +132,7 @@ const Item = (props) => {
 
     return (
         <tr>
-            <td>{showInputs ? <input onChange={handleNameChangeEdit} value={itemData.name}/> : itemData.name}</td>
+            <td>{showInputs ? <input onChange={handleNameChangeEdit} placeholder={itemData.name}/> : itemData.name}</td>
             <td>{showInputs ? <input onChange={handleDescriptionChangeEdit} value={itemData.description}/> : itemData.description}</td>
             <td><img src={itemData.imageURL} alt={itemData.name}></img></td>
             <td>{showInputs ? <input onChange={handlePurchaseURLChangeEdit} value={itemData.purchaseURL}/> : <a href={itemData.purchaseURL}>Purchase</a>}</td>
