@@ -50,7 +50,7 @@ export default function Wishlists() {
         if (wishlists == undefined) {
           setUserWishlists([]);
         } else {
-          setUserWishlists(data.filter(wishlist =>  wishlist.ownerId = sessionStorage.getItem("loggedIn-email")));
+          setUserWishlists(data.filter(wishlist =>  wishlist.ownerId === sessionStorage.getItem("loggedIn-email")));
         }
         console.log(userWishlists);
       })
@@ -194,7 +194,7 @@ export default function Wishlists() {
   return (
     <div>
       <h1>
-          {"Hello, you're logged-in as "} <span>${sessionStorage.getItem("loggedIn-email")}</span>
+          {"Hello, you're logged-in as "} <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
       <h1>Wishlists</h1>
       {/* Pending change to CARD Format, instead of Table */}
