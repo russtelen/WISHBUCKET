@@ -266,7 +266,7 @@ export default function Wishlists() {
 
       {/* WishLists */}
       {userWishlists.length == 0 ? (
-        <p className="display-4 my-5">
+        <p className="my-5">
           You do not have any wishslists. Create One Above!
         </p>
       ) : (
