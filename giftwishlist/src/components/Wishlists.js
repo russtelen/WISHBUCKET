@@ -253,17 +253,17 @@ export default function Wishlists() {
       </div>
 
       {/* WishLists */}
-      {userWishlists.length == 0 ? (
+      {userWishlists.length === 0 ? (
         <p className="my-5">You do not have any wishlists. Create One Above!</p>
       ) : (
         <div className="container">
           <div className="row">
-            {userWishlists.map((wishlist) => {
+            {userWishlists.map((wishlist, index) => {
               return (
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                  <div class="card my-3 animate__animated animate__heartBeat">
-                    <div class="card-body">
-                      <p class="card-title">
+                <div key={index} className="col-sm-12 col-md-6 col-lg-4">
+                  <div className="card my-3 animate__animated animate__heartBeat">
+                    <div className="card-body">
+                      <p className="card-title">
                         <NavLink
                           to={"/wishlist/" + wishlist.id}
                           className="nav-link__wishlist"
@@ -271,15 +271,19 @@ export default function Wishlists() {
                           {wishlist.name}
                         </NavLink>
                       </p>
-                      {wishlist.password != "" ? (
-                        <p class="card-text">Password: {wishlist.password}</p>
+                      {wishlist.password !== "" ? (
+                        <p className="card-text">
+                          Password: {wishlist.password}
+                        </p>
                       ) : (
-                        <p class="card-text">No Password Set</p>
+                        <p className="card-text">No Password Set</p>
                       )}
                       {wishlist.dueDate === null ? (
-                        <p class="card-text">No Due Date Set</p>
+                        <p className="card-text">No Due Date Set</p>
                       ) : (
-                        <p class="card-text">Due Date: {wishlist.dueDate}</p>
+                        <p className="card-text">
+                          Due Date: {wishlist.dueDate}
+                        </p>
                       )}
                       <button
                         className="button is-info is-light mx-2"
@@ -310,80 +314,4 @@ export default function Wishlists() {
       )}
     </div>
   );
-}
-
-// const fetchWishlists = () => {
-//   console.log("fetchWishlists called")
-//   fetch(BASE_URL + "wishlist", {
-//     method: "GET",
-//     header: {
-//       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-//     },
-//   }) // this should be changed to 'wishlists' (plural)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (wishlists == undefined) {
-//         setWishlists([]);
-//       } else {
-//         setWishlists(data);
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(`An error has occurred: ${err}`);
-//     });
-// };
-
-{
-  /* <table className="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Owner</th>
-              <th>Name</th>
-              <th>Password</th>
-              <th>DueDate</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userWishlists.map((wishlist, index) => (
-              <tr key={index}>
-                <td>{wishlist.ownerId}</td>
-                <td>
-                  <NavLink
-                    to={"/wishlist/" + wishlist.id}
-                    className="nav-link__wishlist"
-                  >
-                    {wishlist.name}
-                  </NavLink>
-                </td>
-                <td>{wishlist.password}</td>
-                <td>{wishlist.dueDate}</td>
-                <td>
-                  <button
-                    className="button is-info is-light"
-                    onClick={() =>
-                      showEditInputs(
-                        wishlist.id,
-                        wishlist.name,
-                        wishlist.password,
-                        wishlist.dueDate
-                      )
-                    }
-                  >
-                    Update
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="button is-danger is-light"
-                    onClick={() => deleteWishlist(wishlist.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */
 }
