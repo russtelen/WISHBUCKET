@@ -50,7 +50,12 @@ export default function Wishlists() {
         if (userWishlists === undefined) {
           setUserWishlists([]);
         } else {
-          setUserWishlists(data.filter(wishlist =>  wishlist.ownerId === sessionStorage.getItem("loggedIn-email")));
+          setUserWishlists(
+            data.filter(
+              (wishlist) =>
+                wishlist.ownerId === sessionStorage.getItem("loggedIn-email")
+            )
+          );
         }
       })
       .catch((err) => {
@@ -204,12 +209,14 @@ export default function Wishlists() {
   return (
     <div>
       <h1>
-          {"Hello, you're logged-in as "} <span>{sessionStorage.getItem("loggedIn-email")}</span>
+        {"Hello, you're logged-in as "}{" "}
+        <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
       <h1>Wishlists</h1>
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
+      {/* CREATE WISHLIST INPUTS */}
       <div id="createInputs">
         <input
           placeholder="Wishlist Name"
@@ -229,6 +236,7 @@ export default function Wishlists() {
         </button>
       </div>
 
+      {/* EDIT WISHLIST INPUTS */}
       <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
         <input
           id="editInputName"
@@ -255,55 +263,65 @@ export default function Wishlists() {
         </button>
       </div>
 
-      <table className="table is-fullwidth">
-        <thead>
-          <tr>
-            <th>Owner</th>
-            <th>Name</th>
-            <th>Password</th>
-            <th>DueDate</th>
-            <th>Update</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>{userWishlists.map((wishlist, index)=>(
-            <tr key={index}>
-              <td>{wishlist.ownerId}</td>
-              <td>
-                <NavLink
-                  to={"/wishlist/" + wishlist.id}
-                  className="nav-link__wishlist"
-                >
-                  {wishlist.name}
-                </NavLink>
-              </td>
-              <td>{wishlist.password}</td>
-              <td>{wishlist.dueDate}</td>
-              <td>
-                <button
-                  className="button is-info is-light"
-                  onClick={()=>showEditInputs(
-                      wishlist.id,
-                      wishlist.name,
-                      wishlist.password,
-                      wishlist.dueDate
-                    )}
-                >
-                  Update
-                </button>
-              </td>
-              <td>
-                <button
-                  className="button is-danger is-light"
-                  onClick={() => deleteWishlist(wishlist.id)}
-                >
-                  Delete
-                </button>
-              </td>
+      {/* WishLists */}
+      {userWishlists.length == 0 ? (
+        <p className="display-4 my-5">
+          You do not have any wishslists. Create One Above!
+        </p>
+      ) : (
+        <table className="table is-fullwidth">
+          <thead>
+            <tr>
+              <th>Owner</th>
+              <th>Name</th>
+              <th>Password</th>
+              <th>DueDate</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {userWishlists.map((wishlist, index) => (
+              <tr key={index}>
+                <td>{wishlist.ownerId}</td>
+                <td>
+                  <NavLink
+                    to={"/wishlist/" + wishlist.id}
+                    className="nav-link__wishlist"
+                  >
+                    {wishlist.name}
+                  </NavLink>
+                </td>
+                <td>{wishlist.password}</td>
+                <td>{wishlist.dueDate}</td>
+                <td>
+                  <button
+                    className="button is-info is-light"
+                    onClick={() =>
+                      showEditInputs(
+                        wishlist.id,
+                        wishlist.name,
+                        wishlist.password,
+                        wishlist.dueDate
+                      )
+                    }
+                  >
+                    Update
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="button is-danger is-light"
+                    onClick={() => deleteWishlist(wishlist.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
