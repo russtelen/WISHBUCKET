@@ -80,9 +80,7 @@ const deleteWishlist = (id) => {
           </tr>
         </thead>
         <tbody>
-          {wishlist.items
-            ? wishlist.items.map((w) => <Item key={w.name} item={w}/>)
-            : null}
+          {wishlist.items ? wishlist.items.map((w) => <Item key={w.name} item={w}/>) : null}
         </tbody>
       </table>
 
