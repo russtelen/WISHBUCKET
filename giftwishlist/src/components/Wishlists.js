@@ -197,15 +197,22 @@ export default function Wishlists() {
           type="text"
           value={name}
           onChange={handleNameChange}
+          className="mx-1"
         />
         <input
           placeholder="Password (Optional)"
           type="text"
           value={password}
           onChange={handlePasswordChange}
+          className="mx-1"
         />
-        <input type="date" value={dueDate} onChange={handleDueDateChange} />
-        <button className="button" onClick={createWishlist}>
+        <input
+          type="date"
+          value={dueDate}
+          onChange={handleDueDateChange}
+          className="mx-1"
+        />
+        <button className="btn btn-sm btn-primary" onClick={createWishlist}>
           Create Wishlist
         </button>
       </div>
@@ -223,6 +230,7 @@ export default function Wishlists() {
           type="text"
           onChange={handleNameChangeEdit}
           value={editNameInput}
+          className="mx-1"
         />
         <input
           id="editInputPassword"
@@ -230,14 +238,16 @@ export default function Wishlists() {
           type="text"
           onChange={handlePasswordChangeEdit}
           value={editPasswordInput}
+          className="mx-1"
         />
         <input
           id="editInputDate"
           type="date"
           value={editDateInput}
           onChange={handleDueDateChangeEdit}
+          className="mx-1"
         />
-        <button className="button" onClick={handleSubmit}>
+        <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
           Submit
         </button>
       </div>
