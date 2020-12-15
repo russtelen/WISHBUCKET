@@ -20,15 +20,14 @@ export default function Wishlists() {
     fetch(URL, {
       method: "GET",
       headers: {
-         Accept: "application/json",
-         Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-         "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
       },
-
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        if (userWishlists === undefined) {
+        if (data === undefined || data.status === 404) {
           setUserWishlists([]);
         } else {
           setUserWishlists(data);
@@ -77,7 +76,6 @@ export default function Wishlists() {
       })
       // Data retrieved.
       .then((json) => {
-        console.log(JSON.stringify(json));
         setName("");
         setPassword("");
         setDueDate(""); // Clear input.
@@ -188,37 +186,51 @@ export default function Wishlists() {
         {"Hello, you're logged-in as "}{" "}
         <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
-      <p className="display-4 my-3">Wishlists</p>
+      <p className="display-4 my-3 animate__animated animate__fadeInDown">
+        Wishlists
+      </p>
 
       {/* CREATE WISHLIST INPUTS */}
-      <div id="createInputs">
+      <div id="createInputs" className="animate__animated animate__fadeInDown">
         <input
           placeholder="Wishlist Name"
           type="text"
           value={name}
           onChange={handleNameChange}
+          className="mx-1"
         />
         <input
-          placeholder="Wishlist Password"
+          placeholder="Password (Optional)"
           type="text"
           value={password}
           onChange={handlePasswordChange}
+          className="mx-1"
         />
-        <input type="date" value={dueDate} onChange={handleDueDateChange} />
-        <button className="button" onClick={createWishlist}>
+        <input
+          type="date"
+          value={dueDate}
+          onChange={handleDueDateChange}
+          className="mx-1"
+        />
+        <button className="btn btn-sm btn-primary" onClick={createWishlist}>
           Create Wishlist
         </button>
       </div>
 
       {/* EDIT WISHLIST INPUTS */}
-      <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
-        <p className="display-4 text-info">EDIT WISHLIST</p>
+      <div
+        id="editInputs"
+        style={{ display: showInputs ? "block" : "none" }}
+        className="animate__animated animate__fadeInDown"
+      >
+        <p className="display-4 text-info">Update Wishlist</p>
         <input
           id="editInputName"
           placeholder="Wishlist Name"
           type="text"
           onChange={handleNameChangeEdit}
           value={editNameInput}
+          className="mx-1"
         />
         <input
           id="editInputPassword"
@@ -226,99 +238,80 @@ export default function Wishlists() {
           type="text"
           onChange={handlePasswordChangeEdit}
           value={editPasswordInput}
+          className="mx-1"
         />
         <input
           id="editInputDate"
           type="date"
           value={editDateInput}
           onChange={handleDueDateChangeEdit}
+          className="mx-1"
         />
-        <button className="button" onClick={handleSubmit}>
+        <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
           Submit
         </button>
       </div>
 
       {/* WishLists */}
-      {userWishlists.length == 0 ? (
-        <p className="my-5">
-          You do not have any wishslists. Create One Above!
-        </p>
+      {userWishlists.length === 0 ? (
+        <p className="my-5">You do not have any wishlists. Create One Above!</p>
       ) : (
-        <table className="table is-fullwidth">
-          <thead>
-            <tr>
-              <th>Owner</th>
-              <th>Name</th>
-              <th>Password</th>
-              <th>DueDate</th>
-              <th>Update</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {userWishlists.map((wishlist, index) => (
-              <tr key={index}>
-                <td>{wishlist.ownerId}</td>
-                <td>
-                  <NavLink
-                    to={"/wishlist/" + wishlist.id}
-                    className="nav-link__wishlist"
-                  >
-                    {wishlist.name}
-                  </NavLink>
-                </td>
-                <td>{wishlist.password}</td>
-                <td>{wishlist.dueDate}</td>
-                <td>
-                  <button
-                    className="button is-info is-light"
-                    onClick={() =>
-                      showEditInputs(
-                        wishlist.id,
-                        wishlist.name,
-                        wishlist.password,
-                        wishlist.dueDate
-                      )
-                    }
-                  >
-                    Update
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="button is-danger is-light"
-                    onClick={() => deleteWishlist(wishlist.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="container">
+          <div className="row">
+            {userWishlists.map((wishlist, index) => {
+              return (
+                <div key={index} className="col-sm-12 col-md-6 col-lg-4">
+                  <div className="card my-3 animate__animated animate__heartBeat">
+                    <div className="card-body">
+                      <p className="card-title">
+                        <NavLink
+                          to={"/wishlist/" + wishlist.id}
+                          className="nav-link__wishlist"
+                        >
+                          {wishlist.name}
+                        </NavLink>
+                      </p>
+                      {wishlist.password !== "" ? (
+                        <p className="card-text">
+                          Password: {wishlist.password}
+                        </p>
+                      ) : (
+                        <p className="card-text">No Password Set</p>
+                      )}
+                      {wishlist.dueDate === null ? (
+                        <p className="card-text">No Due Date Set</p>
+                      ) : (
+                        <p className="card-text">
+                          Due Date: {wishlist.dueDate}
+                        </p>
+                      )}
+                      <button
+                        className="button is-info is-light mx-2"
+                        onClick={() =>
+                          showEditInputs(
+                            wishlist.id,
+                            wishlist.name,
+                            wishlist.password,
+                            wishlist.dueDate
+                          )
+                        }
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="button is-danger is-light"
+                        onClick={() => deleteWishlist(wishlist.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       )}
     </div>
   );
 }
-
-// const fetchWishlists = () => {
-//   console.log("fetchWishlists called")
-//   fetch(BASE_URL + "wishlist", {
-//     method: "GET",
-//     header: {
-//       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-//     },
-//   }) // this should be changed to 'wishlists' (plural)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (wishlists == undefined) {
-//         setWishlists([]);
-//       } else {
-//         setWishlists(data);
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(`An error has occurred: ${err}`);
-//     });
-// };
-
