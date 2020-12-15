@@ -217,7 +217,7 @@ export default function Wishlists() {
             console.log("Wishtlist Updated");
           }}
         >
-          Edit Wishlist
+          Submit
         </button>
       </div>
 
