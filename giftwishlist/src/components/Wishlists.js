@@ -20,15 +20,14 @@ export default function Wishlists() {
     fetch(URL, {
       method: "GET",
       headers: {
-         Accept: "application/json",
-         Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-         "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
       },
-
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        if (userWishlists === undefined) {
+        if (userWishlists.length === 0) {
           setUserWishlists([]);
         } else {
           setUserWishlists(data);
@@ -321,4 +320,3 @@ export default function Wishlists() {
 //       console.log(`An error has occurred: ${err}`);
 //     });
 // };
-
