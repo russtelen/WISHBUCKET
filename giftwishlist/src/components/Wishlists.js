@@ -197,7 +197,7 @@ export default function Wishlists() {
           onChange={handleNameChange}
         />
         <input
-          placeholder="Wishlist Password"
+          placeholder="Password (Optional)"
           type="text"
           value={password}
           onChange={handlePasswordChange}
