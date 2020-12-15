@@ -14,13 +14,13 @@ export default class Navbar extends Component {
   
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-light bg-light">
         
         <NavLink to="/" className="navbar-brand">
           <ImGift className="mr-2" /> WishBucket
         </NavLink>
         <button
-          className="navbar-toggler"
+          className="navbar__toggler navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -28,20 +28,20 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon"></span>
+          <span className="navbar__toggler__icon navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav ml-auto">
+        <div className="navbar__links collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar__links__ulist navbar-nav ml-auto">
             <UserAuthContext.Consumer>
               {(value) => (value.userAuthenticated ? 
                 // (if userAuthenticated is true)
                 <div>
-                  <NavLink to="/wishlist">
+                  <NavLink to="/wishlist" className="navbar__links__ulist__link">
                     Wishlist
                   </NavLink>
 
-                  <NavLink to="/">
+                  <NavLink to="/" className="navbar__links__ulist__link">
                     <button onClick={this.handleLogoutClick}>
                       Logout
                     </button>
@@ -49,10 +49,10 @@ export default class Navbar extends Component {
                 </div> 
                   : // OR (if userAuthenticated is false) 
                 <div>
-                  <NavLink to="/register">
+                  <NavLink to="/register" className="navbar__links__ulist__link">
                     Register
                   </NavLink>
-                  <NavLink to="/login">
+                  <NavLink to="/login" className="navbar__links__ulist__link">
                     Login
                   </NavLink>
                 </div>
