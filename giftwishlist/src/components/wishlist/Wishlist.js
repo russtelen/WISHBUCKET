@@ -93,6 +93,7 @@ const deleteWishlist = (id) => {
             <th>Purchase Link</th>
             <th>Price</th>
             <th>Completed</th>
+            <th>Update</th>
             <th>Delete Item</th>
           </tr>
         </thead>

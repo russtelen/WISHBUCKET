@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
+
+
 
 const Item = (props) => {
     const itemData = props.item;
@@ -13,6 +15,12 @@ const Item = (props) => {
 
         return formatter.format(price);
     }
+
+    const [showInputs, setShowInputs] = useState(false);
+    const [editNameInput, setEditNameInput] = useState(itemData.name);
+    const [editDescriptionInput, setEditDescriptionInput] = useState(itemData.description);
+    const [editPurchaseURL, setEditPurchaseURL] = useState(itemData.purchaseURL);
+    const [editPrice, setEditPrice] = useState(itemData.price);
 
     const deleteItem = (wishlistId, itemId) => {
         
@@ -64,17 +72,104 @@ const Item = (props) => {
             // window.location.href="/wishlist/" + wishlistId;
     }
 
+    const updateItem = () => {
+      console.log("update clicked")
+      fetch(BASE_URL + "api/wishlist/" + itemData.wishlistID + "/item/" + itemData.id, {
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Id: itemData.id,
+          Name: editNameInput, // editable
+          IsComplete: itemData.isComplete, 
+          wishlistID: itemData.wishlistID,
+          Description: editDescriptionInput, // editable
+          ImageURL: itemData.purchaseURL, // editable
+          PurchaseURL: editPurchaseURL, // editable
+          Price: editPrice, // editable
+        }),
+      })
+        .then((res) => res.json())
+        // Data retrieved.
+        .then((data) => {
+          console.log(JSON.stringify(data));
+          setShowInputs(!showInputs);
+          window.location.href="/wishlist/" + itemData.wishlistID;
+          // fetchUserWishlists();
+        })
+        // Data not retrieved.
+        .catch((e) => {
+          console.log(e);
+        });
+      
+    }
+
+    const showEditInputs = () => {
+      setShowInputs(!showInputs);
+    }
+    // const initializeNameChangeEdit = () => {
+    //   setEditNameInput("");
+    // }
+
+    const handleNameChangeEdit = (e) => {
+      setEditNameInput(e.target.value);
+      console.log("name changed")
+    };
+  
+    const handleDescriptionChangeEdit = (e) => {
+      setEditDescriptionInput(e.target.value);
+    };
+  
+    const handlePurchaseURLChangeEdit = (e) => {
+      setEditPurchaseURL(e.target.value);
+    };
+
+    const handlePriceChangeEdit = (e) => {
+      setEditPrice(e.target.value);
+    };
+
     return (
         <tr>
-            <td>{itemData.name}</td>
-            <td>{itemData.description}</td>
+            <td>{showInputs ? <input onChange={handleNameChangeEdit} placeholder={itemData.name}/> : itemData.name}</td>
+            <td>{showInputs ? <input onChange={handleDescriptionChangeEdit} value={itemData.description}/> : itemData.description}</td>
             <td><img src={itemData.imageURL} alt={itemData.name}></img></td>
-            <td><a href={itemData.purchaseURL}>Purchase</a></td>
-            <td>{formatPrice(itemData.price)}</td>
+            <td>{showInputs ? <input onChange={handlePurchaseURLChangeEdit} value={itemData.purchaseURL}/> : <a href={itemData.purchaseURL}>Purchase</a>}</td>
+            <td>{showInputs ?  <input onCharge={handlePriceChangeEdit} value={formatPrice(itemData.price)}/> : formatPrice(itemData.price)}</td>
             <td>
                 <button className="button" onClick={() => toggleCompletedStatus(itemData.wishlistID, itemData.id)}>
                     {itemData.isComplete ? '✔' : '❌'}
                 </button>
+            </td>
+            <td>
+                {showInputs ? 
+                  <div>
+                    <button className="button"  onClick={()=>updateItem(
+                      )}
+                    >
+                      Confirm
+                    </button>
+                    <button className="button"  onClick={()=>showEditInputs(
+                        // wishlist.id,
+                        // wishlist.name,
+                        // wishlist.password,
+                        // wishlist.dueDate
+                      )}
+                    >
+                      Cancel Update
+                    </button>
+                  </div>
+                : <button className="button"  onClick={()=>showEditInputs(
+                      // wishlist.id,
+                      // wishlist.name,
+                      // wishlist.password,
+                      // wishlist.dueDate
+                    )}
+                >
+                    Update
+                </button>}
             </td>
             <td>
                 <button className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
