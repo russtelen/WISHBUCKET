@@ -109,6 +109,18 @@ export default function Wishlists() {
       });
   };
 
+  const handleNameChangeEdit = (e) => {
+    setEditNameInput(e.target.value);
+  };
+
+  const handlePasswordChangeEdit = (e) => {
+    setEditPasswordInput(e.target.value);
+  };
+
+  const handleDueDateChangeEdit = (e) => {
+    setEditDateInput(e.target.value);
+  };
+
   const showEditInputs = (name, password, duedate) => {
     //Hide/show inputs
     showInputs ? setShowInputs(false) : setShowInputs(true);
@@ -183,15 +195,22 @@ export default function Wishlists() {
           id="editInputName"
           placeholder="Wishlist Name"
           type="text"
+          onChange={handleNameChangeEdit}
           value={editNameInput}
         />
         <input
           id="editInputPassword"
           placeholder="Wishlist Password"
           type="text"
+          onChange={handlePasswordChangeEdit}
           value={editPasswordInput}
         />
-        <input id="editInputDate" type="date" value={editDateInput} />
+        <input
+          id="editInputDate"
+          type="date"
+          value={editDateInput}
+          onChange={handleDueDateChangeEdit}
+        />
         <button
           className="button"
           onClick={() => {
