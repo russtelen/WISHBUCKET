@@ -1,0 +1,32 @@
+.navbar {
+	&__title {
+		&__name {
+			font-family: 'GloriaHallelujah-Regular';
+			font-size: 2.6em;
+		}
+	}
+
+	&__toggler {
+		margin: auto;
+	}
+
+	&__links {
+		border: 1px solid black;
+		display: flex;
+		flex-direction: row;
+		&__ulist {
+			width: 100%;
+			justify-content: space-evenly;
+			border: 1px solid black;
+			&__context {
+				border: 1px solid black;
+				// margin-right: 10%;
+				// padding: 5%;
+				&__link {
+					border: 1px solid black;
+				}
+			}
+		}
+		// margin: 2%;
+	}
+}
