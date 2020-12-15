@@ -15,6 +15,7 @@ class Login extends Component {
     errors: {
       blankfield: false,
       matchedpassword: false,
+      failedlogin: false
     },
   };
 
@@ -29,6 +30,7 @@ class Login extends Component {
     this.setState({
       errors: {
         blankfield: false,
+        failedlogin: false
         //matchedpassword: false
       },
     });
@@ -71,8 +73,9 @@ class Login extends Component {
             // rediredt to Wishlist AFTER sessionStorage updated
             window.location.href="/wishlist";
           } else {
-            // error message handling
-            console.log("Error in Auth/Login");
+            this.setState({
+              errors: { ...this.state.errors, ...{failedlogin: true} },
+            });
           }
         })
         // Data not retrieved

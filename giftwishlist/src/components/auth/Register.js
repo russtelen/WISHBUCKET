@@ -15,6 +15,7 @@ class Register extends Component {
     errors: {
       blankfield: false,
       matchedpassword: false,
+      failedregister: false
     },
   };
 
@@ -23,7 +24,7 @@ class Register extends Component {
     this.setState({
       errors: {
         blankfield: false,
-        //matchedpassword: false
+        failedregister: false
       },
     });
   };
@@ -65,8 +66,9 @@ class Register extends Component {
             console.log(sessionStorage.getItem("bearer-token"));
             window.location.href="/login";
           } else {
-            // error message handling
-            console.log("Error in Auth/Register");
+            this.setState({
+              errors: { ...this.state.errors, ...{failedregister: true} },
+            });
           }
         })
         // Data not retrieved.

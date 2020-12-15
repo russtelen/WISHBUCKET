@@ -1,10 +1,14 @@
 import React from "react";
 
 function FormErrors(props) {
+
+  // Only keep the errors that are set to true
+  const activeErrors = Object.entries(props.formerrors).filter(e => e[1]).length > 0;
+ 
   // currently only validating for two types of errors, blankfield and mismatched password on Register
   if (
     props.formerrors &&
-    (props.formerrors.blankfield || props.formerrors.matchedpassword)
+    (activeErrors)
   ) {
     return (
       <div className="error container help is-danger">
@@ -16,6 +20,13 @@ function FormErrors(props) {
         <div className="row justify-content-center help is-danger">
           {props.formerrors.blankfield ? "All fields are required" : ""}
         </div>
+        <div className="row justify-content-center help is-danger">
+          {props.formerrors.failedlogin ? "Login failed." : ""}
+        </div>
+        <div className="row justify-content-center help is-danger">
+          {props.formerrors.failedregister ? "Registration failed." : ""}
+        </div>
+
       </div>
     );
   } else {
