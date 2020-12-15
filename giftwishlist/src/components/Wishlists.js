@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
+const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default function Wishlists() {
   const [wishlists, setWishlists] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [showInputs, setShowInputs] = useState(false);
+  const [editNameInput, setEditNameInput] = useState("");
+  const [editPasswordInput, setEditPasswordInput] = useState("");
+  const [editDateInput, setEditDateInput] = useState("");
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
@@ -18,7 +22,11 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        setWishlists(data);
+        if (wishlists == undefined) {
+          setWishlists([]);
+        } else {
+          setWishlists(data);
+        }
       })
       .catch((err) => {
         console.log(`An error has occurred: ${err}`);
@@ -57,7 +65,9 @@ export default function Wishlists() {
       }),
     })
       // Response received.
-      .then((response) => {})
+      .then((response) => {
+        console.log(response);
+      })
       // Data retrieved.
       .then((json) => {
         console.log(JSON.stringify(json));
@@ -73,7 +83,7 @@ export default function Wishlists() {
   };
 
   //Update Wishlist (PUT)
-  const updateToDo = (name, password, dueDate) => {
+  const updateWishlist = (name, password, dueDate) => {
     fetch(BASE_URL + "wishlist", {
       method: "PUT",
       headers: {
@@ -97,6 +107,40 @@ export default function Wishlists() {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const handleNameChangeEdit = (e) => {
+    setEditNameInput(e.target.value);
+  };
+
+  const handlePasswordChangeEdit = (e) => {
+    setEditPasswordInput(e.target.value);
+  };
+
+  const handleDueDateChangeEdit = (e) => {
+    setEditDateInput(e.target.value);
+  };
+
+  const showEditInputs = (name, password, duedate) => {
+    //Hide/show inputs
+    showInputs ? setShowInputs(false) : setShowInputs(true);
+
+    //Set name input
+    setEditNameInput(name);
+
+    //Set password input
+    if (password !== null) {
+      setEditPasswordInput(password);
+    } else {
+      setEditPasswordInput("");
+    }
+
+    //Set date input
+    if (duedate !== null) {
+      setEditDateInput(duedate.split("T")[0].slice(0, 10));
+    } else {
+      setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
+    }
   };
 
   // Delete Wishlist (DELETE)
@@ -127,22 +171,55 @@ export default function Wishlists() {
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
-      <input
-        placeholder="Wishlist Name"
-        type="text"
-        value={name}
-        onChange={handleNameChange}
-      />
-      <input
-        placeholder="Wishlist Password"
-        type="text"
-        value={password}
-        onChange={handlePasswordChange}
-      />
-      <input type="date" value={dueDate} onChange={handleDueDateChange} />
-      <button className="button" onClick={createWishlist}>
-        Create Wishlist
-      </button>
+      <div id="createInputs">
+        <input
+          placeholder="Wishlist Name"
+          type="text"
+          value={name}
+          onChange={handleNameChange}
+        />
+        <input
+          placeholder="Wishlist Password"
+          type="text"
+          value={password}
+          onChange={handlePasswordChange}
+        />
+        <input type="date" value={dueDate} onChange={handleDueDateChange} />
+        <button className="button" onClick={createWishlist}>
+          Create Wishlist
+        </button>
+      </div>
+
+      <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
+        <input
+          id="editInputName"
+          placeholder="Wishlist Name"
+          type="text"
+          onChange={handleNameChangeEdit}
+          value={editNameInput}
+        />
+        <input
+          id="editInputPassword"
+          placeholder="Wishlist Password"
+          type="text"
+          onChange={handlePasswordChangeEdit}
+          value={editPasswordInput}
+        />
+        <input
+          id="editInputDate"
+          type="date"
+          value={editDateInput}
+          onChange={handleDueDateChangeEdit}
+        />
+        <button
+          className="button"
+          onClick={() => {
+            console.log("Wishtlist Updated");
+          }}
+        >
+          Edit Wishlist
+        </button>
+      </div>
 
       <table className="table is-fullwidth">
         <thead>
@@ -159,11 +236,9 @@ export default function Wishlists() {
         <tbody>
           {wishlists.map((wishlist) => (
             <tr>
-              {console.log(wishlist.id)}
+              {/* {console.log(wishlist.id)} */}
               {/* <td>{wishlist.Id}</td>  */}
-              <td>
-                {wishlist.ownerId}
-              </td>
+              <td>{wishlist.ownerId}</td>
               <td>
                 <NavLink
                   to={"/wishlist/" + wishlist.id}
@@ -174,6 +249,20 @@ export default function Wishlists() {
               </td>
               <td>{wishlist.password}</td>
               <td>{wishlist.dueDate}</td>
+              <td>
+                <button
+                  className="button is-info is-light"
+                  onClick={() =>
+                    showEditInputs(
+                      wishlist.name,
+                      wishlist.password,
+                      wishlist.dueDate
+                    )
+                  }
+                >
+                  Update
+                </button>
+              </td>
               <td>
                 <button
                   className="button is-danger is-light"
