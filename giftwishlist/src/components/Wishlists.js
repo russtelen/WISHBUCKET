@@ -83,7 +83,7 @@ export default function Wishlists() {
   };
 
   //Update Wishlist (PUT)
-  const updateToDo = (name, password, dueDate) => {
+  const updateWishlist = (name, password, dueDate) => {
     fetch(BASE_URL + "wishlist", {
       method: "PUT",
       headers: {
@@ -107,6 +107,18 @@ export default function Wishlists() {
       .catch((e) => {
         console.log(e);
       });
+  };
+
+  const handleNameChangeEdit = (e) => {
+    setEditNameInput(e.target.value);
+  };
+
+  const handlePasswordChangeEdit = (e) => {
+    setEditPasswordInput(e.target.value);
+  };
+
+  const handleDueDateChangeEdit = (e) => {
+    setEditDateInput(e.target.value);
   };
 
   const showEditInputs = (name, password, duedate) => {
@@ -183,19 +195,26 @@ export default function Wishlists() {
           id="editInputName"
           placeholder="Wishlist Name"
           type="text"
+          onChange={handleNameChangeEdit}
           value={editNameInput}
         />
         <input
           id="editInputPassword"
           placeholder="Wishlist Password"
           type="text"
+          onChange={handlePasswordChangeEdit}
           value={editPasswordInput}
         />
-        <input id="editInputDate" type="date" value={editDateInput} />
+        <input
+          id="editInputDate"
+          type="date"
+          value={editDateInput}
+          onChange={handleDueDateChangeEdit}
+        />
         <button
           className="button"
           onClick={() => {
-            console.log("wishlist updated");
+            console.log("Wishtlist Updated");
           }}
         >
           Edit Wishlist
