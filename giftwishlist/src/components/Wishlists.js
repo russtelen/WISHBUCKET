@@ -186,10 +186,12 @@ export default function Wishlists() {
         {"Hello, you're logged-in as "}{" "}
         <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
-      <p className="display-4 my-3">Wishlists</p>
+      <p className="display-4 my-3 animate__animated animate__fadeInDown">
+        Wishlists
+      </p>
 
       {/* CREATE WISHLIST INPUTS */}
-      <div id="createInputs">
+      <div id="createInputs" className="animate__animated animate__fadeInDown">
         <input
           placeholder="Wishlist Name"
           type="text"
@@ -209,7 +211,11 @@ export default function Wishlists() {
       </div>
 
       {/* EDIT WISHLIST INPUTS */}
-      <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
+      <div
+        id="editInputs"
+        style={{ display: showInputs ? "block" : "none" }}
+        className="animate__animated animate__fadeInDown"
+      >
         <p className="display-4 text-info">Update Wishlist</p>
         <input
           id="editInputName"
@@ -245,7 +251,7 @@ export default function Wishlists() {
             {userWishlists.map((wishlist) => {
               return (
                 <div class="col-sm-12 col-md-6 col-lg-4">
-                  <div class="card my-3">
+                  <div class="card my-3 animate__animated animate__heartBeat">
                     <div class="card-body">
                       <p class="card-title">
                         <NavLink
