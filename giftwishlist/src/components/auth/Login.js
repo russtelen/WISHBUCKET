@@ -5,8 +5,7 @@ import validateForm from "../util/Validation";
 import { UserAuthContext } from '../UserAuthContext';
 import { NavLink } from "react-router-dom";
 
-const LOCALHOST = 44361;
-
+// const LOCALHOST = 44361;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Login extends Component {

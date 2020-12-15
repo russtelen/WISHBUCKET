@@ -18,7 +18,7 @@ export default function Wishlists() {
     } else {
       setRoute("/login");
     }
-  }, []);
+  }, [userAuthenticated]);
 
   return (
     <div className="home">

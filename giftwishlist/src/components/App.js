@@ -31,7 +31,7 @@ export default function App() {
   // update the state variable based on SessionStorage WHEN CALLED 
   //  -- i.e. at Login-Button-onClick, Logout-Button-onClick
   const updateUserAuthenticated = () => {
-    if(sessionStorage.getItem("bearer-token") == "") {
+    if(sessionStorage.getItem("bearer-token") === "") {
       setUserAuthenticated("");
 
     } else {

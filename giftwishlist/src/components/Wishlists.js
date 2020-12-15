@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default function Wishlists() {
-  const [wishlists, setWishlists] = useState([]);
+  // const [wishlists, setWishlists] = useState([]);
   const [userWishlists, setUserWishlists] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -36,7 +36,6 @@ export default function Wishlists() {
   // };
 
   const fetchUserWishlists = () => {
-    console.log("fetchWishlists called")
     fetch(BASE_URL + "wishlist", {
       method: "GET",
       header: {
@@ -47,12 +46,11 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        if (wishlists == undefined) {
+        if (userWishlists === undefined) {
           setUserWishlists([]);
         } else {
           setUserWishlists(data.filter(wishlist =>  wishlist.ownerId === sessionStorage.getItem("loggedIn-email")));
         }
-        console.log(userWishlists);
       })
       .catch((err) => {
         console.log(`An error has occurred: ${err}`);
@@ -62,7 +60,7 @@ export default function Wishlists() {
   useEffect(() => {
     // re-fetch User's Wishlists
     fetchUserWishlists();
-  }, []); // empty [] dependancy list to stop infinite loop
+  }, [""]); // empty [] dependancy list to stop infinite loop
 
   //Create Wishlist (POST API)
   const handleNameChange = (e) => {
@@ -243,6 +241,7 @@ export default function Wishlists() {
         <button
           className="button"
           onClick={() => {
+            
             console.log("Wishtlist Updated");
           }}
         >
