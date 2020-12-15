@@ -39,7 +39,6 @@ export default function Wishlists() {
   };
 
   useEffect(() => {
-    console.log(userWishlists);
     // re-fetch User's Wishlists
     fetchUserWishlists();
   }, []); // empty [] dependancy list to stop infinite loop
@@ -211,7 +210,7 @@ export default function Wishlists() {
 
       {/* EDIT WISHLIST INPUTS */}
       <div id="editInputs" style={{ display: showInputs ? "block" : "none" }}>
-        <p className="display-4 text-info">Edit Wishlist</p>
+        <p className="display-4 text-info">Update Wishlist</p>
         <input
           id="editInputName"
           placeholder="Wishlist Name"
