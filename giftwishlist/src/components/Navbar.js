@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { ImGift } from "react-icons/im";
+// import { ImGift } from "react-icons/im";
 import { NavLink } from "react-router-dom";
 import { UserAuthContext } from './UserAuthContext';
-
-
 
 export default class Navbar extends Component {
   
@@ -16,8 +14,14 @@ export default class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
         
-        <NavLink to="/" className="navbar-brand">
-          <ImGift className="mr-2" /> WishBucket
+        <NavLink to="/" className="navbar__title navbar-brand">
+          {/* <ImGift className="mr-2" />  */}
+          <img 
+            className="navbar__title__logo" 
+            src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
+            width="74em"
+          />
+          <h1 className="navbar__title__name">WishBucket</h1>
         </NavLink>
         <button
           className="navbar__toggler navbar-toggler"
@@ -32,16 +36,16 @@ export default class Navbar extends Component {
         </button>
 
         <div className="navbar__links collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar__links__ulist navbar-nav ml-auto">
-            <UserAuthContext.Consumer>
+          <ul className="navbar__links__ulist navbar-nav">
+            <UserAuthContext.Consumer className="navbar__links__ulist__context">
               {(value) => (value.userAuthenticated ? 
                 // (if userAuthenticated is true)
                 <div>
-                  <NavLink to="/wishlist" className="navbar__links__ulist__link">
+                  <NavLink to="/wishlist" className="navbar__links__ulist__context__link">
                     Wishlist
                   </NavLink>
 
-                  <NavLink to="/" className="navbar__links__ulist__link">
+                  <NavLink to="/" className="navbar__links__ulist__context__link">
                     <button onClick={this.handleLogoutClick}>
                       Logout
                     </button>
@@ -49,10 +53,10 @@ export default class Navbar extends Component {
                 </div> 
                   : // OR (if userAuthenticated is false) 
                 <div>
-                  <NavLink to="/register" className="navbar__links__ulist__link">
+                  <NavLink to="/register" className="navbar__links__ulist__context__link">
                     Register
                   </NavLink>
-                  <NavLink to="/login" className="navbar__links__ulist__link">
+                  <NavLink to="/login" className="navbar__links__ulist__context__link">
                     Login
                   </NavLink>
                 </div>
