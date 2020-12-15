@@ -18,6 +18,12 @@ class Login extends Component {
       matchedpassword: false,
     },
   };
+
+  componentDidMount(){
+    if (sessionStorage.getItem("bearer-token") === null || sessionStorage.getItem("bearer-token") === "") {
+      sessionStorage.setItem("loggedIn-email", this.state.email);
+    }
+  }
   
   // helper function...be sure to list the state variables specific to the form
   clearErrors = () => {
@@ -74,6 +80,9 @@ class Login extends Component {
         .catch(function (error) {
           console.log(error);
         });
+        if (sessionStorage.getItem("bearer-token") === null || sessionStorage.getItem("bearer-token") === "") {
+              sessionStorage.setItem("loggedIn-email", this.state.email);
+        }
     }
   };
 

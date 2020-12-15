@@ -5,6 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default function Wishlists() {
   const [wishlists, setWishlists] = useState([]);
+  const [userWishlists, setUserWishlists] = useState([]);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -13,20 +14,45 @@ export default function Wishlists() {
   const [editPasswordInput, setEditPasswordInput] = useState("");
   const [editDateInput, setEditDateInput] = useState("");
 
-  const fetchWishlists = () => {
+  // const fetchWishlists = () => {
+  //   console.log("fetchWishlists called")
+  //   fetch(BASE_URL + "wishlist", {
+  //     method: "GET",
+  //     header: {
+  //       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+  //     },
+  //   }) // this should be changed to 'wishlists' (plural)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       if (wishlists == undefined) {
+  //         setWishlists([]);
+  //       } else {
+  //         setWishlists(data);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(`An error has occurred: ${err}`);
+  //     });
+  // };
+
+  const fetchUserWishlists = () => {
+    console.log("fetchWishlists called")
     fetch(BASE_URL + "wishlist", {
       method: "GET",
       header: {
+        Accept: "application/json",
         Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
       },
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
         if (wishlists == undefined) {
-          setWishlists([]);
+          setUserWishlists([]);
         } else {
-          setWishlists(data);
+          setUserWishlists(data.filter(wishlist =>  wishlist.ownerId = sessionStorage.getItem("loggedIn-email")));
         }
+        console.log(userWishlists);
       })
       .catch((err) => {
         console.log(`An error has occurred: ${err}`);
@@ -34,7 +60,8 @@ export default function Wishlists() {
   };
 
   useEffect(() => {
-    fetchWishlists();
+    // re-fetch User's Wishlists
+    fetchUserWishlists();
   }, []); // empty [] dependancy list to stop infinite loop
 
   //Create Wishlist (POST API)
@@ -74,7 +101,7 @@ export default function Wishlists() {
         setName("");
         setPassword("");
         setDueDate(""); // Clear input.
-        fetchWishlists();
+        fetchUserWishlists();
       })
       // Data not retrieved.
       .catch(function (error) {
@@ -101,7 +128,7 @@ export default function Wishlists() {
       // Data retrieved.
       .then((data) => {
         console.log(JSON.stringify(data));
-        fetchWishlists();
+        fetchUserWishlists();
       })
       // Data not retrieved.
       .catch((e) => {
@@ -157,7 +184,7 @@ export default function Wishlists() {
       // Data retrieved.
       .then((data) => {
         console.log(JSON.stringify(data));
-        fetchWishlists();
+        fetchUserWishlists();
       })
       // Data not retrieved.
       .catch((e) => {
@@ -234,7 +261,7 @@ export default function Wishlists() {
           </tr>
         </thead>
         <tbody>
-          {wishlists.map((wishlist) => (
+          {userWishlists.map((wishlist) => (
             <tr>
               {/* {console.log(wishlist.id)} */}
               {/* <td>{wishlist.Id}</td>  */}
