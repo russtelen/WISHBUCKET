@@ -139,7 +139,6 @@ table {
 }
 
 .navbar__links {
-  border: 1px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -154,15 +153,6 @@ table {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  border: 1px solid black;
-}
-
-.navbar__links__ulist__context {
-  border: 1px solid black;
-}
-
-.navbar__links__ulist__context__link {
-  border: 1px solid black;
 }
 
 .home__jumbotron-custom {
