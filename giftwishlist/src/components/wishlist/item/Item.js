@@ -97,6 +97,7 @@ const Item = (props) => {
         .then((data) => {
           console.log(JSON.stringify(data));
           setShowInputs(!showInputs);
+          window.location.href="/wishlist/" + itemData.wishlistID;
           // fetchUserWishlists();
         })
         // Data not retrieved.
