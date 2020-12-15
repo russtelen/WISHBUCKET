@@ -93,7 +93,7 @@ class Login extends Component {
   };
 
   render() {
-    const { userAuthenticated, updateUserAuthenticated } = this.context
+    // const { userAuthenticated, updateUserAuthenticated } = this.context
 
     return (
       <section className="section auth animate__animated animate__fadeInDown">
@@ -133,6 +133,7 @@ class Login extends Component {
                         <button 
                           className="button is-success"
                           onClick ={updateUserAuthenticated}
+                          style={userAuthenticated ? {backgroundColor: "green"}: {backgroundColor: "blue"}}
                         >
                           Login
                         </button>

@@ -61,7 +61,7 @@ export default function Wishlists() {
   useEffect(() => {
     // re-fetch User's Wishlists
     fetchUserWishlists();
-  }, [""]); // empty [] dependancy list to stop infinite loop
+  }); // empty [] dependancy list to stop infinite loop
 
   //Create Wishlist (POST API)
   const handleNameChange = (e) => {
@@ -257,20 +257,16 @@ export default function Wishlists() {
       <table className="table is-fullwidth">
         <thead>
           <tr>
-            {/* <th>Id</th> */}
-            <th>Owner (WishDb)</th>
+            <th>Owner</th>
             <th>Name</th>
             <th>Password</th>
             <th>DueDate</th>
-            <th></th>
-            <th></th>
+            <th>Update</th>
+            <th>Delete</th>
           </tr>
         </thead>
-        <tbody>
-          {userWishlists.map((wishlist, index) => (
+        <tbody>{userWishlists.map((wishlist, index)=>(
             <tr key={index}>
-              {/* {console.log(wishlist.id)} */}
-              {/* <td>{wishlist.Id}</td>  */}
               <td>{wishlist.ownerId}</td>
               <td>
                 <NavLink
@@ -285,14 +281,12 @@ export default function Wishlists() {
               <td>
                 <button
                   className="button is-info is-light"
-                  onClick={() =>
-                    showEditInputs(
+                  onClick={()=>showEditInputs(
                       wishlist.id,
                       wishlist.name,
                       wishlist.password,
                       wishlist.dueDate
-                    )
-                  }
+                    )}
                 >
                   Update
                 </button>
@@ -311,15 +305,4 @@ export default function Wishlists() {
       </table>
     </div>
   );
-}
-
-{
-  /* <td>
-  <input
-    type="checkbox"
-    value={todo.isComplete}
-    checked={todo.isComplete}
-    onChange={(e) => updateToDo(todo.id, e.target.checked)}
-  />
-</td>; */
 }

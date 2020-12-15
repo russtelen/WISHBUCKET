@@ -3,7 +3,7 @@ import "animate.css";
 import FormErrors from "../util/FormErrors";
 import validateForm from "../util/Validation";
 
-const LOCALHOST = 44361;
+// const LOCALHOST = 44361;
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 class Register extends Component {

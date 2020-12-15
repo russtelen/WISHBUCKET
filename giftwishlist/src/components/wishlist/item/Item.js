@@ -61,7 +61,7 @@ const Item = (props) => {
                 return response;
               }
             return await response.json();
-            window.location.href="/wishlist/" + wishlistId;
+            // window.location.href="/wishlist/" + wishlistId;
     }
 
     return (
