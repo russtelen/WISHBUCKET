@@ -12,6 +12,7 @@ export default function Wishlists() {
   const [editNameInput, setEditNameInput] = useState("");
   const [editPasswordInput, setEditPasswordInput] = useState("");
   const [editDateInput, setEditDateInput] = useState("");
+  const [submitDateInput, setSubmitDateInput] = useState("");
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
@@ -142,6 +143,45 @@ export default function Wishlists() {
       setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
     }
   };
+
+
+  //For Submit Option on 'Edit WishList' Button
+  const handleNameChangeSubmit = (e) => {
+    setSubmitNameInput(e.target.value);
+  };
+
+  const handlePasswordChangeSubmit = (e) => {
+    setSubmitPasswordInput(e.target.value);
+  };
+
+  const handleDueDateChangeSubmit = (e) => {
+    setSubmitDateInput(e.target.value);
+  };
+
+  const showSubmitInputs = (name, password, duedate) => {
+    //Hide/show inputs
+    showInputs ? setShowInputs(false) : setShowInputs(true);
+
+    //Set name input
+    setSubmitNameInput(name);
+
+    //Set password input
+    if (password !== null) {
+      setSubmitPasswordInput(password);
+    } else {
+      setSubmitPasswordInput("");
+    }
+
+    //Set date input
+    if (duedate !== null) {
+      setSubmitDateInput(duedate.split("T")[0].slice(0, 10));
+    } else {
+      setSubmitDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
+    }
+  };
+//End of For Submit Option on 'Edit WishList' Button
+
+
 
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
