@@ -212,7 +212,7 @@ export default function Wishlists() {
         {"Hello, you're logged-in as "}{" "}
         <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
-      <h1>Wishlists</h1>
+      <p className="display-4 my-3">Wishlists</p>
       {/* Pending change to CARD Format, instead of Table */}
       {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
