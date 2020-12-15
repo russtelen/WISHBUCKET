@@ -13,7 +13,6 @@ export default function Wishlists() {
   const [editNameInput, setEditNameInput] = useState("");
   const [editPasswordInput, setEditPasswordInput] = useState("");
   const [editDateInput, setEditDateInput] = useState("");
-  const [submitDateInput, setSubmitDateInput] = useState("");
 
   const fetchWishlists = () => {
     fetch(BASE_URL + "wishlist", {
