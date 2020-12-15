@@ -242,7 +242,85 @@ export default function Wishlists() {
           You do not have any wishslists. Create One Above!
         </p>
       ) : (
-        <table className="table is-fullwidth">
+        <div className="container">
+          <div className="row">
+            {userWishlists.map((wishlist) => {
+              return (
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                  <div class="card my-3">
+                    <div class="card-body">
+                      <p class="card-title">
+                        <NavLink
+                          to={"/wishlist/" + wishlist.id}
+                          className="nav-link__wishlist"
+                        >
+                          {wishlist.name}
+                        </NavLink>
+                      </p>
+                      {wishlist.password != "" ? (
+                        <p class="card-text">Password: {wishlist.password}</p>
+                      ) : (
+                        <p class="card-text">No Password Set</p>
+                      )}
+                      {wishlist.dueDate == "" ? (
+                        <p class="card-text">No Due Date Set</p>
+                      ) : (
+                        <p class="card-text">Due Date: {wishlist.dueDate}</p>
+                      )}
+                      <button
+                        className="button is-info is-light mx-2"
+                        onClick={() =>
+                          showEditInputs(
+                            wishlist.id,
+                            wishlist.name,
+                            wishlist.password,
+                            wishlist.dueDate
+                          )
+                        }
+                      >
+                        Update
+                      </button>
+                      <button
+                        className="button is-danger is-light"
+                        onClick={() => deleteWishlist(wishlist.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// const fetchWishlists = () => {
+//   console.log("fetchWishlists called")
+//   fetch(BASE_URL + "wishlist", {
+//     method: "GET",
+//     header: {
+//       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+//     },
+//   }) // this should be changed to 'wishlists' (plural)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       if (wishlists == undefined) {
+//         setWishlists([]);
+//       } else {
+//         setWishlists(data);
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(`An error has occurred: ${err}`);
+//     });
+// };
+
+{
+  /* <table className="table is-fullwidth">
           <thead>
             <tr>
               <th>Owner</th>
@@ -293,29 +371,5 @@ export default function Wishlists() {
               </tr>
             ))}
           </tbody>
-        </table>
-      )}
-    </div>
-  );
+        </table> */
 }
-
-// const fetchWishlists = () => {
-//   console.log("fetchWishlists called")
-//   fetch(BASE_URL + "wishlist", {
-//     method: "GET",
-//     header: {
-//       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-//     },
-//   }) // this should be changed to 'wishlists' (plural)
-//     .then((response) => response.json())
-//     .then((data) => {
-//       if (wishlists == undefined) {
-//         setWishlists([]);
-//       } else {
-//         setWishlists(data);
-//       }
-//     })
-//     .catch((err) => {
-//       console.log(`An error has occurred: ${err}`);
-//     });
-// };
