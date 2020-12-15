@@ -15,27 +15,6 @@ export default function Wishlists() {
   const [editPasswordInput, setEditPasswordInput] = useState("");
   const [editDateInput, setEditDateInput] = useState("");
 
-  // const fetchWishlists = () => {
-  //   console.log("fetchWishlists called")
-  //   fetch(BASE_URL + "wishlist", {
-  //     method: "GET",
-  //     header: {
-  //       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-  //     },
-  //   }) // this should be changed to 'wishlists' (plural)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       if (wishlists == undefined) {
-  //         setWishlists([]);
-  //       } else {
-  //         setWishlists(data);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(`An error has occurred: ${err}`);
-  //     });
-  // };
-
   const fetchUserWishlists = () => {
     fetch(BASE_URL + "wishlist", {
       method: "GET",
@@ -213,8 +192,6 @@ export default function Wishlists() {
         <span>{sessionStorage.getItem("loggedIn-email")}</span>
       </h1>
       <p className="display-4 my-3">Wishlists</p>
-      {/* Pending change to CARD Format, instead of Table */}
-      {/* Add Conditional to display "No Wishlists" if wishlist array is empty */}
 
       {/* CREATE WISHLIST INPUTS */}
       <div id="createInputs">
@@ -326,3 +303,24 @@ export default function Wishlists() {
     </div>
   );
 }
+
+// const fetchWishlists = () => {
+//   console.log("fetchWishlists called")
+//   fetch(BASE_URL + "wishlist", {
+//     method: "GET",
+//     header: {
+//       Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+//     },
+//   }) // this should be changed to 'wishlists' (plural)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       if (wishlists == undefined) {
+//         setWishlists([]);
+//       } else {
+//         setWishlists(data);
+//       }
+//     })
+//     .catch((err) => {
+//       console.log(`An error has occurred: ${err}`);
+//     });
+// };
