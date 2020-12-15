@@ -27,7 +27,7 @@ export default function Wishlists() {
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
-        if (userWishlists.length === 0) {
+        if (data === undefined || data.status === 404) {
           setUserWishlists([]);
         } else {
           setUserWishlists(data);
@@ -76,7 +76,6 @@ export default function Wishlists() {
       })
       // Data retrieved.
       .then((json) => {
-        console.log(JSON.stringify(json));
         setName("");
         setPassword("");
         setDueDate(""); // Clear input.
