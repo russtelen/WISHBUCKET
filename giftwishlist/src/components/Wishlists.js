@@ -37,20 +37,22 @@ export default function Wishlists() {
   // };
 
   const fetchUserWishlists = () => {
-    fetch(BASE_URL + "wishlist", {
+    const URL = `${BASE_URL}wishlist/owned`;
+    fetch(URL, {
       method: "GET",
-      header: {
-        Accept: "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-        "Content-Type": "application/json",
+      headers: {
+         Accept: "application/json",
+         Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+         "Content-Type": "application/json",
       },
+
     }) // this should be changed to 'wishlists' (plural)
       .then((response) => response.json())
       .then((data) => {
         if (userWishlists === undefined) {
           setUserWishlists([]);
         } else {
-          setUserWishlists(data.filter(wishlist =>  wishlist.ownerId === sessionStorage.getItem("loggedIn-email")));
+          setUserWishlists(data);
         }
       })
       .catch((err) => {
