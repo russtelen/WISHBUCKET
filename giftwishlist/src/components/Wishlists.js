@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WishlistCard from './WishlistCard';
 import { NavLink } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
@@ -121,42 +122,42 @@ export default function Wishlists() {
     console.log("Wishlist Updated");
   };
 
-  const handleNameChangeEdit = (e) => {
-    setEditNameInput(e.target.value);
-  };
+  // const handleNameChangeEdit = (e) => {
+  //   setEditNameInput(e.target.value);
+  // };
 
-  const handlePasswordChangeEdit = (e) => {
-    setEditPasswordInput(e.target.value);
-  };
+  // const handlePasswordChangeEdit = (e) => {
+  //   setEditPasswordInput(e.target.value);
+  // };
 
-  const handleDueDateChangeEdit = (e) => {
-    setEditDateInput(e.target.value);
-  };
+  // const handleDueDateChangeEdit = (e) => {
+  //   setEditDateInput(e.target.value);
+  // };
 
-  const showEditInputs = (id, name, password, duedate) => {
-    //Hide/show inputs
-    showInputs ? setShowInputs(false) : setShowInputs(true);
+  // const showEditInputs = (id, name, password, duedate) => {
+  //   //Hide/show inputs
+  //   showInputs ? setShowInputs(false) : setShowInputs(true);
 
-    setId(id);
-    console.log(id);
+  //   setId(id);
+  //   console.log(id);
 
-    //Set name input
-    setEditNameInput(name);
+  //   //Set name input
+  //   setEditNameInput(name);
 
-    //Set password input
-    if (password !== null) {
-      setEditPasswordInput(password);
-    } else {
-      setEditPasswordInput("");
-    }
+  //   //Set password input
+  //   if (password !== null) {
+  //     setEditPasswordInput(password);
+  //   } else {
+  //     setEditPasswordInput("");
+  //   }
 
-    //Set date input
-    if (duedate !== null) {
-      setEditDateInput(duedate.split("T")[0].slice(0, 10));
-    } else {
-      setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
-    }
-  };
+  //   //Set date input
+  //   if (duedate !== null) {
+  //     setEditDateInput(duedate.split("T")[0].slice(0, 10));
+  //   } else {
+  //     setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
+  //   }
+  // };
 
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
@@ -218,7 +219,7 @@ export default function Wishlists() {
       </div>
 
       {/* EDIT WISHLIST INPUTS */}
-      <div
+      {/* <div
         id="editInputs"
         style={{ display: showInputs ? "block" : "none" }}
         className="animate__animated animate__fadeInDown"
@@ -250,7 +251,7 @@ export default function Wishlists() {
         <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
           Submit
         </button>
-      </div>
+      </div> */}
 
       {/* WishLists */}
       {userWishlists.length === 0 ? (
@@ -263,7 +264,9 @@ export default function Wishlists() {
                 <div key={index} className="col-sm-12 col-md-6 col-lg-4">
                   <div className="card my-3 animate__animated animate__heartBeat">
                     <div className="card-body">
-                      <p className="card-title">
+                      <WishlistCard index={index} wishlist={wishlist}/>
+                      
+                      {/* <p className="card-title">
                         <NavLink
                           to={`/wishlist/${wishlist.id}/${wishlist.password ? '?password='+wishlist.password : ''}`}
                           className="nav-link__wishlist">
@@ -283,8 +286,8 @@ export default function Wishlists() {
                         <p className="card-text">
                           Due Date: {wishlist.dueDate}
                         </p>
-                      )}
-                      <button
+                      )} */}
+                      {/* <button
                         className="button is-info is-light mx-2"
                         onClick={() =>
                           showEditInputs(
@@ -296,7 +299,7 @@ export default function Wishlists() {
                         }
                       >
                         Update
-                      </button>
+                      </button> */}
                       <button
                         className="button is-danger is-light"
                         onClick={() => deleteWishlist(wishlist.id)}
