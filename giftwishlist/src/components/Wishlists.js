@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import WishlistCard from './WishlistCard';
 import { NavLink } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
@@ -263,7 +264,9 @@ export default function Wishlists() {
                 <div key={index} className="col-sm-12 col-md-6 col-lg-4">
                   <div className="card my-3 animate__animated animate__heartBeat">
                     <div className="card-body">
-                      <p className="card-title">
+                      <WishlistCard index={index} wishlist={wishlist}/>
+                      
+                      {/* <p className="card-title">
                         <NavLink
                           to={"/wishlist/" + wishlist.id}
                           className="nav-link__wishlist"
@@ -284,7 +287,7 @@ export default function Wishlists() {
                         <p className="card-text">
                           Due Date: {wishlist.dueDate}
                         </p>
-                      )}
+                      )} */}
                       <button
                         className="button is-info is-light mx-2"
                         onClick={() =>
