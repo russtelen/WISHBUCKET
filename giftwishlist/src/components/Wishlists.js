@@ -265,9 +265,8 @@ export default function Wishlists() {
                     <div className="card-body">
                       <p className="card-title">
                         <NavLink
-                          to={"/wishlist/" + wishlist.id}
-                          className="nav-link__wishlist"
-                        >
+                          to={`/wishlist/${wishlist.id}/${wishlist.password ? '?password='+wishlist.password : ''}`}
+                          className="nav-link__wishlist">
                           {wishlist.name}
                         </NavLink>
                       </p>

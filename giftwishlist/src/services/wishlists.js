@@ -1,4 +1,4 @@
-const BASE = "https://giftwishlist1.azurewebsites.net/api/";
+const BASE = process.env.REACT_APP_BASE_URL + "api/";
 const BASE_URL = BASE + "wishlist";
 
 // const getById = async (id) => {
@@ -10,8 +10,9 @@ const BASE_URL = BASE + "wishlist";
 //   return data;
 // };
 
-const getById = async (id) => {
-  const response = await fetch(`${BASE_URL}/${id}`).catch((err) =>
+const getById = async (id, password) => {
+  const url =`${BASE_URL}/${id}/${password ? '?password='+password : ''}`
+  const response = await fetch(url).catch((err) =>
     console.log(err)
   );
   const data = await response.json();

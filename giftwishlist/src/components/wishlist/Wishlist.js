@@ -14,11 +14,12 @@ export default function Wishlist({ match }) {
 
   // Taken from the url
   const wishlistId = match.params.id;
+  const password = new URLSearchParams(window.location.search).get('password');
   const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
   const fetchWishlists = () => {
     wishlistService
-      .getById(wishlistId)
+      .getById(wishlistId, password)
       .then((response) => setWishlist(response))
       .catch((error) => console.log(error));
   };
@@ -52,33 +53,54 @@ export default function Wishlist({ match }) {
   const createItem = () => {
     wishlistService
       .createItem(name, description, image, purchaseLink, price, wishlistId)
-      .then((response) => console.log(response))
+      .then((response) => fetchWishlists())
       .catch((error) => console.log(error));
-      window.location.href="/wishlist/" + wishlistId;
   };
 
-const deleteWishlist = (id) => {
-  fetch(BASE_URL + "wishlist/" + wishlist.id, {
-    method: "DELETE",
-    headers: {
-      Accept: "application/json",
-      Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-      "Content-Type": "application/json",
-    },
-  })
-    .then((res) => res.json())
-    // Data retrieved.
-    .then((data) => {
-      console.log(JSON.stringify(data));
-      window.location.href="/wishlist";
+  const deleteWishlist = (id) => {
+    fetch(BASE_URL + "wishlist/" + wishlist.id, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
+      },
     })
+      .then((res) => res.json())
+    // Data retrieved.
+      .then((data) => {
+        //Could just update the state locally without another fetch
+        window.location.href = "/wishlist/"
+      })
     // Data not retrieved.
-    .catch((e) => {
-      console.log(e);
-    });
+      .catch((e) => {
+        console.log(e);
+      });
     
-}
-  
+  }
+  const deleteItem = (wishlistId, itemId) => {
+
+    fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
+      method: "DELETE",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+    // Data retrieved.
+      .then((data) => {
+        //Unnecessary fetch
+        fetchWishlists();
+      })
+    // Data not retrieved.
+      .catch((e) => {
+        console.log(e);
+      });
+  }
+
+
   return (
     <div>
       <NavLink to="/wishlist">
@@ -98,8 +120,18 @@ const deleteWishlist = (id) => {
           </tr>
         </thead>
         <tbody>
-          {wishlist.items ? wishlist.items.map((w) => <Item key={w.name} item={w}/>) : null}
+          {wishlist.items ? wishlist.items.map((w) =>
+            <tr key={w.id}>
+              <Item item={w}/>
+              <td>
+                <button className="button" onClick={() => deleteItem(w.wishlistID, w.id)}>
+                  Delete
+                </button>
+              </td>
+            </tr>)
+              : null }
         </tbody>
+
       </table>
 
       <div className="container has-text-centered">
