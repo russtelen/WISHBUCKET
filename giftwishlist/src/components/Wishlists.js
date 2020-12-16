@@ -122,42 +122,42 @@ export default function Wishlists() {
     console.log("Wishlist Updated");
   };
 
-  const handleNameChangeEdit = (e) => {
-    setEditNameInput(e.target.value);
-  };
+  // const handleNameChangeEdit = (e) => {
+  //   setEditNameInput(e.target.value);
+  // };
 
-  const handlePasswordChangeEdit = (e) => {
-    setEditPasswordInput(e.target.value);
-  };
+  // const handlePasswordChangeEdit = (e) => {
+  //   setEditPasswordInput(e.target.value);
+  // };
 
-  const handleDueDateChangeEdit = (e) => {
-    setEditDateInput(e.target.value);
-  };
+  // const handleDueDateChangeEdit = (e) => {
+  //   setEditDateInput(e.target.value);
+  // };
 
-  const showEditInputs = (id, name, password, duedate) => {
-    //Hide/show inputs
-    showInputs ? setShowInputs(false) : setShowInputs(true);
+  // const showEditInputs = (id, name, password, duedate) => {
+  //   //Hide/show inputs
+  //   showInputs ? setShowInputs(false) : setShowInputs(true);
 
-    setId(id);
-    console.log(id);
+  //   setId(id);
+  //   console.log(id);
 
-    //Set name input
-    setEditNameInput(name);
+  //   //Set name input
+  //   setEditNameInput(name);
 
-    //Set password input
-    if (password !== null) {
-      setEditPasswordInput(password);
-    } else {
-      setEditPasswordInput("");
-    }
+  //   //Set password input
+  //   if (password !== null) {
+  //     setEditPasswordInput(password);
+  //   } else {
+  //     setEditPasswordInput("");
+  //   }
 
-    //Set date input
-    if (duedate !== null) {
-      setEditDateInput(duedate.split("T")[0].slice(0, 10));
-    } else {
-      setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
-    }
-  };
+  //   //Set date input
+  //   if (duedate !== null) {
+  //     setEditDateInput(duedate.split("T")[0].slice(0, 10));
+  //   } else {
+  //     setEditDateInput(new Date().toISOString().split("T")[0].slice(0, 10));
+  //   }
+  // };
 
   // Delete Wishlist (DELETE)
   const deleteWishlist = (id) => {
@@ -219,7 +219,7 @@ export default function Wishlists() {
       </div>
 
       {/* EDIT WISHLIST INPUTS */}
-      <div
+      {/* <div
         id="editInputs"
         style={{ display: showInputs ? "block" : "none" }}
         className="animate__animated animate__fadeInDown"
@@ -251,7 +251,7 @@ export default function Wishlists() {
         <button className="btn btn-sm btn-primary" onClick={handleSubmit}>
           Submit
         </button>
-      </div>
+      </div> */}
 
       {/* WishLists */}
       {userWishlists.length === 0 ? (
@@ -288,7 +288,7 @@ export default function Wishlists() {
                           Due Date: {wishlist.dueDate}
                         </p>
                       )} */}
-                      <button
+                      {/* <button
                         className="button is-info is-light mx-2"
                         onClick={() =>
                           showEditInputs(
@@ -300,7 +300,7 @@ export default function Wishlists() {
                         }
                       >
                         Update
-                      </button>
+                      </button> */}
                       <button
                         className="button is-danger is-light"
                         onClick={() => deleteWishlist(wishlist.id)}
