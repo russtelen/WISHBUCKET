@@ -3,6 +3,7 @@ import Item from "./item/Item";
 import wishlistService from "../../services/wishlists.js";
 import { NavLink } from "react-router-dom";
 import { UserAuthContext } from "../UserAuthContext";
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
 export default function Wishlist({ match }) {
   const [wishlist, setWishlist] = useState([]);
@@ -115,7 +116,7 @@ export default function Wishlist({ match }) {
   return (
     <div className="animate__animated animate__zoomIn">
       <NavLink to="/wishlist" className="text-secondary">
-        Return to Wishlists
+        <AiOutlineArrowLeft /> Return to Wishlists
       </NavLink>
       <div className="table-responsive container">
         <table className="table">
