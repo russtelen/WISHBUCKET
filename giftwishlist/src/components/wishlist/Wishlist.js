@@ -150,41 +150,57 @@ export default function Wishlist({ match }) {
       </div>
       {userAuthenticated ? (
         <div className="container has-text-centered wishlist-inputs">
-          <input
-            placeholder="Item Name"
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-          />
-          <input
-            placeholder="Description"
-            type="text"
-            value={description}
-            onChange={handleDescChange}
-          />
-          <input
-            placeholder="Image Link"
-            type="url"
-            value={image}
-            onChange={handleImageChange}
-          />
-          <input
-            placeholder="Purchase Link"
-            type="url"
-            value={purchaseLink}
-            onChange={handlePurchaseLinkChange}
-          />
-          <input
-            placeholder="Price"
-            type="text"
-            value={price}
-            onChange={handlePriceChange}
-          />
-
-          <button className="button" onClick={createItem}>
+          <div className="container mt-4">
+            <div className="row">
+              <div className="mx-auto">
+                <input
+                  placeholder="Item Name"
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                  className="col-sm-12 col-lg-2 m-1"
+                />
+                <input
+                  placeholder="Description"
+                  type="text"
+                  value={description}
+                  onChange={handleDescChange}
+                  className="col-sm-12 col-lg-2 m-1"
+                />
+                <input
+                  placeholder="Image Link"
+                  type="url"
+                  value={image}
+                  onChange={handleImageChange}
+                  className="col-sm-12 col-lg-2 m-1"
+                />
+                <input
+                  placeholder="Purchase Link"
+                  type="url"
+                  value={purchaseLink}
+                  onChange={handlePurchaseLinkChange}
+                  className="col-sm-12 col-lg-2 m-1"
+                />
+                <input
+                  placeholder="Price"
+                  type="text"
+                  value={price}
+                  onChange={handlePriceChange}
+                  className="col-sm-12 col-lg-2 m-1"
+                />
+              </div>
+            </div>
+          </div>
+          <button
+            className="button is-success col-sm-12 col-lg-3 m-1"
+            onClick={createItem}
+          >
             Add Item
           </button>
-          <button className="button is-danger" onClick={deleteWishlist}>
+          <button
+            className="button is-danger col-sm-12 col-lg-3 m-1"
+            onClick={deleteWishlist}
+          >
             Delete Wishlist
           </button>
         </div>
@@ -199,7 +215,7 @@ export default function Wishlist({ match }) {
             <a href={window.location.href}>Link</a> copied to clipboard.
           </div>
         ) : (
-          <button className="button" onClick={shareWishlist}>
+          <button className="button is-info" onClick={shareWishlist}>
             Share Wishlist
           </button>
         )}
