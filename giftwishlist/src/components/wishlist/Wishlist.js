@@ -118,10 +118,10 @@ export default function Wishlist({ match }) {
       <NavLink to="/wishlist" className="text-secondary">
         <AiOutlineArrowLeft /> Return to Wishlists
       </NavLink>
-      <div className="table-responsive container">
+      <div className="table-responsive container mt-4">
         <table className="table">
           <thead>
-            <tr>
+            <tr className="table-dark">
               <th>Name</th>
               <th>Description</th>
               <th>Image</th>
