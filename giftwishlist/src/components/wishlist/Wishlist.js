@@ -113,8 +113,10 @@ export default function Wishlist({ match }) {
   };
 
   return (
-    <div>
-      <NavLink to="/wishlist">Return to Wishlists</NavLink>
+    <div className="animate__animated animate__zoomIn">
+      <NavLink to="/wishlist" className="text-secondary">
+        Return to Wishlists
+      </NavLink>
       <div className="table-responsive container">
         <table className="table">
           <thead>
