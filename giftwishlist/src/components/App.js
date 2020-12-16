@@ -13,6 +13,7 @@ import Register from "./auth/Register";
 import Login from "./auth/Login";
 import React, {useState, useEffect} from 'react';
 import { UserAuthContext } from './UserAuthContext';
+import Footer from "./Footer";
 
 export default function App() {
   
@@ -57,6 +58,7 @@ export default function App() {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
             </Switch>
+            <Footer />
           </div>
         </Router>
       </UserAuthContext.Provider>
