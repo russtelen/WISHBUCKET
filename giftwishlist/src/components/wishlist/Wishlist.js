@@ -12,6 +12,7 @@ export default function Wishlist({ match }) {
   const [image, setImage] = useState("");
   const [purchaseLink, setPurchaseLink] = useState("");
   const [price, setPrice] = useState("");
+  const [showShareNotification, setShowShareNotification] = useState(false);
 
   // Taken from the url
   const wishlistId = match.params.id;
@@ -59,7 +60,7 @@ export default function Wishlist({ match }) {
       .catch((error) => console.log(error));
   };
 
-  const deleteWishlist = (id) => {
+  const deleteWishlist = () => {
     fetch(BASE_URL + "wishlist/" + wishlist.id, {
       method: "DELETE",
       headers: {
@@ -102,9 +103,21 @@ export default function Wishlist({ match }) {
       });
   }
 
+  const shareWishlist = () => {
+    setShowShareNotification(!showShareNotification);
+    const dummy = document.createElement('input'),
+        text = window.location.href;
+
+    document.body.appendChild(dummy);
+    dummy.value = text;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
+  }
+
 
   return (
-    <div>
+    <div className="table-container">
       <NavLink to="/wishlist">
         Return to Wishlists
       </NavLink>
@@ -136,46 +149,61 @@ export default function Wishlist({ match }) {
 
       </table>
       {userAuthenticated ?
-      <div className="container has-text-centered wishlist-inputs">
-        <input
-          placeholder="Item Name"
-          type="text"
-          value={name}
-          onChange={handleNameChange}
-        />
-        <input
-          placeholder="Description"
-          type="text"
-          value={description}
-          onChange={handleDescChange}
-        />
-        <input
-          placeholder="Image Link"
-          type="url"
-          value={image}
-          onChange={handleImageChange}
-        />
-        <input
-          placeholder="Purchase Link"
-          type="url"
-          value={purchaseLink}
-          onChange={handlePurchaseLinkChange}
-        />
-        <input
-          placeholder="Price"
-          type="text"
-          value={price}
-          onChange={handlePriceChange}
-        />
+       <div className="container has-text-centered wishlist-inputs">
+         <input
+           placeholder="Item Name"
+           type="text"
+           value={name}
+           onChange={handleNameChange}
+         />
+         <input
+           placeholder="Description"
+           type="text"
+           value={description}
+           onChange={handleDescChange}
+         />
+         <input
+           placeholder="Image Link"
+           type="url"
+           value={image}
+           onChange={handleImageChange}
+         />
+         <input
+           placeholder="Purchase Link"
+           type="url"
+           value={purchaseLink}
+           onChange={handlePurchaseLinkChange}
+         />
+         <input
+           placeholder="Price"
+           type="text"
+           value={price}
+           onChange={handlePriceChange}
+         />
 
-        <button className="button" onClick={createItem}>
-          Add Item
-        </button>
-        <button className="button is-danger" onClick={deleteWishlist}>
-          Delete Wishlist
-        </button>
-      </div>
+         <button className="button" onClick={createItem}>
+           Add Item
+         </button>
+         <button className="button is-danger" onClick={deleteWishlist}>
+           Delete Wishlist
+         </button>
+       </div>
        : 'Log in to edit'}
+
+      <div>
+        {showShareNotification ? <div class="notification is-primary is-light">
+                                   <button class="delete" onClick={shareWishlist}></button>
+                                   <a href={window.location.href}>Link</a> copied to clipboard.
+                                 </div>
+         :
+         <button className="button" onClick={shareWishlist}>
+           Share Wishlist
+         </button>
+        }
+
+      </div>
+
+
     </div>
   );
 }
