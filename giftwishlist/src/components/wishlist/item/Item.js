@@ -148,7 +148,9 @@ const Item = (props) => {
             value={itemData.purchaseURL}
           />
         ) : (
-          <a href={itemData.purchaseURL}>Purchase</a>
+          <a href={itemData.purchaseURL} target="blank">
+            Purchase
+          </a>
         )}
       </td>
       <td>
