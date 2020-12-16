@@ -116,7 +116,7 @@ const Item = (props) => {
         {showInputs ? (
           <input onChange={handleNameChangeEdit} placeholder={itemData.name} />
         ) : (
-          itemData.name
+          <strong>{itemData.name}</strong>
         )}
       </td>
       <td>
