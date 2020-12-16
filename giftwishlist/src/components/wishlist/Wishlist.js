@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Item from "./item/Item";
 import wishlistService from "../../services/wishlists.js";
 import { NavLink } from "react-router-dom";
+import { UserAuthContext } from '../UserAuthContext';
 
 
 export default function Wishlist({ match }) {
@@ -17,6 +18,8 @@ export default function Wishlist({ match }) {
   const password = new URLSearchParams(window.location.search).get('password');
   const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
+  const { userAuthenticated } = useContext(UserAuthContext);
+
   const fetchWishlists = () => {
     wishlistService
       .getById(wishlistId, password)
@@ -26,7 +29,6 @@ export default function Wishlist({ match }) {
 
   useEffect(() => {
     fetchWishlists();
-    console.log(wishlist.id)
   }, []); // empty [] dependancy list to stop infinite loop
 
   // Create Wishlist / Item
@@ -133,8 +135,8 @@ export default function Wishlist({ match }) {
         </tbody>
 
       </table>
-
-      <div className="container has-text-centered">
+      {userAuthenticated ?
+      <div className="container has-text-centered wishlist-inputs">
         <input
           placeholder="Item Name"
           type="text"
@@ -169,10 +171,11 @@ export default function Wishlist({ match }) {
         <button className="button" onClick={createItem}>
           Add Item
         </button>
-        <button className="button" onClick={deleteWishlist}>
+        <button className="button is-danger" onClick={deleteWishlist}>
           Delete Wishlist
         </button>
       </div>
+       : 'Log in to edit'}
     </div>
   );
 }
