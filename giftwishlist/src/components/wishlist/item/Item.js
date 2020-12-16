@@ -5,7 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 
 const Item = (props) => {
-    const itemData = props.item;
+
     const formatPrice = (price) => {
         const formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -16,35 +16,12 @@ const Item = (props) => {
         return formatter.format(price);
     }
 
+    const [itemData, setItemData] = useState(props.item);
     const [showInputs, setShowInputs] = useState(false);
     const [editNameInput, setEditNameInput] = useState(itemData.name);
     const [editDescriptionInput, setEditDescriptionInput] = useState(itemData.description);
     const [editPurchaseURL, setEditPurchaseURL] = useState(itemData.purchaseURL);
     const [editPrice, setEditPrice] = useState(itemData.price);
-
-    const deleteItem = (wishlistId, itemId) => {
-        
-        console.log("deleteItm button clicked for" + itemId + "in wishlistId" + wishlistId);
-        fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
-            method: "DELETE",
-            headers: {
-              Accept: "application/json",
-              Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => res.json())
-            // Data retrieved.
-            .then((data) => {
-              console.log(JSON.stringify(data));
-            //   fetchWishlists();
-            })
-            // Data not retrieved.
-            .catch((e) => {
-              console.log(e);
-            });
-            window.location.href="/wishlist/" + wishlistId;
-    }
 
     const toggleCompletedStatus = async (
             wishlistId,
@@ -52,7 +29,7 @@ const Item = (props) => {
         ) => {
         console.log("completed button clickedfor" + itemId + "in wishlistId" + wishlistId);
         console.log(itemData.isComplete)
-        const response = await fetch(BASE_URL + "wishlist/" + wishlistId + "/item/" + itemId, {
+        const response = await fetch(BASE_URL + "api/wishlist/" + wishlistId + "/item/" + itemId, {
             method: "PUT",
             headers: {
               Accept: "application/json",
@@ -67,7 +44,8 @@ const Item = (props) => {
           }).catch((err) => console.log(err));
             if (response.status > 400) {
                 return response;
-              }
+            }
+            setItemData({...itemData, ...{isComplete: !itemData.isComplete}})
             return await response.json();
             // window.location.href="/wishlist/" + wishlistId;
     }
@@ -97,7 +75,7 @@ const Item = (props) => {
         .then((data) => {
           console.log(JSON.stringify(data));
           setShowInputs(!showInputs);
-          window.location.href="/wishlist/" + itemData.wishlistID;
+          // window.location.href="/wishlist/" + itemData.wishlistID;
           // fetchUserWishlists();
         })
         // Data not retrieved.
@@ -132,7 +110,7 @@ const Item = (props) => {
     };
 
     return (
-        <tr>
+        <>
             <td>{showInputs ? <input onChange={handleNameChangeEdit} placeholder={itemData.name}/> : itemData.name}</td>
             <td>{showInputs ? <input onChange={handleDescriptionChangeEdit} value={itemData.description}/> : itemData.description}</td>
             <td><img src={itemData.imageURL} alt={itemData.name}></img></td>
@@ -171,12 +149,7 @@ const Item = (props) => {
                     Update
                 </button>}
             </td>
-            <td>
-                <button className="button" onClick={() => deleteItem(itemData.wishlistID, itemData.id)}>
-                    Delete
-                </button>
-            </td>
-        </tr>
+        </>
     )
 }
 
