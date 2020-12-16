@@ -136,7 +136,7 @@ export default function Wishlist({ match }) {
                     <Item item={w} />
                     <td>
                       <button
-                        className="button"
+                        className="btn btn-sm btn-danger"
                         onClick={() => deleteItem(w.wishlistID, w.id)}
                       >
                         Delete

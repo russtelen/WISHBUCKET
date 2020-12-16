@@ -174,11 +174,14 @@ const Item = (props) => {
       <td>
         {showInputs ? (
           <div>
-            <button className="button" onClick={() => updateItem()}>
+            <button
+              className="btn btn-sm btn-success m-1"
+              onClick={() => updateItem()}
+            >
               Confirm
             </button>
             <button
-              className="button"
+              className="btn btn-sm btn-warning"
               onClick={
                 () => showEditInputs()
                 // wishlist.id,
@@ -187,12 +190,12 @@ const Item = (props) => {
                 // wishlist.dueDate
               }
             >
-              Cancel Update
+              Cancel
             </button>
           </div>
         ) : (
           <button
-            className="button"
+            className="btn btn-sm btn-info"
             onClick={
               () => showEditInputs()
               // wishlist.id,
