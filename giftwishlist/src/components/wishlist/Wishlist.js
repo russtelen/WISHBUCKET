@@ -191,7 +191,7 @@ export default function Wishlist({ match }) {
        : 'Log in to edit'}
 
       <div>
-        {showShareNotification ? <div class="notification is-primary is-light">
+        {showShareNotification ? <div class="notification is-primary is-light wishlist-notification">
                                    <button class="delete" onClick={shareWishlist}></button>
                                    <a href={window.location.href}>Link</a> copied to clipboard.
                                  </div>
