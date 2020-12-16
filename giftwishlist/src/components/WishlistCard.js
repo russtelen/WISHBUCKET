@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { NavLink } from "react-router-dom";
-
 const BASE_URL = process.env.REACT_APP_BASE_URL + "api/";
 
 export default class WishlistCard extends Component {
@@ -9,11 +8,20 @@ export default class WishlistCard extends Component {
         super(props);
         this.state = {
           showInputs: false,
-          editNameInput: "",
-          editPasswordInput: "",
-          editDueDateInput: "",
-          wishlist: props.wishlist,
+          editNameInput: props.wishlist.name,
+          editPasswordInput: props.wishlist.password,
+          editDueDateInput: props.wishlist.dueDate,
+          wishlist : {
+            id: props.wishlist.id,
+            name: props.wishlist.name,
+            password: props.wishlist.password,
+            dueDate: props.wishlist.dueDate,
+          }
         }
+    }
+
+    componentDidMount() {
+      console.log(this.state.wishlist);
     }
 
     showEditInputs = () => {
@@ -32,6 +40,16 @@ export default class WishlistCard extends Component {
     handleDueDateChangeEdit = (e) => {
       this.setState({ editDueDateInput: e.target.value });
       console.log(this.state.editDueDateInput);
+    }
+
+    setWishlistData = () => {
+      this.setState({ 
+        wishlist: {
+          name: this.state.editNameInput,
+          password: this.state.editPasswordInput,
+          dueDate: this.state.editDueDateInput,
+      }
+      })
     }
 
     updateWishlist = () => {
@@ -54,6 +72,8 @@ export default class WishlistCard extends Component {
         .then((data) => {
           console.log(JSON.stringify(data));
           // fetchUserWishlists();
+          this.setWishlistData();
+          this.showEditInputs();
         })
         // Data not retrieved.
         .catch((e) => {
@@ -66,36 +86,36 @@ export default class WishlistCard extends Component {
             <div className="wishlists__card">
               {/* Wishlist Name */}
               {this.state.showInputs ? 
-                <input className="wishlists__card__title card-title" onChange={this.handleNameChangeEdit} placeholder={this.props.wishlist.name}/>
+                <input className="wishlists__card__title card-title" onChange={this.handleNameChangeEdit} placeholder={this.state.wishlist.name}/>
                 :
                 <NavLink 
                   className="wishlists__card__title card-title"
-                  to={"/wishlist/" + this.props.wishlist.name}
+                  to={`/wishlist/${this.state.wishlist.id}/${this.state.wishlist.password ? '?password='+this.state.wishlist.password : ''}`}
                 >
-                  {this.props.wishlist.name}
+                  {this.state.wishlist.name}
                 </NavLink>
                 
               } 
               {/* Wishlist Password */}
               {this.state.showInputs ? 
                 <input 
-                  className="wishlists__card__password card-text" onChange={this.handlePasswordChangeEdit} placeholder={this.props.wishlist.password}/>
+                  className="wishlists__card__password card-text" onChange={this.handlePasswordChangeEdit} placeholder={this.state.wishlist.password}/>
                 :    
                 (this.props.wishlist.password !== "" ? 
-                  <p className="wishlists__card__password card-text">Password: {this.props.wishlist.password}</p>
+                  <p className="wishlists__card__password card-text">Password: {this.state.wishlist.password}</p>
                 : 
                   <p className="wishlists__card__password card-text">No Password Set</p>
                 )
               }
               {/* Wishlist DueDate */}
               {this.state.showInputs ? 
-                <input className="wishlists__card__dueDate card-text" onChange={this.handleDueDateChangeEdit} placeholder={this.props.wishlist.dueDate}/>
+                <input className="wishlists__card__dueDate card-text" onChange={this.handleDueDateChangeEdit} placeholder={this.state.wishlist.dueDate}/>
                 :
-                (this.props.wishlist.dueDate === null ? (
+                (this.state.wishlist.dueDate === null ? (
                   <p className="wishlists__card__dueDate card-text">No Due Date Set</p>
                 ) : (
                   <p className="wishlists__card__dueDate card-text">
-                    Due Date: {this.props.wishlist.dueDate}
+                    Due Date: {this.state.wishlist.dueDate}
                   </p>
                 ))
               }
