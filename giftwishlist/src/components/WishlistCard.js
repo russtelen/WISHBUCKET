@@ -96,8 +96,9 @@ export default class WishlistCard extends Component {
 				console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				// window.location.href = "/wishlist/";
-				this.props.refresh();
-				// this.setState({ wishlistActive: false})
+				// this.props.refresh();
+				this.setState({ showInputs: false });
+				this.setState({ wishlistActive: false });
 			})
 			// Data not retrieved.
 			.catch((e) => {
@@ -110,7 +111,7 @@ export default class WishlistCard extends Component {
 			// <div className="wishlists__card" style={{display: { this.state.wishlistActive ? 'block' : 'none'} }}>
 			<div
 				className="wishlists__card"
-				style={{ opacity: this.state.wishlistActive ? '1' : '0.3' }}
+				style={{ opacity: this.state.wishlistActive ? '1' : '0.4' }}
 			>
 				{/* Wishlist Name */}
 				{this.state.showInputs ? (
@@ -120,7 +121,7 @@ export default class WishlistCard extends Component {
 						onChange={this.handleNameChangeEdit}
 						value={this.state.editNameInput}
 					/>
-				) : (
+				) : this.state.wishlistActive ? (
 					<NavLink
 						className="wishlists__card__title card-title"
 						to={`/wishlist/${this.state.wishlist.id}/${
@@ -131,6 +132,8 @@ export default class WishlistCard extends Component {
 					>
 						{this.state.wishlist.name}
 					</NavLink>
+				) : (
+					<div>{this.state.wishlist.name + ' {DELETED}'}</div> // remove?
 				)}
 				{/* Wishlist Password */}
 				{this.state.showInputs ? (
@@ -189,7 +192,12 @@ export default class WishlistCard extends Component {
 				) : (
 					<button
 						className="wishlists__card__update__showUpdate button"
-						onClick={() => this.showEditInputs()}
+						style={{
+							cursor: this.state.wishlistActive ? 'pointer' : 'default',
+						}}
+						onClick={
+							this.state.wishlistActive ? () => this.showEditInputs() : null
+						}
 					>
 						Update
 					</button>
@@ -197,7 +205,10 @@ export default class WishlistCard extends Component {
 				{/* Delete Wishlist */}
 				<button
 					className="wishlists__card__delete button is-danger is-light"
-					onClick={() => this.deleteWishlist()}
+					style={{ cursor: this.state.wishlistActive ? 'pointer' : 'default' }}
+					onClick={
+						this.state.wishlistActive ? () => this.deleteWishlist() : null
+					}
 				>
 					Delete
 				</button>
