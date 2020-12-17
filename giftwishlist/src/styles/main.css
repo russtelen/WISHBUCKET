@@ -185,6 +185,12 @@ table {
   font-size: 0.8rem;
 }
 
+/*Styling Footer*/
+.pt-4{
+  background:#053352 ;
+  color: white
+}
+
 @font-face {
   font-family: 'GloriaHallelujah-Regular';
   src: url("../fonts/GloriaHallelujah-Regular.ttf");
