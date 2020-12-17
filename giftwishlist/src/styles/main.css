@@ -296,6 +296,11 @@ table {
   font-size: 0.8rem;
 }
 
+.error {
+  font-size: 32px;
+  color: yellow;
+}
+
 .register {
   background: linear-gradient(54deg, #f792d0 0%, #a597bd 22%, #a597bd 25%, #249ea0 100%);
 }
@@ -386,11 +391,6 @@ table {
 
 .login__container__register:hover {
   background-color: white;
-}
-
-.errorMessage {
-  font-size: 40px;
-  color: orange;
 }
 
 #createInputs {
@@ -748,9 +748,22 @@ table {
   display: grid;
   -ms-grid-columns: 60% 40%;
       grid-template-columns: 60% 40%;
-  width: 95%;
+  width: 100%;
   margin: auto;
-  font-size: 14px;
+  font-size: 0.8em;
+}
+
+@media screen and (min-width: 375px) {
+  .wishlist__heading {
+    width: 92%;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .wishlist__heading {
+    width: 90%;
+    font-size: 1.2em;
+  }
 }
 
 .wishlist__heading__span {
