@@ -4,8 +4,8 @@ import { NavLink } from "react-router-dom";
 export default class Footer extends Component {
   render() {
    return (
-     <footer className="pt-4 my-md-5 pt-md-5">
-       <div className="row">
+      <footer className="pt-4 my-md-5 pt-md-5">
+         <div className="row">
           <div className="col-6 col-md">
                 <h6>WISHBUCKET</h6>
               <ul class="list-unstyled text-small">
@@ -43,7 +43,6 @@ export default class Footer extends Component {
                 <li><a className="link-secondary" href="#">Unique Gift Ideas</a></li>
                 <li><a className="link-secondary" href="#">Customer Assistant</a></li>
                 <li><a className="link-secondary" href="#">Returns/Exchanges</a></li>
-                
               </ul>
           </div>
        </div>
@@ -57,7 +56,7 @@ export default class Footer extends Component {
         </NavLink>
         <small className="d-block mb-3 text-muted">&copy; 2015-2020</small>
       </div> */}
-     </footer>
+    </footer>
    );
   }
 } 
