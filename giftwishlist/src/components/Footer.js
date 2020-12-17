@@ -47,6 +47,7 @@ export default class Footer extends Component {
               </ul>
           </div>
        </div>
+       <hr/>
        <div className="col-12 col-md">
                 <NavLink to="/">
                 <img src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
