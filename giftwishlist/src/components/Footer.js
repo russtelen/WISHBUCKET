@@ -17,7 +17,7 @@ export default class Footer extends Component {
           </div> 
 
           <div className="col-6 col-md">
-              <h5>Features</h5>
+              <h6>Features</h6>
               <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="#">Cool stuff</a></li>
                 <li><a class="link-secondary" href="#">Share With Anyone</a></li>
@@ -27,7 +27,7 @@ export default class Footer extends Component {
           </div> 
 
           <div className="col-6 col-md">
-              <h5>Resources</h5>
+              <h6>Resources</h6>
               <ul class="list-unstyled text-small">
                 <li><a class="link-secondary" href="#">iPhone WishList IOS  App</a></li>
                 <li><a class="link-secondary" href="#">Android WishList App</a></li>
@@ -37,7 +37,7 @@ export default class Footer extends Component {
           </div>
 
           <div className="col-6 col-md">
-              <h5>Solutions</h5>
+              <h6>Solutions</h6>
               <ul class="list-unstyled text-small">
               <li><a class="link-secondary" href="#">Getting Stared</a></li>
                 <li><a class="link-secondary" href="#">Unique Gift Ideas</a></li>
@@ -46,7 +46,6 @@ export default class Footer extends Component {
                 
               </ul>
           </div>
-
        </div>
        <div className="col-12 col-md">
                 <NavLink to="/">
@@ -57,13 +56,7 @@ export default class Footer extends Component {
               </NavLink>
               {/* <h5>Company</h5> */}
               <small class="d-block mb-3 text-muted">&copy; 2015-2020</small>
-              {/* <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Our Story</a></li>
-                <li><a class="link-secondary" href="#">Our People</a></li>
-                <li><a class="link-secondary" href="#">Testimonials</a></li>
-                <li><a class="link-secondary" href="#">Press Reviews</a></li>
-              </ul> */}
-          </div>
+            </div>
      </footer>
    );
   }
