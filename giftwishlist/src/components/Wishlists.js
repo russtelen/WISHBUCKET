@@ -187,7 +187,7 @@ export default function Wishlists() {
 			{userWishlists.length === 0 ? (
 				<p className="my-5">You do not have any wishlists. Create One Above!</p>
 			) : (
-				<div className="wishlists container">
+				<div className="container">
 					<div className="row">
 						{userWishlists.map((wishlist, index) => {
 							return (
@@ -195,6 +195,7 @@ export default function Wishlists() {
 									<div className="card my-3 animate__animated animate__heartBeat">
 										<div className="card-body">
 											<WishlistCard
+												className="wishlistCardComponent"
 												refresh={fetchUserWishlists}
 												index={index}
 												wishlist={wishlist}
