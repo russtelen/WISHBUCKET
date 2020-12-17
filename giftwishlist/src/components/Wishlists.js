@@ -7,17 +7,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 export const WishlistActiveContext = React.createContext();
 
 export default function Wishlists() {
-	// const [wishlists, setWishlists] = useState([]);
 	const [userWishlists, setUserWishlists] = useState([]);
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [dueDate, setDueDate] = useState('');
-	// const [id, setId] = useState(0);
-	// const [showInputs, setShowInputs] = useState(false);
-	// const [editNameInput, setEditNameInput] = useState('');
-	// const [editPasswordInput, setEditPasswordInput] = useState('');
-  // const [editDateInput, setEditDateInput] = useState('');
-  // eslint-disable-next-line
 	const [wishlistActive, setWishlistActive] = useState(true);
 
 	const fetchUserWishlists = () => {
@@ -48,19 +41,15 @@ export default function Wishlists() {
 		fetchUserWishlists();
 	}, []); // empty [] dependancy list to stop infinite loop
 
-	//Create Wishlist (POST API)
 	const handleNameChange = (e) => {
 		setName(e.target.value);
 	};
-
 	const handlePasswordChange = (e) => {
 		setPassword(e.target.value);
 	};
-
 	const handleDueDateChange = (e) => {
 		setDueDate(e.target.value);
 	};
-
 	const createWishlist = () => {
 		fetch(BASE_URL + 'wishlist/', {
 			method: 'POST',
@@ -76,8 +65,7 @@ export default function Wishlists() {
 			}),
 		})
 			// Response received.
-			.then((response) => {
-			})
+			.then((response) => {})
 			// Data retrieved.
 			.then((json) => {
 				setName('');
@@ -146,7 +134,6 @@ export default function Wishlists() {
 					/>
 				</div>
 			) : (
-				// <div className="dashboard__wishlists container">
 				<WishlistActiveContext.Provider value={wishlistActive}>
 					<div className="dashboard__wishlists row">
 						{userWishlists.map((wishlist, index) => {
@@ -174,7 +161,6 @@ export default function Wishlists() {
 						})}
 					</div>
 				</WishlistActiveContext.Provider>
-				// </div>
 			)}
 		</div>
 	);
