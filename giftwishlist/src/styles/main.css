@@ -558,4 +558,39 @@ body {
 .wishlist-notification {
   margin-top: 1em;
 }
+
+.wishlist__return {
+  font-size: 18px;
+  margin: 3% auto;
+  width: 23%;
+  text-decoration: none;
+}
+
+.wishlist__return:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #5fe6a5;
+}
+
+.wishlist__heading {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 60% 40%;
+      grid-template-columns: 60% 40%;
+  width: 95%;
+  margin: auto;
+  font-size: 14px;
+}
+
+.wishlist__heading__span {
+  font-weight: bold;
+}
+
+.wishlist__heading__info1 {
+  text-align: left;
+}
+
+.wishlist__heading__info2 {
+  text-align: right;
+}
 /*# sourceMappingURL=main.css.map */
