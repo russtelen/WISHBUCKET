@@ -4,7 +4,7 @@
 
 Wishbucket is live at:
 
-https://silly-gates-db6d8f.netlify.app/
+https://wishbucket.netlify.app/
 
 Front-End Project associated with WishBucket Back-End Project:  
 
