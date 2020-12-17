@@ -148,6 +148,7 @@ table {
   font-size: 1.7em;
   background: -webkit-linear-gradient(white, black);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: white;
   text-shadow: 2px 2px 3px darkslategrey;
 }
