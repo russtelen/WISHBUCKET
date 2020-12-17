@@ -95,6 +95,7 @@ export default class WishlistCard extends Component {
 				// window.location.href = "/wishlist/";
 				this.setState({ showInputs: false });
 				this.setState({ wishlistActive: false });
+				this.toggleConfirmDelete();
 			})
 			// Data not retrieved.
 			.catch((e) => {
