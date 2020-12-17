@@ -54,7 +54,8 @@ export default function Wishlist({ match }) {
 		setPrice(e.target.value);
 	};
 
-	const createItem = () => {
+	const createItem = (e) => {
+		e.preventDefault();
 		wishlistService
 			.createItem(name, description, image, purchaseLink, price, wishlistId)
 			.then((response) => {

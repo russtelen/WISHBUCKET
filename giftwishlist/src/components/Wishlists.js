@@ -61,7 +61,8 @@ export default function Wishlists() {
 		setDueDate(e.target.value);
 	};
 
-	const createWishlist = () => {
+	const createWishlist = (e) => {
+		e.preventDefault();
 		fetch(BASE_URL + 'wishlist/', {
 			method: 'POST',
 			headers: {
