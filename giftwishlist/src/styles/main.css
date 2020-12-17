@@ -129,30 +129,82 @@ table {
   border-spacing: 0;
 }
 
+.navbar {
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(75deg, #f792d0 0%, rgba(165, 151, 189, 0.5) 22%, rgba(165, 151, 189, 0.8) 30%, rgba(36, 158, 160, 0.3) 80%);
+  -webkit-box-shadow: 0px 12px 12px grey;
+          box-shadow: 0px 12px 12px grey;
+}
+
 .navbar__title__name {
+  display: none;
   font-family: 'GloriaHallelujah-Regular';
-  font-size: 2.6em;
+  font-size: 1.7em;
+  background: -webkit-linear-gradient(white, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: white;
+  text-shadow: 2px 2px 3px darkslategrey;
+}
+
+@media screen and (min-width: 375px) {
+  .navbar__title__name {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-item-align: center;
+        align-self: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media screen and (min-width: 481px) {
+  .navbar__title__name {
+    font-size: 2.4em;
+  }
 }
 
 .navbar__toggler {
-  margin: auto;
+  position: absolute;
+  top: 15px;
+  right: 0;
+  color: #179659;
+  height: 75px;
+  width: 22%;
+  margin-right: 3%;
 }
 
 .navbar__links {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
 .navbar__links__ulist {
   width: 100%;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar__links__ulist__context__link {
+  width: 100%;
+}
+
+.navbar__links__ulist__context__link__button {
+  border: none;
+  font-size: 22px;
+  color: white;
+  background: linear-gradient(75deg, #a824db 0%, rgba(121, 74, 177, 0.7) 30%, rgba(72, 112, 133, 0.6) 60%, rgba(23, 150, 89, 0.5) 90%);
+  height: 50px;
+  width: 80%;
+  background-color: #179659;
+}
+
+.navbar__links__ulist__context__link__button:hover {
+  background: linear-gradient(75deg, #c82ed0 0%, rgba(165, 151, 189, 0.7) 65%, rgba(165, 151, 189, 0.6) 75%, rgba(36, 158, 160, 0.5) 90%);
 }
 
 .home__jumbotron-custom {
@@ -185,28 +237,372 @@ table {
   font-size: 0.8rem;
 }
 
-/*Styling Footer*/
-.pt-4{
-  background:#1186e0 ;
-  color: white;
-
-}
-
-.link-secondary {
-  color: white;
-}
-
-a {
-  color: #053352;
-}
-
-.h5 {
-  font-weight: bold;
-  color:#053352
-}
-
 @font-face {
   font-family: 'GloriaHallelujah-Regular';
   src: url("../fonts/GloriaHallelujah-Regular.ttf");
+}
+
+#createInputs {
+  margin-bottom: 4%;
+}
+
+.cardIcon {
+  margin-bottom: 3px;
+}
+
+.dashboard__noWishlists {
+  padding-top: 8%;
+  padding-bottom: 16%;
+  font-size: 20px;
+}
+
+.dashboard__noWishlists__text {
+  font-family: 'GloriaHallelujah-Regular';
+  color: #0d5834;
+}
+
+.dashboard__noWishlists__icon {
+  margin: 4% auto;
+  color: #0d5834;
+}
+
+.dashboard__wishlists {
+  padding-bottom: 12%;
+  width: 85%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.dashboard__wishlists__container {
+  padding-top: 5%;
+}
+
+.dashboard__wishlists__container__cardOuter {
+  height: 95%;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 10px 10px 10px grey;
+          box-shadow: 10px 10px 10px grey;
+}
+
+.dashboard__wishlists__container__cardOuter:hover {
+  -webkit-transform: scale(1.075) translateY(-10px);
+          transform: scale(1.075) translateY(-10px);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -webkit-transition: transform 400ms ease-out;
+  -webkit-transition: -webkit-transform 400ms ease-out;
+  transition: -webkit-transform 400ms ease-out;
+  transition: transform 400ms ease-out;
+  transition: transform 400ms ease-out, -webkit-transform 400ms ease-out;
+}
+
+.wishlists__card {
+  position: relative;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.8) 0%, rgba(210, 210, 210, 0.8) 30%, rgba(190, 190, 190, 0.7) 50%, rgba(150, 210, 210, 0.7) 70%, rgba(100, 150, 150, 0.7) 85%, rgba(70, 100, 100, 0.8) 95%);
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: black;
+}
+
+.wishlists__card .none_set {
+  color: grey;
+}
+
+.wishlists__card #titleInput {
+  width: 80%;
+}
+
+.wishlists__card__count {
+  position: absolute;
+  top: 45px;
+  right: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0d5834;
+}
+
+.wishlists__card__title {
+  overflow: hidden;
+  background-color: #179659;
+}
+
+.wishlists__card__title__button {
+  margin: auto;
+  background-color: #179659;
+  color: white;
+  font-size: 32px;
+  border: none;
+  width: 100%;
+  padding-bottom: 8px;
+}
+
+.wishlists__card__title__button:hover {
+  background-color: #5fe6a5;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__titleInput {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.wishlists__card__password {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  cursor: default;
+}
+
+.wishlists__card__dueDate {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  cursor: default;
+}
+
+.wishlists__card #passwordInput {
+  cursor: text;
+}
+
+.wishlists__card #dueDateInput {
+  cursor: text;
+}
+
+.wishlists__card__actions {
+  font-size: 16px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.wishlists__card__actions__update {
+  width: 100%;
+  border-radius: 0;
+}
+
+.wishlists__card__actions__update #showUpdate {
+  width: 100%;
+  border: none;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.wishlists__card__actions__update #showUpdate:hover {
+  background-color: #a9c6bb;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__update #confirmUpdate {
+  color: white;
+  background-color: #179659;
+  width: 33.3%;
+  border: none;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.wishlists__card__actions__update #confirmUpdate:hover {
+  background-color: #5fe6a5;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__update #cancelUpdate {
+  width: 66.7%;
+  border: none;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.wishlists__card__actions__update #cancelUpdate:hover {
+  background-color: #a9c6bb;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__delete {
+  border-radius: 0;
+}
+
+.wishlists__card__actions__delete #showDelete {
+  border: none;
+  border-radius: 0;
+  width: 100%;
+  background-color: #efa599;
+  font-weight: bold;
+  color: darkred;
+  padding: 1%;
+}
+
+.wishlists__card__actions__delete #showDelete:hover {
+  color: pink;
+  background-color: #df4b32;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__delete #confirmDelete {
+  color: darkred;
+  background-color: #efa599;
+  width: 33.3%;
+  border: none;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.wishlists__card__actions__delete #confirmDelete:hover {
+  color: pink;
+  background-color: #df4b32;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__delete #cancelDelete {
+  width: 66.7%;
+  border: none;
+  font-weight: bold;
+  padding: 2%;
+}
+
+.wishlists__card__actions__delete #cancelDelete:hover {
+  background-color: #a9c6bb;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.dashboard {
+  width: 100%;
+  background: linear-gradient(54deg, #f792d0 0%, rgba(165, 151, 189, 0.4) 22%, rgba(165, 151, 189, 0.2) 25%, rgba(36, 158, 160, 0.1) 100%);
+}
+
+.dashboard__greeting {
+  margin-left: 5%;
+  margin-bottom: 4%;
+  text-align: left;
+  padding-top: 5%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.dashboard__greeting__userEmail {
+  font-size: 24px;
+  color: #179659;
+}
+
+.dashboard__create {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 75%;
+  margin: auto;
+  -webkit-box-shadow: 8px 8px 8px grey;
+          box-shadow: 8px 8px 8px grey;
+}
+
+@media screen and (min-width: 481px) {
+  .dashboard__create {
+    width: 90%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 28% 28% 24% 20%;
+        grid-template-columns: 28% 28% 24% 20%;
+  }
+}
+
+.dashboard__create__input {
+  margin: 2%;
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 7%;
+  border: none;
+}
+
+@media screen and (min-width: 481px) {
+  .dashboard__create__input {
+    height: 80%;
+    margin: auto;
+  }
+}
+
+.dashboard__create__button {
+  padding: 2%;
+  border-radius: 3%;
+  border: none;
+  margin: 2%;
+  font-size: 20px;
+  background-color: #179659;
+  color: white;
+}
+
+.dashboard__heading {
+  font-family: 'GloriaHallelujah-Regular';
+  color: #0d5834;
+  font-size: 32px;
+  padding-top: 3%;
+  padding-left: 4%;
+  padding-bottom: 3%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.wishlist-inputs input {
+  height: 40px;
+}
+
+.wishlist-notification {
+  margin-top: 1em;
+}
+
+.wishlist__return {
+  font-size: 18px;
+  margin: 3% auto;
+  width: 23%;
+  text-decoration: none;
+}
+
+.wishlist__return:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #5fe6a5;
+}
+
+.wishlist__heading {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 60% 40%;
+      grid-template-columns: 60% 40%;
+  width: 95%;
+  margin: auto;
+  font-size: 14px;
+}
+
+.wishlist__heading__span {
+  font-weight: bold;
+}
+
+.wishlist__heading__info1 {
+  text-align: left;
+}
+
+.wishlist__heading__info2 {
+  text-align: right;
 }
 /*# sourceMappingURL=main.css.map */
