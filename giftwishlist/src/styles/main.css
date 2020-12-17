@@ -296,6 +296,11 @@ body {
   font-size: 0.8rem;
 }
 
+.error {
+  font-size: 32px;
+  color: yellow;
+}
+
 .login {
   background: linear-gradient(54deg, #f792d0 0%, #a597bd 22%, #a597bd 25%, #249ea0 100%);
 }

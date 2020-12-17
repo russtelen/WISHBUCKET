@@ -138,7 +138,8 @@ export default class WishlistCard extends Component {
 					''
 				) : (
 					<div className="wishlists__card__count">
-						{this.props.wishlist.items.length + ' items'}
+						{this.props.wishlist.items.length}{' '}
+						{this.props.wishlist.items.length === 1 ? ' item' : ' items'}
 					</div>
 				)}
 				{/* Wishlist Password */}
