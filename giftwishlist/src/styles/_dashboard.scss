@@ -5,14 +5,18 @@
 	width: 100%;
 	background: linear-gradient(
 		54deg,
-		rgba(247, 146, 208, 1) 0%,
-		rgba(165, 151, 189, 1) 22%,
-		rgba(165, 151, 189, 1) 25%,
-		rgba(36, 158, 160, 0.2) 100%
+		rgba(247, 146, 208, 5) 0%,
+		rgba(165, 151, 189, 0.4) 22%,
+		rgba(165, 151, 189, 0.2) 25%,
+		rgba(36, 158, 160, 0.1) 100%
 	);
 
-	margin: auto;
+	// margin: auto;
 	&__greeting {
+		margin-left: 5%;
+		margin-bottom: 4%;
+		text-align: left;
+		padding-top: 5%;
 		font-size: 20px;
 		font-weight: bold;
 
@@ -20,5 +24,50 @@
 			font-size: 24px;
 			color: $wb_green;
 		}
+	}
+
+	&__create {
+		display: flex;
+		flex-direction: column;
+		width: 75%;
+		margin: auto;
+		box-shadow: 8px 8px 8px grey;
+		@media screen and (min-width: $min-width-tablet) {
+			width: 90%;
+			display: grid;
+			grid-template-columns: 28% 28% 24% 20%;
+		}
+
+		&__input {
+			margin: 2%;
+			height: 40px;
+			text-align: center;
+			font-size: 18px;
+			border-radius: 7%;
+			border: none;
+			@media screen and (min-width: $min-width-tablet) {
+				height: 80%;
+				margin: auto;
+			}
+		}
+		&__button {
+			padding: 2%;
+			border-radius: 3%;
+			border: none;
+			margin: 2%;
+			font-size: 20px;
+			background-color: $wb_green;
+			color: white;
+		}
+	}
+
+	&__heading {
+		font-family: 'GloriaHallelujah-Regular';
+		font-size: 32px;
+		padding-top: 3%;
+		padding-left: 4%;
+		padding-bottom: 3%;
+		text-align: left;
+		font-weight: bold;
 	}
 }

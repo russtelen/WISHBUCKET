@@ -12,11 +12,11 @@ export default function Wishlists() {
 	const [name, setName] = useState('');
 	const [password, setPassword] = useState('');
 	const [dueDate, setDueDate] = useState('');
-	const [id, setId] = useState(0);
-	const [showInputs, setShowInputs] = useState(false);
-	const [editNameInput, setEditNameInput] = useState('');
-	const [editPasswordInput, setEditPasswordInput] = useState('');
-	const [editDateInput, setEditDateInput] = useState('');
+	// const [id, setId] = useState(0);
+	// const [showInputs, setShowInputs] = useState(false);
+	// const [editNameInput, setEditNameInput] = useState('');
+	// const [editPasswordInput, setEditPasswordInput] = useState('');
+	// const [editDateInput, setEditDateInput] = useState('');
 	const [wishlistActive, setWishlistActive] = useState(true);
 
 	const fetchUserWishlists = () => {
@@ -119,33 +119,33 @@ export default function Wishlists() {
 			});
 	};
 
-	const handleSubmit = () => {
-		updateWishlist(id, editNameInput, editPasswordInput, editDateInput);
+	// const handleSubmit = () => {
+	// 	updateWishlist(id, editNameInput, editPasswordInput, editDateInput);
 
-		console.log('Wishlist Updated');
-	};
+	// 	console.log('Wishlist Updated');
+	// };
 
 	// Delete Wishlist (DELETE)
-	const deleteWishlist = (id) => {
-		fetch(BASE_URL + 'wishlist/' + id + '/', {
-			method: 'DELETE',
-			headers: {
-				Accept: 'application/json',
-				Authorization: `Bearer ${sessionStorage.getItem('bearer-token')}`,
-				'Content-Type': 'application/json',
-			},
-		})
-			.then((res) => res.json())
-			// Data retrieved.
-			.then((data) => {
-				console.log(JSON.stringify(data));
-				fetchUserWishlists();
-			})
-			// Data not retrieved.
-			.catch((e) => {
-				console.log(e);
-			});
-	};
+	// const deleteWishlist = (id) => {
+	// 	fetch(BASE_URL + 'wishlist/' + id + '/', {
+	// 		method: 'DELETE',
+	// 		headers: {
+	// 			Accept: 'application/json',
+	// 			Authorization: `Bearer ${sessionStorage.getItem('bearer-token')}`,
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 	})
+	// 		.then((res) => res.json())
+	// 		// Data retrieved.
+	// 		.then((data) => {
+	// 			console.log(JSON.stringify(data));
+	// 			fetchUserWishlists();
+	// 		})
+	// 		// Data not retrieved.
+	// 		.catch((e) => {
+	// 			console.log(e);
+	// 		});
+	// };
 
 	return (
 		<div className="dashboard">
@@ -155,72 +155,76 @@ export default function Wishlists() {
 					{sessionStorage.getItem('loggedIn-email')}
 				</span>
 			</h1>
-			<p className="wishlists__heading display-4 animate__animated animate__fadeInDown">
-				Your Wishlists
-			</p>
 
 			{/* CREATE WISHLIST INPUTS */}
-			<div id="createInputs" className="animate__animated animate__fadeInDown">
+			<div
+				id="createInputs"
+				className="dashboard__create animate__animated animate__fadeInDown"
+			>
 				<input
 					placeholder="Wishlist Name"
 					type="text"
 					value={name}
 					onChange={handleNameChange}
-					className="mx-1"
+					className="dashboard__create__input mx-1"
 				/>
 				<input
 					placeholder="Password (Optional)"
 					type="text"
 					value={password}
 					onChange={handlePasswordChange}
-					className="mx-1"
+					className="dashboard__create__input mx-1"
 				/>
 				<input
 					type="date"
 					value={dueDate}
 					onChange={handleDueDateChange}
-					className="mx-1"
+					className="dashboard__create__input mx-1"
 				/>
-				<button className="btn btn-sm btn-primary" onClick={createWishlist}>
+				<button className="dashboard__create__button" onClick={createWishlist}>
 					Create Wishlist
 				</button>
 			</div>
 
 			{/* WishLists */}
+
+			<p className="dashboard__heading display-4 animate__animated animate__fadeInDown">
+				Your Wishlists
+			</p>
 			{userWishlists.length === 0 ? (
-				<p className="my-5">You do not have any wishlists. Create One Above!</p>
+				<p className="dashboard__noWishlists">
+					Why no wishlists? Create One Above!
+				</p>
 			) : (
-				<div className="container">
-					<WishlistActiveContext.Provider value={wishlistActive}>
-						<div className="wishlistContainer row">
-							{userWishlists.map((wishlist, index) => {
-								return (
+				// <div className="dashboard__wishlists container">
+				<WishlistActiveContext.Provider value={wishlistActive}>
+					<div className="dashboard__wishlists row">
+						{userWishlists.map((wishlist, index) => {
+							return (
+								<div
+									key={index}
+									className="dashboard__wishlists__container col-sm-12 col-md-6 col-lg-4"
+								>
 									<div
-										key={index}
-										className="wishlistcard col-sm-12 col-md-6 col-lg-4"
+										className={
+											wishlistActive
+												? 'dashboard__wishlists__container__cardOuter animate__animated animate__zoomIn'
+												: 'animate__animated animate__bounceOut'
+										}
 									>
-										<div className="wishlistcard__card card animate__animated animate__zoomIn">
-											<div
-												className={
-													wishlistActive
-														? 'card-body'
-														: 'animate__animated animate__bounceOut'
-												}
-											>
-												<WishlistCard
-													className="wishlistCardComponent"
-													refresh={fetchUserWishlists}
-													index={index}
-													wishlist={wishlist}
-												/>
-											</div>
-										</div>
+										<WishlistCard
+											className="wishlistCardComponent"
+											refresh={fetchUserWishlists}
+											index={index}
+											wishlist={wishlist}
+										/>
 									</div>
-								);
-							})}
-						</div>
-					</WishlistActiveContext.Provider>
-				</div>
+								</div>
+							);
+						})}
+					</div>
+				</WishlistActiveContext.Provider>
+				// </div>
 			)}
 		</div>
 	);
