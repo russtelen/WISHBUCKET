@@ -1,11 +1,11 @@
-html,
-body {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
-	padding: 0px;
-	overflow-x: hidden;
-}
+// html,
+// body {
+// 	width: 100%;
+// 	height: 100%;
+// 	margin: 0px;
+// 	padding: 0px;
+// 	overflow-x: hidden;
+// }
 
 .navbar {
 	width: 100%;
@@ -27,12 +27,14 @@ body {
 			background: -webkit-linear-gradient(white, black);
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: white;
-			text-shadow: 6px 6px 7px darkslategrey;
+			text-shadow: 2px 2px 3px darkslategrey;
 			@media screen and (min-width: 375px) {
-				display: block;
+				display: flex;
+				align-self: center;
+				align-items: center;
 			}
 			@media screen and (min-width: $min-width-tablet) {
-				font-size: 2.7em;
+				font-size: 2.4em;
 			}
 		}
 	}

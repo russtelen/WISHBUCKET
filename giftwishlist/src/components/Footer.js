@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export default class Footer extends Component {
 	render() {
 		return (
-			<footer className="pt-4 my-md-5 pt-md-5">
+			<footer className="footer pt-4 py-md-5 pt-md-5 mb-0 pb-0">
 				<div className="row">
 					<div className="col-6 col-md">
 						<h6>WishBucket</h6>
