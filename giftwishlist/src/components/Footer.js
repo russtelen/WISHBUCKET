@@ -47,7 +47,7 @@ export default class Footer extends Component {
               </ul>
           </div>
        </div>
-       <hr/>
+       {/* <hr/>
        <div className="col-12 col-md">
           <NavLink to="/">
           <img src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
@@ -56,7 +56,7 @@ export default class Footer extends Component {
           <h6>WishBucket</h6>
         </NavLink>
         <small className="d-block mb-3 text-muted">&copy; 2015-2020</small>
-      </div>
+      </div> */}
      </footer>
    );
   }
