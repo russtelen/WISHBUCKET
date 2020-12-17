@@ -187,7 +187,7 @@ export default function Wishlists() {
 			{userWishlists.length === 0 ? (
 				<p className="my-5">You do not have any wishlists. Create One Above!</p>
 			) : (
-				<div className="container">
+				<div className="wishlists container">
 					<div className="row">
 						{userWishlists.map((wishlist, index) => {
 							return (

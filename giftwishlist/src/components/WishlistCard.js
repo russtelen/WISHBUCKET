@@ -130,7 +130,9 @@ export default class WishlistCard extends Component {
 								: ''
 						}`}
 					>
-						{this.state.wishlist.name}
+						<button className="wishlists__card__title__button">
+							{this.state.wishlist.name}
+						</button>
 					</NavLink>
 				) : (
 					<div>{this.state.wishlist.name + ' {DELETED}'}</div> // remove?
