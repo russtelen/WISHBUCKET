@@ -70,15 +70,19 @@ export default class Navbar extends Component {
 								<ul className="navbar__links__ulist navbar-nav">
 									<NavLink
 										to="/register"
-										className="btn btn-success navbar__links__ulist__context__link mx-2"
+										className="navbar__links__ulist__context__link"
 									>
-										Register
+										<button className="navbar__links__ulist__context__link__button">
+											Register
+										</button>
 									</NavLink>
 									<NavLink
 										to="/login"
-										className="btn btn-success navbar__links__ulist__context__link mx-2"
+										className="navbar__links__ulist__context__link"
 									>
-										Login
+										<button className="navbar__links__ulist__context__link__button">
+											Login
+										</button>
 									</NavLink>
 								</ul>
 							)
