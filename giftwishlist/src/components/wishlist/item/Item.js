@@ -114,7 +114,11 @@ const Item = (props) => {
     <>
       <td>
         {showInputs ? (
-          <input onChange={handleNameChangeEdit} placeholder={itemData.name} />
+          <input
+            onChange={handleNameChangeEdit}
+            placeholder={itemData.name}
+            className="w-75 text-center"
+          />
         ) : (
           <strong>{itemData.name}</strong>
         )}
@@ -124,6 +128,7 @@ const Item = (props) => {
           <input
             onChange={handleDescriptionChangeEdit}
             value={itemData.description}
+            className="w-75 text-center"
           />
         ) : (
           itemData.description
@@ -146,6 +151,7 @@ const Item = (props) => {
           <input
             onChange={handlePurchaseURLChangeEdit}
             value={itemData.purchaseURL}
+            className="w-75 text-center"
           />
         ) : (
           <a href={itemData.purchaseURL} target="blank">
@@ -158,6 +164,7 @@ const Item = (props) => {
           <input
             onCharge={handlePriceChangeEdit}
             value={formatPrice(itemData.price)}
+            className="w-75 text-center"
           />
         ) : (
           formatPrice(itemData.price)
