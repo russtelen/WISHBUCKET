@@ -1,0 +1,24 @@
+.dashboard {
+	// width: 100%;
+	// overflow-x: hidden;
+
+	width: 100%;
+	background: linear-gradient(
+		54deg,
+		rgba(247, 146, 208, 1) 0%,
+		rgba(165, 151, 189, 1) 22%,
+		rgba(165, 151, 189, 1) 25%,
+		rgba(36, 158, 160, 0.2) 100%
+	);
+
+	margin: auto;
+	&__greeting {
+		font-size: 20px;
+		font-weight: bold;
+
+		&__userEmail {
+			font-size: 24px;
+			color: $wb_green;
+		}
+	}
+}

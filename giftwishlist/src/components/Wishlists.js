@@ -4,6 +4,8 @@ import { NavLink } from 'react-router-dom';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 
+export const WishlistActiveContext = React.createContext();
+
 export default function Wishlists() {
 	// const [wishlists, setWishlists] = useState([]);
 	const [userWishlists, setUserWishlists] = useState([]);
@@ -15,6 +17,7 @@ export default function Wishlists() {
 	const [editNameInput, setEditNameInput] = useState('');
 	const [editPasswordInput, setEditPasswordInput] = useState('');
 	const [editDateInput, setEditDateInput] = useState('');
+	const [wishlistActive, setWishlistActive] = useState(true);
 
 	const fetchUserWishlists = () => {
 		const URL = `${BASE_URL}wishlist/owned`;
@@ -145,15 +148,15 @@ export default function Wishlists() {
 	};
 
 	return (
-		<div className="wishlists">
-			<h1 className="wishlists__greeting">
-				{"Hello, you're logged-in as "}{' '}
-				<span className="wishlists__greeting__userEmail">
+		<div className="dashboard">
+			<h1 className="dashboard__greeting">
+				{"Hello, you're logged-in as "}
+				<span className="dashboard__greeting__userEmail">
 					{sessionStorage.getItem('loggedIn-email')}
 				</span>
 			</h1>
-			<p className="wishlists__heading display-4 my-3 animate__animated animate__fadeInDown">
-				Wishlists
+			<p className="wishlists__heading display-4 animate__animated animate__fadeInDown">
+				Your Wishlists
 			</p>
 
 			{/* CREATE WISHLIST INPUTS */}
@@ -188,24 +191,35 @@ export default function Wishlists() {
 				<p className="my-5">You do not have any wishlists. Create One Above!</p>
 			) : (
 				<div className="container">
-					<div className="row">
-						{userWishlists.map((wishlist, index) => {
-							return (
-								<div key={index} className="col-sm-12 col-md-6 col-lg-4">
-									<div className="card my-3 animate__animated animate__heartBeat">
-										<div className="card-body">
-											<WishlistCard
-												className="wishlistCardComponent"
-												refresh={fetchUserWishlists}
-												index={index}
-												wishlist={wishlist}
-											/>
+					<WishlistActiveContext.Provider value={wishlistActive}>
+						<div className="wishlistContainer row">
+							{userWishlists.map((wishlist, index) => {
+								return (
+									<div
+										key={index}
+										className="wishlistcard col-sm-12 col-md-6 col-lg-4"
+									>
+										<div className="wishlistcard__card card animate__animated animate__zoomIn">
+											<div
+												className={
+													wishlistActive
+														? 'card-body'
+														: 'animate__animated animate__bounceOut'
+												}
+											>
+												<WishlistCard
+													className="wishlistCardComponent"
+													refresh={fetchUserWishlists}
+													index={index}
+													wishlist={wishlist}
+												/>
+											</div>
 										</div>
 									</div>
-								</div>
-							);
-						})}
-					</div>
+								);
+							})}
+						</div>
+					</WishlistActiveContext.Provider>
 				</div>
 			)}
 		</div>
