@@ -186,9 +186,10 @@ table {
 }
 
 /*Styling Footer*/
-.pt-4{
+.pt-4 {
   background:#076b7b;
   color: white;
+  margin-bottom: 0;
 
 }
 

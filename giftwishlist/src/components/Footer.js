@@ -37,25 +37,15 @@ export default class Footer extends Component {
           </div>
 
           <div className="col-6 col-md">
-              <h6>SOLUTIONS</h6>
+              <h6>DESIGN &amp; DEVELOPMENT</h6>
               <ul className="list-unstyled text-small">
-              <li><a className="link-secondary" href="#">Getting Stared</a></li>
-                <li><a className="link-secondary" href="#">Unique Gift Ideas</a></li>
-                <li><a className="link-secondary" href="#">Customer Assistant</a></li>
-                <li><a className="link-secondary" href="#">Returns/Exchanges</a></li>
+              <li><a className="link-secondary" href="#">Stefan Kuznetsov </a></li>
+                <li><a className="link-secondary" href="#">Russ Telen</a></li>
+                <li><a className="link-secondary" href="#">Vlad Preduna</a></li>
+                <li><a className="link-secondary" href="#">Fatma Badri</a></li>
               </ul>
           </div>
        </div>
-       {/* <hr/>
-       <div className="col-12 col-md">
-          <NavLink to="/">
-          <img src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
-            width="30em"
-          />
-          <h6>WishBucket</h6>
-        </NavLink>
-        <small className="d-block mb-3 text-muted">&copy; 2015-2020</small>
-      </div> */}
     </footer>
    );
   }
