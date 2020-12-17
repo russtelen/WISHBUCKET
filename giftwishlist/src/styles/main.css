@@ -187,14 +187,14 @@ table {
 
 /*Styling Footer*/
 .pt-4 {
-  background:#076b7b;
+  background:#b3e6ee;
   color: white;
   margin-bottom: 0;
 
 }
 
 .link-secondary {
-  color: white;
+  color: rgba(143, 141, 141, 0.992);
 }
 
 a {
