@@ -187,8 +187,22 @@ table {
 
 /*Styling Footer*/
 .pt-4{
-  background:#053352 ;
-  color: white
+  background:#1186e0 ;
+  color: white;
+
+}
+
+.link-secondary {
+  color: white;
+}
+
+a {
+  color: #053352;
+}
+
+.h5 {
+  font-weight: bold;
+  color:#053352
 }
 
 @font-face {
