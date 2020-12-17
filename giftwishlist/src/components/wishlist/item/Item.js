@@ -10,7 +10,15 @@ const Item = (props) => {
       minimumFractionDigits: 2,
     });
 
-    return formatter.format(price);
+    var newPrice = formatter.format(price);
+
+    console.log(newPrice);
+
+    if (isNaN(price)) {
+      return price;
+    } else {
+      return newPrice;
+    }
   };
 
   const [itemData, setItemData] = useState(props.item);
@@ -19,6 +27,7 @@ const Item = (props) => {
   const [editDescriptionInput, setEditDescriptionInput] = useState(
     itemData.description
   );
+  const [editImageURL, setEditImageURL] = useState(itemData.imageURL);
   const [editPurchaseURL, setEditPurchaseURL] = useState(itemData.purchaseURL);
   const [editPrice, setEditPrice] = useState(itemData.price);
 
@@ -64,7 +73,7 @@ const Item = (props) => {
           IsComplete: itemData.isComplete,
           wishlistID: itemData.wishlistID,
           Description: editDescriptionInput, // editable
-          ImageURL: itemData.purchaseURL, // editable
+          ImageURL: editImageURL, // editable
           PurchaseURL: editPurchaseURL, // editable
           Price: editPrice, // editable
         }),
@@ -100,11 +109,18 @@ const Item = (props) => {
     setEditDescriptionInput(e.target.value);
   };
 
+  const handleImageChangeEdit = (e) => {
+    setEditImageURL(e.target.value);
+  };
+
   const handlePurchaseURLChangeEdit = (e) => {
     setEditPurchaseURL(e.target.value);
   };
 
   const handlePriceChangeEdit = (e) => {
+    if (isNaN(e.target.value)) {
+      alert("Price should be a number !!!");
+    }
     setEditPrice(e.target.value);
   };
 
@@ -116,45 +132,49 @@ const Item = (props) => {
         {showInputs ? (
           <input
             onChange={handleNameChangeEdit}
-            placeholder={itemData.name}
+            value={editNameInput}
             className="w-75 text-center"
           />
         ) : (
-          <strong>{itemData.name}</strong>
+          <strong>{editNameInput}</strong>
         )}
       </td>
       <td>
         {showInputs ? (
           <input
             onChange={handleDescriptionChangeEdit}
-            value={itemData.description}
+            value={editDescriptionInput}
             className="w-75 text-center"
           />
         ) : (
-          itemData.description
+          editDescriptionInput
         )}
       </td>
       <td>
-        {isUrl(itemData.imageURL) ? (
+        {showInputs ? (
+          <input
+            onChange={handleImageChangeEdit}
+            value={editImageURL}
+            className="w-75 text-center"
+          />
+        ) : (
           <img
             width="100px"
             height="100px"
-            src={itemData.imageURL}
-            alt={itemData.name}
-          ></img>
-        ) : (
-          "N/A"
+            src={editImageURL}
+            alt={editNameInput}
+          />
         )}
       </td>
       <td>
         {showInputs ? (
           <input
             onChange={handlePurchaseURLChangeEdit}
-            value={itemData.purchaseURL}
+            value={editPurchaseURL}
             className="w-75 text-center"
           />
         ) : (
-          <a href={itemData.purchaseURL} target="blank">
+          <a href={editPurchaseURL} target="blank">
             Purchase
           </a>
         )}
@@ -162,12 +182,12 @@ const Item = (props) => {
       <td>
         {showInputs ? (
           <input
-            onCharge={handlePriceChangeEdit}
-            value={formatPrice(itemData.price)}
+            onChange={handlePriceChangeEdit}
+            value={editPrice}
             className="w-75 text-center"
           />
         ) : (
-          formatPrice(itemData.price)
+          formatPrice(editPrice)
         )}
       </td>
       <td>
