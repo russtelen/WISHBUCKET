@@ -29,7 +29,8 @@ export default function Wishlist({ match }) {
 	};
 
 	useEffect(() => {
-		fetchWishlists();
+	  fetchWishlists();
+      // eslint-disable-next-line
 	}, []); // empty [] dependancy list to stop infinite loop
 
 	// Create Wishlist / Item

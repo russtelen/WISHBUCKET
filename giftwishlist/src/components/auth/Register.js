@@ -63,7 +63,6 @@ class Register extends Component {
           // Store token with session data.
           if (json["status"] === "OK") {
             sessionStorage.setItem("bearer-token", json["token"]);
-            console.log(sessionStorage.getItem("bearer-token"));
             window.location.href="/login";
           } else {
             this.setState({

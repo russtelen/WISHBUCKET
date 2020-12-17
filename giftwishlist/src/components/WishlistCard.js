@@ -69,7 +69,6 @@ export default class WishlistCard extends Component {
 			.then((res) => res.json())
 			// Data retrieved.
 			.then((data) => {
-				// console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				this.setWishlistData();
 				this.showEditInputs();
@@ -92,7 +91,6 @@ export default class WishlistCard extends Component {
 			.then((res) => res.json())
 			// Data retrieved.
 			.then((data) => {
-				console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				// window.location.href = "/wishlist/";
 				this.setState({ showInputs: false });
@@ -156,7 +154,7 @@ export default class WishlistCard extends Component {
 								: this.state.editPasswordInput
 						}
 						placeholder={
-							this.state.wishlist.password == '' ? 'password (optional)' : ''
+							this.state.wishlist.password === '' ? 'password (optional)' : ''
 						}
 					/>
 				) : this.props.wishlist.password !== '' ? (
