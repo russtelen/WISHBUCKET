@@ -54,6 +54,26 @@ const Item = (props) => {
     // window.location.href="/wishlist/" + wishlistId;
   };
 
+  const getItem = async () => {
+    const response = await fetch(
+      BASE_URL + "api/wishlist/" + itemData.wishlistID + "/item/" + itemData.id,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${sessionStorage.getItem("bearer-token")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    ).catch((err) => console.log(err));
+    if (response.status > 400) {
+      return response;
+    }
+    const result = await response.json();
+    setItemData({...result})
+    console.log(result);
+  }
+
   const updateItem = () => {
     fetch(
       BASE_URL + "api/wishlist/" + itemData.wishlistID + "/item/" + itemData.id,
@@ -81,7 +101,7 @@ const Item = (props) => {
       .then((data) => {
         setShowInputs(!showInputs);
         // window.location.href="/wishlist/" + itemData.wishlistID;
-        // fetchUserWishlists();
+        getItem();
       })
       // Data not retrieved.
       .catch((e) => {
@@ -129,7 +149,7 @@ const Item = (props) => {
             className="w-75 text-center"
           />
         ) : (
-          <strong>{editNameInput}</strong>
+          <strong>{itemData.name}</strong>
         )}
       </td>
       <td>
@@ -154,8 +174,8 @@ const Item = (props) => {
           <img
             width="100px"
             height="100px"
-            src={editImageURL}
-            alt={editNameInput}
+            src={itemData.imageURL}
+            alt={itemData.name}
           />
         )}
       </td>
@@ -180,7 +200,7 @@ const Item = (props) => {
             className="w-75 text-center"
           />
         ) : (
-          formatPrice(editPrice)
+          formatPrice(itemData.price)
         )}
       </td>
       <td>
