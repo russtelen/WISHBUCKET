@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { GiCheckMark, GiCancel, GiTrashCan } from 'react-icons/gi';
+import { GrDocumentUpdate } from 'react-icons/gr';
 const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 
 export default class WishlistCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showInputs: false,
 			editNameInput: props.wishlist.name,
 			editPasswordInput: props.wishlist.password,
 			editDueDateInput: props.wishlist.dueDate,
 			wishlistActive: true,
+			showInputs: false,
+			deleteClicked: false,
 			wishlist: {
 				id: props.wishlist.id,
 				name: props.wishlist.name,
@@ -20,26 +23,18 @@ export default class WishlistCard extends Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log(this.state.wishlist);
-	}
-
 	showEditInputs = () => {
 		this.setState({ showInputs: !this.state.showInputs });
-		console.log(this.props.wishlist.id);
 	};
 
 	handleNameChangeEdit = (e) => {
 		this.setState({ editNameInput: e.target.value });
-		console.log(this.state.editNameInput);
 	};
 	handlePasswordChangeEdit = (e) => {
 		this.setState({ editPasswordInput: e.target.value });
-		console.log(this.state.editPasswordInput);
 	};
 	handleDueDateChangeEdit = (e) => {
 		this.setState({ editDueDateInput: e.target.value });
-		console.log(this.state.editDueDateInput);
 	};
 
 	setWishlistData = () => {
@@ -50,6 +45,10 @@ export default class WishlistCard extends Component {
 				dueDate: this.state.editDueDateInput,
 			},
 		});
+	};
+
+	toggleConfirmDelete = () => {
+		this.setState({ deleteClicked: !this.state.deleteClicked });
 	};
 
 	updateWishlist = () => {
@@ -70,7 +69,6 @@ export default class WishlistCard extends Component {
 			.then((res) => res.json())
 			// Data retrieved.
 			.then((data) => {
-				console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				this.setWishlistData();
 				this.showEditInputs();
@@ -93,10 +91,8 @@ export default class WishlistCard extends Component {
 			.then((res) => res.json())
 			// Data retrieved.
 			.then((data) => {
-				console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				// window.location.href = "/wishlist/";
-				// this.props.refresh();
 				this.setState({ showInputs: false });
 				this.setState({ wishlistActive: false });
 			})
@@ -108,7 +104,6 @@ export default class WishlistCard extends Component {
 
 	render() {
 		return (
-			// <div className="wishlists__card" style={{display: { this.state.wishlistActive ? 'block' : 'none'} }}>
 			<div
 				className="wishlists__card"
 				style={{ opacity: this.state.wishlistActive ? '1' : '0.4' }}
@@ -116,7 +111,8 @@ export default class WishlistCard extends Component {
 				{/* Wishlist Name */}
 				{this.state.showInputs ? (
 					<input
-						className="wishlists__card__title card-title"
+						id="titleInput"
+						className="wishlists__card__titleInput card-title"
 						type="text"
 						onChange={this.handleNameChangeEdit}
 						value={this.state.editNameInput}
@@ -130,14 +126,25 @@ export default class WishlistCard extends Component {
 								: ''
 						}`}
 					>
-						{this.state.wishlist.name}
+						<button className="wishlists__card__title__button">
+							{this.state.wishlist.name}
+						</button>
 					</NavLink>
 				) : (
 					<div>{this.state.wishlist.name + ' {DELETED}'}</div> // remove?
 				)}
+				{/* Item Count */}
+				{this.state.showInputs ? (
+					''
+				) : (
+					<div className="wishlists__card__count">
+						{this.props.wishlist.items.length + ' items'}
+					</div>
+				)}
 				{/* Wishlist Password */}
 				{this.state.showInputs ? (
 					<input
+						id="passwordInput"
 						className="wishlists__card__password card-text"
 						type="text"
 						onChange={this.handlePasswordChangeEdit}
@@ -146,17 +153,23 @@ export default class WishlistCard extends Component {
 								? ''
 								: this.state.editPasswordInput
 						}
+						placeholder={
+							this.state.wishlist.password === '' ? 'password (optional)' : ''
+						}
 					/>
 				) : this.props.wishlist.password !== '' ? (
 					<p className="wishlists__card__password card-text">
 						Password: {this.state.wishlist.password}
 					</p>
 				) : (
-					<p className="wishlists__card__password card-text">No Password Set</p>
+					<p className="wishlists__card__password card-text none_set">
+						No Password Set
+					</p>
 				)}
 				{/* Wishlist DueDate */}
 				{this.state.showInputs ? (
 					<input
+						id="dueDateInput"
 						className="wishlists__card__dueDate card-text"
 						type="date"
 						onChange={this.handleDueDateChangeEdit}
@@ -167,51 +180,98 @@ export default class WishlistCard extends Component {
 						}
 					/>
 				) : this.state.wishlist.dueDate === null ? (
-					<p className="wishlists__card__dueDate card-text">No Due Date Set</p>
+					<p className="wishlists__card__dueDate card-text none_set">
+						No Due Date Set
+					</p>
 				) : (
 					<p className="wishlists__card__dueDate card-text">
-						Due Date: {this.state.wishlist.dueDate}
+						Due Date:{' '}
+						<span className="wishlists__card__dueDate__date">
+							{this.state.wishlist.dueDate.substring(0, 10)}
+						</span>
 					</p>
 				)}
+
 				{/* Toggle ShowUpdate / (Confirm + Cancel) */}
-				{this.state.showInputs ? (
-					<div className="wishlists__card__update">
-						<button
-							className="wishlists__card__update__confirm button"
-							onClick={() => this.updateWishlist()}
-						>
-							Confirm
-						</button>
-						<button
-							className="wishlists__card__update__cancel button"
-							onClick={() => this.showEditInputs()}
-						>
-							Cancel Update
-						</button>
-					</div>
-				) : (
-					<button
-						className="wishlists__card__update__showUpdate button"
-						style={{
-							cursor: this.state.wishlistActive ? 'pointer' : 'default',
-						}}
-						onClick={
-							this.state.wishlistActive ? () => this.showEditInputs() : null
-						}
-					>
-						Update
-					</button>
-				)}
-				{/* Delete Wishlist */}
-				<button
-					className="wishlists__card__delete button is-danger is-light"
-					style={{ cursor: this.state.wishlistActive ? 'pointer' : 'default' }}
-					onClick={
-						this.state.wishlistActive ? () => this.deleteWishlist() : null
-					}
-				>
-					Delete
-				</button>
+				<div className="wishlists__card__actions">
+					{this.state.showInputs ? (
+						<div className="wishlists__card__actions__update">
+							<button
+								id="confirmUpdate"
+								className="wishlists__card__actions__update__button  animate__animated animate__bounceInLeft"
+								onClick={() => this.updateWishlist()}
+							>
+								<GiCheckMark className="cardIcon" />
+								{'  Confirm'}
+							</button>
+							<button
+								id="cancelUpdate"
+								className="wishlists__card__actions__update__button animate__animated animate__bounceInRight"
+								onClick={() => this.showEditInputs()}
+							>
+								<GiCancel className="cardIcon" />
+								{'  Cancel Update'}
+							</button>
+						</div>
+					) : (
+						<div className="wishlists__card__actions__update">
+							<button
+								id="showUpdate"
+								className="wishlists__card__actions__update__button"
+								style={{
+									cursor: this.state.wishlistActive ? 'pointer' : 'default',
+								}}
+								onClick={
+									this.state.wishlistActive ? () => this.showEditInputs() : null
+								}
+							>
+								<GrDocumentUpdate className="cardIcon" />
+								{'  Update Wishlist'}
+							</button>
+						</div>
+					)}
+					{/* Delete Wishlist */}
+					{this.state.deleteClicked ? (
+						<div className="wishlists__card__actions__delete">
+							<button
+								id="confirmDelete"
+								className="wishlists__card__actions__delete__button  animate__animated animate__bounceInLeft"
+								onClick={
+									this.state.wishlistActive ? () => this.deleteWishlist() : null
+								}
+							>
+								<GiCheckMark className="cardIcon" />
+								{'  Confirm'}
+							</button>
+							<button
+								id="cancelDelete"
+								className="wishlists__card__actions__delete__button animate__animated animate__bounceInRight"
+								onClick={() => this.toggleConfirmDelete()}
+							>
+								<GiCancel className="cardIcon" />
+								{'  Cancel Delete'}
+							</button>
+						</div>
+					) : (
+						<div className="wishlists__card__actions__delete">
+							<button
+								id="showDelete"
+								className="wishlists__card__actions__delete__button"
+								style={{
+									cursor: this.state.wishlistActive ? 'pointer' : 'default',
+								}}
+								onClick={
+									this.state.wishlistActive
+										? () => this.toggleConfirmDelete()
+										: null
+								}
+							>
+								<GiTrashCan size={26} className="cardIcon" />
+								{'  Delete'}
+							</button>
+						</div>
+					)}
+				</div>
 			</div>
 		);
 	}

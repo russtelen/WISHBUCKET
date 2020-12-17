@@ -12,8 +12,6 @@ const Item = (props) => {
 
     var newPrice = formatter.format(price);
 
-    console.log(newPrice);
-
     if (isNaN(price)) {
       return price;
     } else {
@@ -57,7 +55,6 @@ const Item = (props) => {
   };
 
   const updateItem = () => {
-    console.log("update clicked");
     fetch(
       BASE_URL + "api/wishlist/" + itemData.wishlistID + "/item/" + itemData.id,
       {
@@ -82,7 +79,6 @@ const Item = (props) => {
       .then((res) => res.json())
       // Data retrieved.
       .then((data) => {
-        console.log(JSON.stringify(data));
         setShowInputs(!showInputs);
         // window.location.href="/wishlist/" + itemData.wishlistID;
         // fetchUserWishlists();
@@ -102,7 +98,6 @@ const Item = (props) => {
 
   const handleNameChangeEdit = (e) => {
     setEditNameInput(e.target.value);
-    console.log("name changed");
   };
 
   const handleDescriptionChangeEdit = (e) => {
@@ -123,8 +118,6 @@ const Item = (props) => {
     }
     setEditPrice(e.target.value);
   };
-
-  const isUrl = (url) => url && url.includes("http");
 
   return (
     <>

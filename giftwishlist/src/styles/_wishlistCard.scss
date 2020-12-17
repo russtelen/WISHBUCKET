@@ -1,0 +1,226 @@
+#createInputs {
+	margin-bottom: 4%;
+}
+
+.cardIcon {
+	margin-bottom: 3px;
+}
+
+.dashboard {
+	&__noWishlists {
+		padding-top: 8%;
+		padding-bottom: 16%;
+		font-size: 20px;
+
+		&__text {
+			font-family: 'GloriaHallelujah-Regular';
+			color: $wb_dark_green;
+		}
+
+		&__icon {
+			margin: 4% auto;
+			color: $wb_dark_green;
+		}
+	}
+
+	&__wishlists {
+		padding-bottom: 12%;
+		width: 85%;
+		max-width: 1200px;
+		margin: auto;
+		&__container {
+			// background-image: url(https://unsplash.com/photos/kMNHlbwunsY);
+			// background-color: red;
+			// margin-top: 2%;
+			padding-top: 5%;
+			&__cardOuter {
+				height: 95%;
+				width: 95%;
+				margin-left: auto;
+				margin-right: auto;
+
+				box-shadow: 10px 10px 10px grey;
+
+				&:hover {
+					transform: scale(1.075) translateY(-10px);
+					backface-visibility: hidden;
+					-webkit-font-smoothing: subpixel-antialiased;
+					-webkit-transition: transform 400ms ease-out;
+					-moz-transition: transform 400ms ease-out;
+					-o-transition: transform 400ms ease-out;
+					transition: transform 400ms ease-out;
+				}
+			}
+		}
+	}
+}
+
+.wishlists {
+	&__card {
+		position: relative;
+		height: 100%;
+		background: linear-gradient(
+			45deg,
+			rgba(255, 255, 255, 0.8) 0%,
+			rgba(210, 210, 210, 0.8) 30%,
+			rgba(190, 190, 190, 0.7) 50%,
+			rgba(150, 210, 210, 0.7) 70%,
+			rgba(100, 150, 150, 0.7) 85%,
+			rgba(70, 100, 100, 0.8) 95%
+		);
+		margin: auto;
+		display: flex;
+		flex-direction: column;
+		color: black;
+		&:hover {
+			// border: 5px solid $wb_light_green;
+			// outline-style: solid;
+			// outline-color: $wb_light_green;
+		}
+		// -webkit-transition: all 200ms ease-out;
+		// -moz-transition: all 200ms ease-out;
+		// -o-transition: all 200ms ease-out;
+		// transition: all 200ms ease-out;
+
+		.none_set {
+			color: grey;
+		}
+
+		#titleInput {
+			width: 80%;
+		}
+
+		&__count {
+			position: absolute;
+			top: 45px;
+			right: 5px;
+			font-size: 20px;
+			font-weight: bold;
+			color: $wb_dark_green;
+		}
+
+		&__title {
+			overflow: hidden;
+			background-color: $wb_green;
+			&__button {
+				margin: auto;
+				background-color: $wb_green;
+				color: white;
+				font-size: 32px;
+				border: none;
+				width: 100%;
+				padding-bottom: 8px;
+				&:hover {
+					background-color: $wb_light_green;
+					transition: all 300ms ease-out;
+				}
+			}
+		}
+		&__titleInput {
+			width: 80%;
+			margin: auto;
+			text-align: center;
+		}
+		&__password {
+			width: 80%;
+			margin: auto;
+			text-align: center;
+			cursor: default;
+		}
+		&__dueDate {
+			width: 80%;
+			margin: auto;
+			text-align: center;
+			cursor: default;
+		}
+		#passwordInput {
+			cursor: text;
+		}
+		#dueDateInput {
+			cursor: text;
+		}
+		&__actions {
+			font-size: 16px;
+			justify-content: flex-end;
+			&__update {
+				width: 100%;
+				border-radius: 0;
+
+				#showUpdate {
+					width: 100%;
+					border: none;
+					font-weight: bold;
+					padding: 2%;
+					&:hover {
+						background-color: $update-btn-hover;
+						transition: all 300ms ease-out;
+					}
+				}
+				#confirmUpdate {
+					color: white;
+					background-color: $wb_green;
+					width: 33.3%;
+					border: none;
+					font-weight: bold;
+					padding: 2%;
+					&:hover {
+						background-color: $wb_light_green;
+						transition: all 300ms ease-out;
+					}
+				}
+				#cancelUpdate {
+					width: 66.7%;
+					border: none;
+					font-weight: bold;
+					padding: 2%;
+					&:hover {
+						background-color: $update-btn-hover;
+						transition: all 300ms ease-out;
+					}
+				}
+			}
+			&__delete {
+				// width: 100%;
+				border-radius: 0;
+
+				#showDelete {
+					border: none;
+					border-radius: 0;
+					width: 100%;
+					background-color: $delete-btn;
+					font-weight: bold;
+					color: darkred;
+					padding: 1%;
+					&:hover {
+						color: pink;
+						background-color: $delete-btn-hover;
+						transition: all 300ms ease-out;
+					}
+				}
+				#confirmDelete {
+					color: darkred;
+					background-color: $delete-btn;
+					width: 33.3%;
+					border: none;
+					font-weight: bold;
+					padding: 2%;
+					&:hover {
+						color: pink;
+						background-color: $delete-btn-hover;
+						transition: all 300ms ease-out;
+					}
+				}
+				#cancelDelete {
+					width: 66.7%;
+					border: none;
+					font-weight: bold;
+					padding: 2%;
+					&:hover {
+						background-color: $update-btn-hover;
+						transition: all 300ms ease-out;
+					}
+				}
+			}
+		}
+	}
+}

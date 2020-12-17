@@ -1,10 +1,46 @@
 .wishlist-inputs {
-    input {
-        // match the button height
-        height: 40px;
-    }
+	input {
+		// match the button height
+		height: 40px;
+	}
 }
 
 .wishlist-notification {
-    margin-top: 1em;
+	margin-top: 1em;
+}
+
+.wishlist {
+	&__return {
+		font-size: 18px;
+		margin: 3% auto;
+		width: 23%;
+		text-decoration: none;
+		&:hover {
+			color: white;
+			text-decoration: none;
+			background-color: $wb_light_green;
+		}
+	}
+
+	&__heading {
+		display: grid;
+		grid-template-columns: 60% 40%;
+		width: 95%;
+		margin: auto;
+		font-size: 14px;
+
+		&__label {
+			// text-align: left;
+		}
+		&__span {
+			font-weight: bold;
+		}
+
+		&__info1 {
+			text-align: left;
+		}
+		&__info2 {
+			text-align: right;
+		}
+	}
 }
