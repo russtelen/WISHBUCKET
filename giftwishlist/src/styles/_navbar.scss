@@ -1,31 +1,98 @@
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow-x: hidden;
+}
+
 .navbar {
 	width: 100%;
 	overflow-x: hidden;
+	background: linear-gradient(
+		75deg,
+		rgba(247, 146, 208, 1) 0%,
+		rgba(165, 151, 189, 0.5) 22%,
+		rgba(165, 151, 189, 0.8) 30%,
+		rgba(36, 158, 160, 0.3) 80%
+	);
+	box-shadow: 0px 12px 12px grey;
 
 	&__title {
 		&__name {
+			display: none;
 			font-family: 'GloriaHallelujah-Regular';
-			font-size: 2em;
+			font-size: 1.7em;
+			background: -webkit-linear-gradient(white, black);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: white;
+			text-shadow: 6px 6px 7px darkslategrey;
+			@media screen and (min-width: 375px) {
+				display: block;
+			}
+			@media screen and (min-width: $min-width-tablet) {
+				font-size: 2.7em;
+			}
 		}
 	}
 
 	&__toggler {
-		margin: auto;
+		position: absolute;
+		top: 15px;
+		right: 0;
+		color: $wb_green;
+		height: 75px;
+		width: 22%;
+		// transform: scale(1.5);
+		margin-right: 3%;
 	}
 
 	&__links {
 		// border: 1px solid black;
 		display: flex;
-		flex-direction: row;
+		// flex-direction: row;
+		// justify-content: flex-end;
 		&__ulist {
 			width: 100%;
-			justify-content: space-evenly;
+			justify-content: flex-end;
 			// border: 1px solid black;
 			&__context {
+				// width: 100%;
 				// border: 1px solid black;
 
 				// padding: 5%;
 				&__link {
+					width: 100%;
+					// margin: 2%;
+					&__button {
+						border: none;
+						font-size: 22px;
+						color: white;
+						background: linear-gradient(
+							75deg,
+							rgba(168, 36, 219, 1) 0%,
+							rgba(121, 74, 177, 0.7) 30%,
+							rgba(72, 112, 133, 0.6) 60%,
+							rgba(23, 150, 89, 0.5) 90%
+						);
+						height: 50px;
+						width: 80%;
+						background-color: $wb_green;
+						// -webkit-transition: all 400ms ease-out;
+						// -moz-transition: all 400ms ease-out;
+						// -o-transition: all 400ms ease-out;
+						// transition: all 400ms ease-out;
+						&:hover {
+							background: linear-gradient(
+								75deg,
+								rgba(200, 46, 208, 1) 0%,
+								rgba(165, 151, 189, 0.7) 65%,
+								rgba(165, 151, 189, 0.6) 75%,
+								rgba(36, 158, 160, 0.5) 90%
+							);
+						}
+					}
 					// margin-right: 10%;
 					// border: 1px solid black;
 				}
