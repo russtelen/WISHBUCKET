@@ -39,15 +39,9 @@
 				margin-left: auto;
 				margin-right: auto;
 
-				box-shadow: 10px 10px 10px $wb_shadow;
-				-webkit-transition: all 250ms ease-out;
-				-moz-transition: all 250ms ease-out;
-				-o-transition: all 250ms ease-out;
-				transition: all 250ms ease-out;
+				box-shadow: 10px 10px 10px grey;
+
 				&:hover {
-					outline-style: solid;
-					outline-color: $wb_light_green;
-					outline-width: thick;
 					transform: scale(1.075) translateY(-10px);
 					backface-visibility: hidden;
 					-webkit-font-smoothing: subpixel-antialiased;
@@ -76,9 +70,17 @@
 		);
 		margin: auto;
 		display: flex;
-		justify-content: space-evenly;
 		flex-direction: column;
 		color: black;
+		&:hover {
+			// border: 5px solid $wb_light_green;
+			// outline-style: solid;
+			// outline-color: $wb_light_green;
+		}
+		// -webkit-transition: all 200ms ease-out;
+		// -moz-transition: all 200ms ease-out;
+		// -o-transition: all 200ms ease-out;
+		// transition: all 200ms ease-out;
 
 		.none_set {
 			color: grey;
@@ -102,7 +104,6 @@
 			background-color: $wb_green;
 			&__button {
 				margin: auto;
-
 				background-color: $wb_green;
 				color: white;
 				font-size: 32px;
