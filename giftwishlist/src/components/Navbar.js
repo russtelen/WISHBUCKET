@@ -49,7 +49,7 @@ export default class Navbar extends Component {
 										className="navbar__links__ulist__context__link"
 									>
 										<button className="navbar__links__ulist__context__link__button">
-											Wishlist
+											Wishlists
 										</button>
 									</NavLink>
 

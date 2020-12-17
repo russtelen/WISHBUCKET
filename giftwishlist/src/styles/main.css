@@ -258,9 +258,12 @@ body {
   font-size: 20px;
 }
 
-.dashboard__wishlists__container {
+.dashboard__wishlists {
   padding-bottom: 12%;
-  padding-top: 2%;
+}
+
+.dashboard__wishlists__container {
+  padding-top: 5%;
 }
 
 .dashboard__wishlists__container__cardOuter {
@@ -283,6 +286,8 @@ body {
 }
 
 .wishlists__card {
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.8) 0%, rgba(210, 210, 210, 0.8) 30%, rgba(190, 190, 190, 0.7) 50%, rgba(150, 210, 210, 0.7) 70%, rgba(100, 150, 150, 0.7) 85%, rgba(70, 100, 100, 0.8) 95%);
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -292,6 +297,10 @@ body {
       -ms-flex-direction: column;
           flex-direction: column;
   color: black;
+}
+
+.wishlists__card .none_set {
+  color: grey;
 }
 
 .wishlists__card #titleInput {
@@ -339,6 +348,9 @@ body {
 
 .wishlists__card__actions {
   font-size: 16px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .wishlists__card__actions__update {
@@ -349,7 +361,7 @@ body {
 .wishlists__card__actions__update #showUpdate {
   width: 100%;
   border: none;
-  padding: 1.5%;
+  padding: 2%;
 }
 
 .wishlists__card__actions__update #showUpdate:hover {
@@ -363,7 +375,7 @@ body {
   background-color: #179659;
   width: 33.3%;
   border: none;
-  padding: 1.5%;
+  padding: 2%;
 }
 
 .wishlists__card__actions__update #confirmUpdate:hover {
@@ -375,7 +387,7 @@ body {
 .wishlists__card__actions__update #cancelUpdate {
   width: 66.7%;
   border: none;
-  padding: 1.5%;
+  padding: 2%;
 }
 
 .wishlists__card__actions__update #cancelUpdate:hover {
@@ -390,7 +402,7 @@ body {
   width: 100%;
   background-color: #efa599;
   color: darkred;
-  padding: 1.5%;
+  padding: 1%;
 }
 
 .wishlists__card__actions__delete:hover {
