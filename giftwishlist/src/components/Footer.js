@@ -9,40 +9,40 @@ export default class Footer extends Component {
           <div className="col-6 col-md">
                 <h6>WishBucket</h6>
               <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Our Story</a></li>
-                <li><a class="link-secondary" href="#">Our People</a></li>
-                <li><a class="link-secondary" href="#">Testimonials</a></li>
-                <li><a class="link-secondary" href="#">Press Reviews</a></li>
+                <li><a className="link-secondary" href="#">Our Story</a></li>
+                <li><a className="link-secondary" href="#">Our People</a></li>
+                <li><a className="link-secondary" href="#">Testimonials</a></li>
+                <li><a className="link-secondary" href="#">Press Reviews</a></li>
               </ul>
           </div> 
 
           <div className="col-6 col-md">
               <h6>Features</h6>
               <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">Cool stuff</a></li>
-                <li><a class="link-secondary" href="#">Share With Anyone</a></li>
-                <li><a class="link-secondary" href="#">Organize Your Wishlists</a></li>
-                <li><a class="link-secondary" href="#">Find Your Friends</a></li>
+                <li><a className="link-secondary" href="#">Cool stuff</a></li>
+                <li><a className="link-secondary" href="#">Share With Anyone</a></li>
+                <li><a className="link-secondary" href="#">Organize Your Wishlists</a></li>
+                <li><a className="link-secondary" href="#">Find Your Friends</a></li>
               </ul>
           </div> 
 
           <div className="col-6 col-md">
               <h6>Resources</h6>
-              <ul class="list-unstyled text-small">
-                <li><a class="link-secondary" href="#">iPhone WishList IOS  App</a></li>
-                <li><a class="link-secondary" href="#">Android WishList App</a></li>
-                <li><a class="link-secondary" href="#">Browser Plugins</a></li>
-                <li><a class="link-secondary" href="#">Merchant Integration</a></li>
+              <ul className="list-unstyled text-small">
+                <li><a className="link-secondary" href="#">iPhone WishList IOS  App</a></li>
+                <li><a className="link-secondary" href="#">Android WishList App</a></li>
+                <li><a className="link-secondary" href="#">Browser Plugins</a></li>
+                <li><a className="link-secondary" href="#">Merchant Integration</a></li>
               </ul>
           </div>
 
           <div className="col-6 col-md">
               <h6>Solutions</h6>
-              <ul class="list-unstyled text-small">
-              <li><a class="link-secondary" href="#">Getting Stared</a></li>
-                <li><a class="link-secondary" href="#">Unique Gift Ideas</a></li>
-                <li><a class="link-secondary" href="#">Customer Assistant</a></li>
-                <li><a class="link-secondary" href="#">Returns/Exchanges</a></li>
+              <ul className="list-unstyled text-small">
+              <li><a className="link-secondary" href="#">Getting Stared</a></li>
+                <li><a className="link-secondary" href="#">Unique Gift Ideas</a></li>
+                <li><a className="link-secondary" href="#">Customer Assistant</a></li>
+                <li><a className="link-secondary" href="#">Returns/Exchanges</a></li>
                 
               </ul>
           </div>
@@ -56,7 +56,7 @@ export default class Footer extends Component {
                 <h6>WishBucket</h6>
               </NavLink>
               {/* <h5>Company</h5> */}
-              <small class="d-block mb-3 text-muted">&copy; 2015-2020</small>
+              <small className="d-block mb-3 text-muted">&copy; 2015-2020</small>
             </div>
      </footer>
    );
