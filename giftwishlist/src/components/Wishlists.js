@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import WishlistCard from './WishlistCard';
-import { NavLink } from 'react-router-dom';
 import { GiEmptyMetalBucketHandle } from 'react-icons/gi';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
@@ -17,7 +16,8 @@ export default function Wishlists() {
 	// const [showInputs, setShowInputs] = useState(false);
 	// const [editNameInput, setEditNameInput] = useState('');
 	// const [editPasswordInput, setEditPasswordInput] = useState('');
-	// const [editDateInput, setEditDateInput] = useState('');
+  // const [editDateInput, setEditDateInput] = useState('');
+  // eslint-disable-next-line
 	const [wishlistActive, setWishlistActive] = useState(true);
 
 	const fetchUserWishlists = () => {
@@ -77,7 +77,6 @@ export default function Wishlists() {
 		})
 			// Response received.
 			.then((response) => {
-				console.log(response);
 			})
 			// Data retrieved.
 			.then((json) => {
@@ -91,62 +90,6 @@ export default function Wishlists() {
 				console.log(error);
 			});
 	};
-
-	//Update Wishlist (PUT)
-	const updateWishlist = (id, name, password, dueDate) => {
-		fetch(BASE_URL + 'wishlist', {
-			method: 'PUT',
-			headers: {
-				Accept: 'application/json',
-				Authorization: `Bearer ${sessionStorage.getItem('bearer-token')}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				Id: id,
-				Name: name,
-				Password: password,
-				DueDate: dueDate,
-			}),
-		})
-			.then((res) => res.json())
-			// Data retrieved.
-			.then((data) => {
-				console.log(JSON.stringify(data));
-				fetchUserWishlists();
-			})
-			// Data not retrieved.
-			.catch((e) => {
-				console.log(e);
-			});
-	};
-
-	// const handleSubmit = () => {
-	// 	updateWishlist(id, editNameInput, editPasswordInput, editDateInput);
-
-	// 	console.log('Wishlist Updated');
-	// };
-
-	// Delete Wishlist (DELETE)
-	// const deleteWishlist = (id) => {
-	// 	fetch(BASE_URL + 'wishlist/' + id + '/', {
-	// 		method: 'DELETE',
-	// 		headers: {
-	// 			Accept: 'application/json',
-	// 			Authorization: `Bearer ${sessionStorage.getItem('bearer-token')}`,
-	// 			'Content-Type': 'application/json',
-	// 		},
-	// 	})
-	// 		.then((res) => res.json())
-	// 		// Data retrieved.
-	// 		.then((data) => {
-	// 			console.log(JSON.stringify(data));
-	// 			fetchUserWishlists();
-	// 		})
-	// 		// Data not retrieved.
-	// 		.catch((e) => {
-	// 			console.log(e);
-	// 		});
-	// };
 
 	return (
 		<div className="dashboard">

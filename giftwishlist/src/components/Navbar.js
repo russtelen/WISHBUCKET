@@ -19,6 +19,7 @@ export default class Navbar extends Component {
 						src={
 							'https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0'
 						}
+						alt='Wishbucket Logo'
 						width="74em"
 					/>
 					<h1 className="navbar__title__name">WishBucket</h1>
