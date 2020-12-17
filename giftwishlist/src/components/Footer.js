@@ -4,61 +4,49 @@ import { NavLink } from 'react-router-dom';
 export default class Footer extends Component {
   render() {
    return (
-     <footer className="pt-4 my-md-5 pt-md-5">
-       <div className="row">
+      <footer className="pt-4 my-md-5 mb-0 pb-0 pt-md-5">
+         <div className="row">
           <div className="col-6 col-md">
-                <h6>WishBucket</h6>
+                <h6 className="text-dark">WISHBUCKET</h6>
               <ul class="list-unstyled text-small">
-                <li><a className="link-secondary" href="#">Our Story</a></li>
-                <li><a className="link-secondary" href="#">Our People</a></li>
-                <li><a className="link-secondary" href="#">Testimonials</a></li>
-                <li><a className="link-secondary" href="#">Press Reviews</a></li>
+                <li>Our Story</li>
+                <li>Our People</li>
+                <li>Testimonials</li>
+                <li>Press Reviews</li>
               </ul>
           </div> 
 
-          <div className="col-6 col-md">
-              <h6>Features</h6>
+          <div className="col-6 col-md mb-3">
+              <h6 className="text-dark">FEATURES</h6>
               <ul class="list-unstyled text-small">
-                <li><a className="link-secondary" href="#">Cool stuff</a></li>
-                <li><a className="link-secondary" href="#">Share With Anyone</a></li>
-                <li><a className="link-secondary" href="#">Organize Your Wishlists</a></li>
-                <li><a className="link-secondary" href="#">Find Your Friends</a></li>
+                <li>Cool stuff</li>
+                <li>Share With Anyone</li>
+                <li>Organize Your Wishlists</li>
+                <li>Find Your Friends</li>
               </ul>
           </div> 
 
-          <div className="col-6 col-md">
-              <h6>Resources</h6>
+          <div className="col-6 col-md mb-3">
+              <h6 className="text-dark">RESOURCES</h6>
               <ul className="list-unstyled text-small">
-                <li><a className="link-secondary" href="#">iPhone WishList IOS  App</a></li>
-                <li><a className="link-secondary" href="#">Android WishList App</a></li>
-                <li><a className="link-secondary" href="#">Browser Plugins</a></li>
-                <li><a className="link-secondary" href="#">Merchant Integration</a></li>
+                <li>iPhone WishList IOS  App</li>
+                <li>Android WishList App</li>
+                <li>Browser Plugins</li>
+                <li>Merchant Integration</li>
               </ul>
           </div>
 
-          <div className="col-6 col-md">
-              <h6>Solutions</h6>
+          <div className="col-6 col-md mb-3">
+              <h6 className="text-dark">DESIGN &amp; DEVELOPMENT</h6>
               <ul className="list-unstyled text-small">
-              <li><a className="link-secondary" href="#">Getting Stared</a></li>
-                <li><a className="link-secondary" href="#">Unique Gift Ideas</a></li>
-                <li><a className="link-secondary" href="#">Customer Assistant</a></li>
-                <li><a className="link-secondary" href="#">Returns/Exchanges</a></li>
-                
+              <li><a className="link-secondary" href="https://www.linkedin.com/in/theskuznetsov" target="_blank">Stefan Kuznetsov </a></li>
+                <li><a className="link-secondary"href="https://www.linkedin.com/in/russelltelen/" target="_blank">Russ Telen</a></li>
+                <li><a className="link-secondary" href="https://www.linkedin.com/in/vlad-preduna" target="_blank">Vlad Preduna</a></li>
+                <li><a className="link-secondary" href="https://www.linkedin.com/in/fatmabadri" target="_blank">Fatma Badri</a></li>
               </ul>
           </div>
        </div>
-       <hr/>
-       <div className="col-12 col-md">
-                <NavLink to="/">
-                <img src={"https://vectr.com/vleddepruna/aVozy6qf2.svg?width=224&height=236&select=aVozy6qf2page0"}
-                  width="30em"
-                />
-                <h6>WishBucket</h6>
-              </NavLink>
-              {/* <h5>Company</h5> */}
-              <small className="d-block mb-3 text-muted">&copy; 2015-2020</small>
-            </div>
-     </footer>
+    </footer>
    );
   }
 } 
