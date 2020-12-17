@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 export default class Footer extends Component {
   render() {
    return (
-      <footer className="pt-4 my-md-5 pt-md-5">
+      <footer className="pt-4 my-md-5 mb-0 pb-0 pt-md-5">
          <div className="row">
           <div className="col-6 col-md">
                 <h6>WISHBUCKET</h6>
@@ -16,7 +16,7 @@ export default class Footer extends Component {
               </ul>
           </div> 
 
-          <div className="col-6 col-md">
+          <div className="col-6 col-md mb-3">
               <h6>FEATURES</h6>
               <ul class="list-unstyled text-small">
                 <li><a className="link-secondary" href="#">Cool stuff</a></li>
@@ -26,7 +26,7 @@ export default class Footer extends Component {
               </ul>
           </div> 
 
-          <div className="col-6 col-md">
+          <div className="col-6 col-md mb-3">
               <h6>RESOURCES</h6>
               <ul className="list-unstyled text-small">
                 <li><a className="link-secondary" href="#">iPhone WishList IOS  App</a></li>
@@ -36,7 +36,7 @@ export default class Footer extends Component {
               </ul>
           </div>
 
-          <div className="col-6 col-md">
+          <div className="col-6 col-md mb-3">
               <h6>DESIGN &amp; DEVELOPMENT</h6>
               <ul className="list-unstyled text-small">
               <li><a className="link-secondary" href="#">Stefan Kuznetsov </a></li>
