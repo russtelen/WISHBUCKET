@@ -30,6 +30,8 @@
 
 				&:hover {
 					transform: scale(1.075) translateY(-10px);
+					backface-visibility: hidden;
+					-webkit-font-smoothing: subpixel-antialiased;
 					-webkit-transition: transform 400ms ease-out;
 					-moz-transition: transform 400ms ease-out;
 					-o-transition: transform 400ms ease-out;
@@ -42,6 +44,7 @@
 
 .wishlists {
 	&__card {
+		position: relative;
 		height: 100%;
 		background: linear-gradient(
 			45deg,
@@ -74,6 +77,15 @@
 			width: 80%;
 		}
 
+		&__count {
+			position: absolute;
+			top: 45px;
+			right: 5px;
+			font-size: 20px;
+			font-weight: bold;
+			color: $wb_dark_green;
+		}
+
 		&__title {
 			overflow: hidden;
 			background-color: $wb_green;
@@ -84,6 +96,7 @@
 				font-size: 32px;
 				border: none;
 				width: 100%;
+				padding-bottom: 8px;
 				&:hover {
 					background-color: $wb_light_green;
 					transition: all 300ms ease-out;
@@ -107,6 +120,12 @@
 			text-align: center;
 			cursor: default;
 		}
+		#passwordInput {
+			cursor: text;
+		}
+		#dueDateInput {
+			cursor: text;
+		}
 		&__actions {
 			font-size: 16px;
 			justify-content: flex-end;
@@ -117,6 +136,7 @@
 				#showUpdate {
 					width: 100%;
 					border: none;
+					font-weight: bold;
 					padding: 2%;
 					&:hover {
 						background-color: $update-btn-hover;
@@ -128,6 +148,7 @@
 					background-color: $wb_green;
 					width: 33.3%;
 					border: none;
+					font-weight: bold;
 					padding: 2%;
 					&:hover {
 						background-color: $wb_light_green;
@@ -137,6 +158,7 @@
 				#cancelUpdate {
 					width: 66.7%;
 					border: none;
+					font-weight: bold;
 					padding: 2%;
 					&:hover {
 						background-color: $update-btn-hover;
@@ -147,11 +169,13 @@
 			&__delete {
 				// width: 100%;
 				border-radius: 0;
+
 				#showDelete {
 					border: none;
 					border-radius: 0;
 					width: 100%;
 					background-color: $delete-btn;
+					font-weight: bold;
 					color: darkred;
 					padding: 1%;
 					&:hover {
@@ -165,6 +189,7 @@
 					background-color: $delete-btn;
 					width: 33.3%;
 					border: none;
+					font-weight: bold;
 					padding: 2%;
 					&:hover {
 						color: pink;
@@ -175,6 +200,7 @@
 				#cancelDelete {
 					width: 66.7%;
 					border: none;
+					font-weight: bold;
 					padding: 2%;
 					&:hover {
 						background-color: $update-btn-hover;

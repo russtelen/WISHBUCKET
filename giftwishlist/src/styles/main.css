@@ -278,6 +278,9 @@ body {
 .dashboard__wishlists__container__cardOuter:hover {
   -webkit-transform: scale(1.075) translateY(-10px);
           transform: scale(1.075) translateY(-10px);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
   -webkit-transition: transform 400ms ease-out;
   -webkit-transition: -webkit-transform 400ms ease-out;
   transition: -webkit-transform 400ms ease-out;
@@ -286,6 +289,7 @@ body {
 }
 
 .wishlists__card {
+  position: relative;
   height: 100%;
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.8) 0%, rgba(210, 210, 210, 0.8) 30%, rgba(190, 190, 190, 0.7) 50%, rgba(150, 210, 210, 0.7) 70%, rgba(100, 150, 150, 0.7) 85%, rgba(70, 100, 100, 0.8) 95%);
   margin: auto;
@@ -307,6 +311,15 @@ body {
   width: 80%;
 }
 
+.wishlists__card__count {
+  position: absolute;
+  top: 45px;
+  right: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #0d5834;
+}
+
 .wishlists__card__title {
   overflow: hidden;
   background-color: #179659;
@@ -319,6 +332,7 @@ body {
   font-size: 32px;
   border: none;
   width: 100%;
+  padding-bottom: 8px;
 }
 
 .wishlists__card__title__button:hover {
@@ -347,6 +361,14 @@ body {
   cursor: default;
 }
 
+.wishlists__card #passwordInput {
+  cursor: text;
+}
+
+.wishlists__card #dueDateInput {
+  cursor: text;
+}
+
 .wishlists__card__actions {
   font-size: 16px;
   -webkit-box-pack: end;
@@ -362,6 +384,7 @@ body {
 .wishlists__card__actions__update #showUpdate {
   width: 100%;
   border: none;
+  font-weight: bold;
   padding: 2%;
 }
 
@@ -376,6 +399,7 @@ body {
   background-color: #179659;
   width: 33.3%;
   border: none;
+  font-weight: bold;
   padding: 2%;
 }
 
@@ -388,6 +412,7 @@ body {
 .wishlists__card__actions__update #cancelUpdate {
   width: 66.7%;
   border: none;
+  font-weight: bold;
   padding: 2%;
 }
 
@@ -406,6 +431,7 @@ body {
   border-radius: 0;
   width: 100%;
   background-color: #efa599;
+  font-weight: bold;
   color: darkred;
   padding: 1%;
 }
@@ -422,6 +448,7 @@ body {
   background-color: #efa599;
   width: 33.3%;
   border: none;
+  font-weight: bold;
   padding: 2%;
 }
 
@@ -435,6 +462,7 @@ body {
 .wishlists__card__actions__delete #cancelDelete {
   width: 66.7%;
   border: none;
+  font-weight: bold;
   padding: 2%;
 }
 

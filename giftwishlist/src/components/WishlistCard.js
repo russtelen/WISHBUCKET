@@ -135,9 +135,18 @@ export default class WishlistCard extends Component {
 				) : (
 					<div>{this.state.wishlist.name + ' {DELETED}'}</div> // remove?
 				)}
+				{/* Item Count */}
+				{this.state.showInputs ? (
+					''
+				) : (
+					<div className="wishlists__card__count">
+						{this.props.wishlist.items.length + ' items'}
+					</div>
+				)}
 				{/* Wishlist Password */}
 				{this.state.showInputs ? (
 					<input
+						id="passwordInput"
 						className="wishlists__card__password card-text"
 						type="text"
 						onChange={this.handlePasswordChangeEdit}
@@ -162,6 +171,7 @@ export default class WishlistCard extends Component {
 				{/* Wishlist DueDate */}
 				{this.state.showInputs ? (
 					<input
+						id="dueDateInput"
 						className="wishlists__card__dueDate card-text"
 						type="date"
 						onChange={this.handleDueDateChangeEdit}
