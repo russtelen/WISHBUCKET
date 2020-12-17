@@ -2,7 +2,12 @@
 
 # WishBucket
 
+Wishbucket is live at:
+
+https://silly-gates-db6d8f.netlify.app/
+
 Front-End Project associated with WishBucket Back-End Project:  
+
 https://github.com/BCIT-SSD-2020-21/dotnetproject-team6_netproject
 
 ## Setup Guide
