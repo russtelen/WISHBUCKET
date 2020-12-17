@@ -83,11 +83,14 @@
 						height: 50px;
 						width: 80%;
 						background-color: $wb_green;
-						// -webkit-transition: all 400ms ease-out;
-						// -moz-transition: all 400ms ease-out;
-						// -o-transition: all 400ms ease-out;
-						// transition: all 400ms ease-out;
+						-webkit-transition: all 250ms ease-out;
+						-moz-transition: all 250ms ease-out;
+						-o-transition: all 250ms ease-out;
+						transition: all 250ms ease-out;
 						&:hover {
+							outline-style: solid;
+							outline-color: $wb_light_green;
+							outline-width: medium;
 							background: linear-gradient(
 								75deg,
 								rgba(200, 46, 208, 1) 0%,
