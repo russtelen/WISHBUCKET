@@ -667,6 +667,10 @@ body {
 }
 
 .dashboard__create {
+  margin: auto;
+}
+
+.dashboard__create__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -681,7 +685,7 @@ body {
 }
 
 @media screen and (min-width: 481px) {
-  .dashboard__create {
+  .dashboard__create__form {
     width: 90%;
     display: -ms-grid;
     display: grid;
@@ -690,7 +694,7 @@ body {
   }
 }
 
-.dashboard__create__input {
+.dashboard__create__form__input {
   margin: 2%;
   height: 40px;
   text-align: center;
@@ -700,13 +704,13 @@ body {
 }
 
 @media screen and (min-width: 481px) {
-  .dashboard__create__input {
+  .dashboard__create__form__input {
     height: 80%;
     margin: auto;
   }
 }
 
-.dashboard__create__button {
+.dashboard__create__form__button {
   padding: 2%;
   border-radius: 3%;
   border: none;
