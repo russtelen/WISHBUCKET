@@ -8,11 +8,12 @@ export default class WishlistCard extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showInputs: false,
 			editNameInput: props.wishlist.name,
 			editPasswordInput: props.wishlist.password,
 			editDueDateInput: props.wishlist.dueDate,
 			wishlistActive: true,
+			showInputs: false,
+			deleteClicked: false,
 			wishlist: {
 				id: props.wishlist.id,
 				name: props.wishlist.name,
@@ -44,6 +45,10 @@ export default class WishlistCard extends Component {
 				dueDate: this.state.editDueDateInput,
 			},
 		});
+	};
+
+	toggleConfirmDelete = () => {
+		this.setState({ deleteClicked: !this.state.deleteClicked });
 	};
 
 	updateWishlist = () => {
@@ -181,7 +186,6 @@ export default class WishlistCard extends Component {
 
 				{/* Toggle ShowUpdate / (Confirm + Cancel) */}
 				<div className="wishlists__card__actions">
-					{/* <div> */}
 					{this.state.showInputs ? (
 						<div className="wishlists__card__actions__update">
 							<button
@@ -218,23 +222,47 @@ export default class WishlistCard extends Component {
 							</button>
 						</div>
 					)}
-					{/* </div> */}
 					{/* Delete Wishlist */}
-
-					<div className="wishlists__card__actions__delete">
-						<button
-							className="wishlists__card__actions__delete"
-							style={{
-								cursor: this.state.wishlistActive ? 'pointer' : 'default',
-							}}
-							onClick={
-								this.state.wishlistActive ? () => this.deleteWishlist() : null
-							}
-						>
-							<GiTrashCan size={26} className="cardIcon" />
-							{'  Delete'}
-						</button>
-					</div>
+					{this.state.deleteClicked ? (
+						<div className="wishlists__card__actions__delete">
+							<button
+								id="confirmDelete"
+								className="wishlists__card__actions__delete__button  animate__animated animate__bounceInLeft"
+								onClick={
+									this.state.wishlistActive ? () => this.deleteWishlist() : null
+								}
+							>
+								<GiCheckMark className="cardIcon" />
+								{'  Confirm'}
+							</button>
+							<button
+								id="cancelDelete"
+								className="wishlists__card__actions__delete__button animate__animated animate__bounceInRight"
+								onClick={() => this.toggleConfirmDelete()}
+							>
+								<GiCancel className="cardIcon" />
+								{'  Cancel Delete'}
+							</button>
+						</div>
+					) : (
+						<div className="wishlists__card__actions__delete">
+							<button
+								id="showDelete"
+								className="wishlists__card__actions__delete__button"
+								style={{
+									cursor: this.state.wishlistActive ? 'pointer' : 'default',
+								}}
+								onClick={
+									this.state.wishlistActive
+										? () => this.toggleConfirmDelete()
+										: null
+								}
+							>
+								<GiTrashCan size={26} className="cardIcon" />
+								{'  Delete'}
+							</button>
+						</div>
+					)}
 				</div>
 			</div>
 		);

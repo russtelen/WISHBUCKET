@@ -313,6 +313,7 @@ body {
 }
 
 .wishlists__card__title__button {
+  margin: auto;
   background-color: #179659;
   color: white;
   font-size: 32px;
@@ -397,6 +398,10 @@ body {
 }
 
 .wishlists__card__actions__delete {
+  border-radius: 0;
+}
+
+.wishlists__card__actions__delete #showDelete {
   border: none;
   border-radius: 0;
   width: 100%;
@@ -405,9 +410,36 @@ body {
   padding: 1%;
 }
 
-.wishlists__card__actions__delete:hover {
+.wishlists__card__actions__delete #showDelete:hover {
   color: pink;
   background-color: #df4b32;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__delete #confirmDelete {
+  color: darkred;
+  background-color: #efa599;
+  width: 33.3%;
+  border: none;
+  padding: 2%;
+}
+
+.wishlists__card__actions__delete #confirmDelete:hover {
+  color: pink;
+  background-color: #df4b32;
+  -webkit-transition: all 300ms ease-out;
+  transition: all 300ms ease-out;
+}
+
+.wishlists__card__actions__delete #cancelDelete {
+  width: 66.7%;
+  border: none;
+  padding: 2%;
+}
+
+.wishlists__card__actions__delete #cancelDelete:hover {
+  background-color: #a9c6bb;
   -webkit-transition: all 300ms ease-out;
   transition: all 300ms ease-out;
 }
