@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import WishlistCard from './WishlistCard';
 import { NavLink } from 'react-router-dom';
+import { GiEmptyMetalBucketHandle } from 'react-icons/gi';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 
@@ -192,9 +193,15 @@ export default function Wishlists() {
 				Your Wishlists
 			</p>
 			{userWishlists.length === 0 ? (
-				<p className="dashboard__noWishlists">
-					Why no wishlists? Create One Above!
-				</p>
+				<div className="dashboard__noWishlists">
+					<h3 className="dashboard__noWishlists__text">
+						Why no wishlists? Create One Above!
+					</h3>
+					<GiEmptyMetalBucketHandle
+						size={42}
+						className="dashboard__noWishlists__icon"
+					/>
+				</div>
 			) : (
 				// <div className="dashboard__wishlists container">
 				<WishlistActiveContext.Provider value={wishlistActive}>

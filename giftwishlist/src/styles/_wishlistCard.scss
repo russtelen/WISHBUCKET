@@ -11,6 +11,16 @@
 		padding-top: 8%;
 		padding-bottom: 16%;
 		font-size: 20px;
+
+		&__text {
+			font-family: 'GloriaHallelujah-Regular';
+			color: $wb_dark_green;
+		}
+
+		&__icon {
+			margin: 4% auto;
+			color: $wb_dark_green;
+		}
 	}
 
 	&__wishlists {
