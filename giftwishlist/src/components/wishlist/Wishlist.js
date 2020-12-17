@@ -56,7 +56,14 @@ export default function Wishlist({ match }) {
   const createItem = () => {
     wishlistService
       .createItem(name, description, image, purchaseLink, price, wishlistId)
-      .then((response) => fetchWishlists())
+      .then((response) => {
+        setName("");
+        setDescription("");
+        setImage("");
+        setPurchaseLink("");
+        setPrice("");
+        fetchWishlists();
+      })
       .catch((error) => console.log(error));
   };
 
