@@ -159,7 +159,7 @@ export default class WishlistCard extends Component {
 							this.state.wishlist.password === '' ? 'password (optional)' : ''
 						}
 					/>
-				) : this.props.wishlist.password !== '' ? (
+				) : this.state.wishlist.password !== '' ? (
 					<p className="wishlists__card__password card-text">
 						Password: {this.state.wishlist.password}
 					</p>
