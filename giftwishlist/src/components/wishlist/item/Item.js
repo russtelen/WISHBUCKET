@@ -224,13 +224,7 @@ const Item = (props) => {
 						</button>
 						<button
 							className="btn btn-sm btn-warning"
-							onClick={
-								() => showEditInputs()
-								// wishlist.id,
-								// wishlist.name,
-								// wishlist.password,
-								// wishlist.dueDate
-							}
+							onClick={() => showEditInputs()}
 						>
 							Cancel
 						</button>
@@ -238,13 +232,7 @@ const Item = (props) => {
 				) : (
 					<button
 						className="btn btn-sm btn-info"
-						onClick={
-							() => showEditInputs()
-							// wishlist.id,
-							// wishlist.name,
-							// wishlist.password,
-							// wishlist.dueDate
-						}
+						onClick={() => showEditInputs()}
 					>
 						Update
 					</button>
