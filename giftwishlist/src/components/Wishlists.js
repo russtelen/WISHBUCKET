@@ -190,7 +190,7 @@ export default function Wishlists() {
 			{/* WishLists */}
 
 			<p className="dashboard__heading display-4 animate__animated animate__fadeInDown">
-				Your Wishlists
+				Your WishBuckets
 			</p>
 			{userWishlists.length === 0 ? (
 				<div className="dashboard__noWishlists">
