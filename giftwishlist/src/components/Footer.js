@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 
 export default class Footer extends Component {
   render() {
@@ -39,10 +38,10 @@ export default class Footer extends Component {
           <div className="col-6 col-md mb-3">
               <h6 className="text-dark">DESIGN &amp; DEVELOPMENT</h6>
               <ul className="list-unstyled text-small">
-              <li><a className="link-secondary" href="https://www.linkedin.com/in/theskuznetsov" target="_blank">Stefan Kuznetsov </a></li>
-                <li><a className="link-secondary"href="https://www.linkedin.com/in/russelltelen/" target="_blank">Russ Telen</a></li>
-                <li><a className="link-secondary" href="https://www.linkedin.com/in/vlad-preduna" target="_blank">Vlad Preduna</a></li>
-                <li><a className="link-secondary" href="https://www.linkedin.com/in/fatmabadri" target="_blank">Fatma Badri</a></li>
+              <li><a className="link-secondary" href="https://www.linkedin.com/in/theskuznetsov" target="_blank"  rel="noreferrer">Stefan Kuznetsov </a></li>
+                <li><a className="link-secondary"href="https://www.linkedin.com/in/russelltelen/" target="_blank" rel="noreferrer">Russ Telen</a></li>
+                <li><a className="link-secondary" href="https://www.linkedin.com/in/vlad-preduna" target="_blank" rel="noreferrer">Vlad Preduna</a></li>
+                <li><a className="link-secondary" href="https://www.linkedin.com/in/fatmabadri" target="_blank" rel="noreferrer">Fatma Badri</a></li>
               </ul>
           </div>
        </div>
