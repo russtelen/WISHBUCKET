@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { GiCheckMark, GiCancel, GiTrashCan } from 'react-icons/gi';
+import { GrDocumentUpdate } from 'react-icons/gr';
 const BASE_URL = process.env.REACT_APP_BASE_URL + 'api/';
 
 export default class WishlistCard extends Component {
@@ -20,26 +22,18 @@ export default class WishlistCard extends Component {
 		};
 	}
 
-	componentDidMount() {
-		console.log(this.state.wishlist);
-	}
-
 	showEditInputs = () => {
 		this.setState({ showInputs: !this.state.showInputs });
-		console.log(this.props.wishlist.id);
 	};
 
 	handleNameChangeEdit = (e) => {
 		this.setState({ editNameInput: e.target.value });
-		console.log(this.state.editNameInput);
 	};
 	handlePasswordChangeEdit = (e) => {
 		this.setState({ editPasswordInput: e.target.value });
-		console.log(this.state.editPasswordInput);
 	};
 	handleDueDateChangeEdit = (e) => {
 		this.setState({ editDueDateInput: e.target.value });
-		console.log(this.state.editDueDateInput);
 	};
 
 	setWishlistData = () => {
@@ -70,7 +64,7 @@ export default class WishlistCard extends Component {
 			.then((res) => res.json())
 			// Data retrieved.
 			.then((data) => {
-				console.log(JSON.stringify(data));
+				// console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				this.setWishlistData();
 				this.showEditInputs();
@@ -96,7 +90,6 @@ export default class WishlistCard extends Component {
 				console.log(JSON.stringify(data));
 				// fetchUserWishlists();
 				// window.location.href = "/wishlist/";
-				// this.props.refresh();
 				this.setState({ showInputs: false });
 				this.setState({ wishlistActive: false });
 			})
@@ -108,7 +101,6 @@ export default class WishlistCard extends Component {
 
 	render() {
 		return (
-			// <div className="wishlists__card" style={{display: { this.state.wishlistActive ? 'block' : 'none'} }}>
 			<div
 				className="wishlists__card"
 				style={{ opacity: this.state.wishlistActive ? '1' : '0.4' }}
@@ -139,7 +131,6 @@ export default class WishlistCard extends Component {
 					<div>{this.state.wishlist.name + ' {DELETED}'}</div> // remove?
 				)}
 				{/* Wishlist Password */}
-				{console.log(this.state.wishlist.password)}
 				{this.state.showInputs ? (
 					<input
 						className="wishlists__card__password card-text"
@@ -191,17 +182,19 @@ export default class WishlistCard extends Component {
 							<div className="wishlists__card__actions__update">
 								<button
 									id="confirmUpdate"
-									className="wishlists__card__actions__update__button"
+									className="wishlists__card__actions__update__button  animate__animated animate__bounceInLeft"
 									onClick={() => this.updateWishlist()}
 								>
-									Confirm
+									<GiCheckMark className="cardIcon" />
+									{'  Confirm'}
 								</button>
 								<button
 									id="cancelUpdate"
-									className="wishlists__card__actions__update__button"
+									className="wishlists__card__actions__update__button animate__animated animate__bounceInRight"
 									onClick={() => this.showEditInputs()}
 								>
-									Cancel Update
+									<GiCancel className="cardIcon" />
+									{'  Cancel Update'}
 								</button>
 							</div>
 						) : (
@@ -218,7 +211,8 @@ export default class WishlistCard extends Component {
 											: null
 									}
 								>
-									Update
+									<GrDocumentUpdate className="cardIcon" />
+									{'  Update Wishlist'}
 								</button>
 							</div>
 						)}
@@ -234,7 +228,8 @@ export default class WishlistCard extends Component {
 								this.state.wishlistActive ? () => this.deleteWishlist() : null
 							}
 						>
-							Delete
+							<GiTrashCan size={26} className="cardIcon" />
+							{'  Delete'}
 						</button>
 					</div>
 				</div>
