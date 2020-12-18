@@ -2,7 +2,7 @@
 
 Wishbucket is live at:
 
-https://wishbucket.netlify.app/
+https://russ-wishbucket.netlify.app/
 
 Front-End Project associated with WishBucket Back-End Project:  
 
