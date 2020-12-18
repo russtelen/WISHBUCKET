@@ -1,6 +1,7 @@
 .home {
 	&__banner {
 		width: 100%;
+		margin: 0;
 		&__heading {
 			width: 100%;
 
@@ -16,7 +17,10 @@
 			}
 			&__text {
 				font-family: 'GloriaHallelujah-Regular';
-				font-size: 84px;
+				font-size: 1em;
+				@media screen and (min-width: $min-width-tablet) {
+					font-size: 2em;
+				}
 			}
 		}
 		&__subheading {
