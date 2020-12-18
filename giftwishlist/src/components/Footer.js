@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 export default class Footer extends Component {
 	render() {
 		return (
-			<footer className="pt-4 my-md-5 mb-0 pb-0 pt-md-5">
-				<div className="row">
-					<div className="col-6 col-md">
-						<h6 className="text-dark">WISHBUCKET</h6>
-						<ul className="list-unstyled text-small">
+			<footer className="footer pt-4 my-md-5 mb-0 pb-0 pt-md-5">
+				<div className="footer__container row">
+					<div className="footer__container__column col-6 col-md px-0">
+						<h6 className="footer__container__column__header">WISHBUCKET</h6>
+						<ul className="footer__container__column__ul list-unstyled text-small">
 							<li>Our Story</li>
 							<li>Our People</li>
 							<li>Testimonials</li>
@@ -15,9 +15,9 @@ export default class Footer extends Component {
 						</ul>
 					</div>
 
-					<div className="col-6 col-md mb-3">
-						<h6 className="text-dark">FEATURES</h6>
-						<ul className="list-unstyled text-small">
+					<div className="footer__container__column col-6 col-md mb-3 px-0">
+						<h6 className="footer__container__column__header">FEATURES</h6>
+						<ul className="footer__container__column__ul list-unstyled text-small">
 							<li>Cool stuff</li>
 							<li>Share With Anyone</li>
 							<li>Organize Your Wishlists</li>
@@ -25,9 +25,9 @@ export default class Footer extends Component {
 						</ul>
 					</div>
 
-					<div className="col-6 col-md mb-3">
-						<h6 className="text-dark">RESOURCES</h6>
-						<ul className="list-unstyled text-small">
+					<div className="footer__container__column col-6 col-md mb-3 px-0">
+						<h6 className="footer__container__column__header">RESOURCES</h6>
+						<ul className="footer__container__column__ul list-unstyled text-small">
 							<li>iPhone WishList IOS App</li>
 							<li>Android WishList App</li>
 							<li>Browser Plugins</li>
@@ -35,9 +35,14 @@ export default class Footer extends Component {
 						</ul>
 					</div>
 
-					<div className="col-6 col-md mb-3">
-						<h6 className="text-dark">DESIGN &amp; DEVELOPMENT</h6>
-						<ul className="list-unstyled text-small">
+					<div className="footer__container__column col-6 col-md mb-3 px-0">
+						<h6 className="footer__container__column__header">
+							DESIGN &amp; DEVELOPMENT
+						</h6>
+						<ul
+							id="team_members"
+							className="footer__container__column__ul list-unstyled text-small"
+						>
 							<li>
 								<a
 									className="link-secondary"
