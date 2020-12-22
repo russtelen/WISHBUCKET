@@ -12,7 +12,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
-        <NavLink to="/" className="navbar__title navbar-brand">
+        <NavLink to="/" className="navbar-brand">
           <ImGift className="mr-2" />
           {/* <img
 						className="navbar__title__logo"
@@ -26,7 +26,7 @@ export default class Navbar extends Component {
           WishBucket
         </NavLink>
         <button
-          className="navbar__toggler navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -34,10 +34,44 @@ export default class Navbar extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar__toggler__icon navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <UserAuthContext.Consumer className="">
+            {(value) =>
+              value.userAuthenticated ? (
+                // (if userAuthenticated is true)
+                <ul className="navbar-nav">
+                  <NavLink to="/wishlist">
+                    <button>Wishlists</button>
+                  </NavLink>
+
+                  <NavLink to="/">
+                    <button onClick={this.handleLogoutClick}>Logout</button>
+                  </NavLink>
+                </ul>
+              ) : (
+                // OR (if userAuthenticated is false)
+                <ul className="navbar-nav">
+                  <NavLink to="/register">
+                    <button>Register</button>
+                  </NavLink>
+                  <NavLink to="/login">
+                    <button>Login</button>
+                  </NavLink>
+                </ul>
+              )
+            }
+          </UserAuthContext.Consumer>
+        </div>
+      </nav>
+    );
+  }
+}
+
+{
+  /* <div
           className="navbar__links collapse navbar-collapse"
           id="navbarSupportedContent"
         >
@@ -90,8 +124,5 @@ export default class Navbar extends Component {
               )
             }
           </UserAuthContext.Consumer>
-        </div>
-      </nav>
-    );
-  }
+        </div> */
 }
