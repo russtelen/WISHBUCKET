@@ -1,102 +1,102 @@
 .navbar {
-	width: 100%;
-	overflow-x: hidden;
-	background: linear-gradient(
-		75deg,
-		rgba(247, 146, 208, 1) 0%,
-		rgba(165, 151, 189, 0.5) 22%,
-		rgba(165, 151, 189, 0.8) 30%,
-		rgba(36, 158, 160, 0.3) 80%
-	);
-	box-shadow: 0px 12px 12px $wb_shadow;
+  width: 100%;
+  overflow-x: hidden;
+  // background: linear-gradient(
+  // 	75deg,
+  // 	rgba(247, 146, 208, 1) 0%,
+  // 	rgba(165, 151, 189, 0.5) 22%,
+  // 	rgba(165, 151, 189, 0.8) 30%,
+  // 	rgba(36, 158, 160, 0.3) 80%
+  // );
+  // box-shadow: 0px 12px 12px $wb_shadow;
 
-	&__title {
-		&__name {
-			display: none;
-			font-family: 'GloriaHallelujah-Regular';
-			font-size: 1.7em;
-			background: -webkit-linear-gradient(white, black);
-			-webkit-background-clip: text;
-			background-clip: text;
-			-webkit-text-fill-color: white;
-			text-shadow: 2px 2px 3px darkslategrey;
-			@media screen and (min-width: 375px) {
-				display: flex;
-				align-self: center;
-				align-items: center;
-			}
-			@media screen and (min-width: $min-width-tablet) {
-				font-size: 2.4em;
-			}
-		}
-	}
+  &__title {
+    &__name {
+      display: none;
+      font-family: "GloriaHallelujah-Regular";
+      font-size: 1.7em;
+      background: -webkit-linear-gradient(white, black);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: white;
+      text-shadow: 2px 2px 3px darkslategrey;
+      @media screen and (min-width: 375px) {
+        display: flex;
+        align-self: center;
+        align-items: center;
+      }
+      @media screen and (min-width: $min-width-tablet) {
+        font-size: 2.4em;
+      }
+    }
+  }
 
-	&__toggler {
-		position: absolute;
-		top: 15px;
-		right: 0;
-		color: $wb_green;
-		height: 75px;
-		width: 22%;
-		// transform: scale(1.5);
-		margin-right: 3%;
-	}
+  &__toggler {
+    position: absolute;
+    top: 15px;
+    right: 0;
+    color: $wb_green;
+    height: 75px;
+    width: 22%;
+    // transform: scale(1.5);
+    margin-right: 3%;
+  }
 
-	&__links {
-		// border: 1px solid black;
-		display: flex;
-		// flex-direction: row;
-		// justify-content: flex-end;
-		&__ulist {
-			width: 100%;
-			justify-content: flex-end;
-			// border: 1px solid black;
-			&__context {
-				// width: 100%;
-				// border: 1px solid black;
+  &__links {
+    // border: 1px solid black;
+    display: flex;
+    // flex-direction: row;
+    // justify-content: flex-end;
+    &__ulist {
+      width: 100%;
+      justify-content: flex-end;
+      // border: 1px solid black;
+      &__context {
+        // width: 100%;
+        // border: 1px solid black;
 
-				// padding: 5%;
-				&__link {
-					width: 100%;
-					// margin: 2%;
-					&__button {
-						margin-top: 0.3%;
-						margin-bottom: 0.3%;
-						border: none;
-						font-size: 22px;
-						color: white;
-						background: linear-gradient(
-							75deg,
-							rgba(168, 36, 219, 1) 0%,
-							rgba(121, 74, 177, 0.7) 30%,
-							rgba(72, 112, 133, 0.6) 60%,
-							rgba(23, 150, 89, 0.5) 90%
-						);
-						height: 50px;
-						width: 80%;
-						background-color: $wb_green;
-						-webkit-transition: all 250ms ease-out;
-						-moz-transition: all 250ms ease-out;
-						-o-transition: all 250ms ease-out;
-						transition: all 250ms ease-out;
-						&:hover {
-							outline-style: solid;
-							outline-color: $wb_light_green;
-							outline-width: medium;
-							background: linear-gradient(
-								75deg,
-								rgba(200, 46, 208, 1) 0%,
-								rgba(165, 151, 189, 0.7) 65%,
-								rgba(165, 151, 189, 0.6) 75%,
-								rgba(36, 158, 160, 0.5) 90%
-							);
-						}
-					}
-					// margin-right: 10%;
-					// border: 1px solid black;
-				}
-			}
-		}
-		// margin: 2%;
-	}
+        // padding: 5%;
+        &__link {
+          width: 100%;
+          // margin: 2%;
+          &__button {
+            margin-top: 0.3%;
+            margin-bottom: 0.3%;
+            border: none;
+            font-size: 22px;
+            color: white;
+            background: linear-gradient(
+              75deg,
+              rgba(168, 36, 219, 1) 0%,
+              rgba(121, 74, 177, 0.7) 30%,
+              rgba(72, 112, 133, 0.6) 60%,
+              rgba(23, 150, 89, 0.5) 90%
+            );
+            height: 50px;
+            width: 80%;
+            background-color: $wb_green;
+            -webkit-transition: all 250ms ease-out;
+            -moz-transition: all 250ms ease-out;
+            -o-transition: all 250ms ease-out;
+            transition: all 250ms ease-out;
+            &:hover {
+              outline-style: solid;
+              outline-color: $wb_light_green;
+              outline-width: medium;
+              background: linear-gradient(
+                75deg,
+                rgba(200, 46, 208, 1) 0%,
+                rgba(165, 151, 189, 0.7) 65%,
+                rgba(165, 151, 189, 0.6) 75%,
+                rgba(36, 158, 160, 0.5) 90%
+              );
+            }
+          }
+          // margin-right: 10%;
+          // border: 1px solid black;
+        }
+      }
+    }
+    // margin: 2%;
+  }
 }
