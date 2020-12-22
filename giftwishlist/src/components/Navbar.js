@@ -42,24 +42,37 @@ export default class Navbar extends Component {
             {(value) =>
               value.userAuthenticated ? (
                 // (if userAuthenticated is true)
-                <ul className="navbar-nav">
-                  <NavLink to="/wishlist">
-                    <button>Wishlists</button>
-                  </NavLink>
+                <ul className="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <NavLink className="nav-link" to="/wishlist">
+                      Wishlists
+                    </NavLink>
+                  </li>
 
-                  <NavLink to="/">
-                    <button onClick={this.handleLogoutClick}>Logout</button>
-                  </NavLink>
+                  <li class="nav-item">
+                    <NavLink
+                      onClick={this.handleLogoutClick}
+                      className="nav-link"
+                      to="/"
+                    >
+                      Logout
+                    </NavLink>
+                  </li>
                 </ul>
               ) : (
                 // OR (if userAuthenticated is false)
-                <ul className="navbar-nav">
-                  <NavLink to="/register">
-                    <button>Register</button>
-                  </NavLink>
-                  <NavLink to="/login">
-                    <button>Login</button>
-                  </NavLink>
+                <ul className="navbar-nav ml-auto">
+                  <li class="nav-item">
+                    <NavLink className="nav-link" to="/register">
+                      Register
+                    </NavLink>
+                  </li>
+
+                  <li class="nav-item">
+                    <NavLink className="nav-link" to="/login">
+                      Login
+                    </NavLink>
+                  </li>
                 </ul>
               )
             }
