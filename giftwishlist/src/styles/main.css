@@ -133,6 +133,10 @@ body {
   font-family: "OpenSans-Regular";
 }
 
+.navbar__title {
+  font-family: "GloriaHallelujah-Regular";
+}
+
 .home__banner {
   width: 100%;
   margin: 0;

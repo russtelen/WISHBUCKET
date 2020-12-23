@@ -14,7 +14,7 @@ export default class Navbar extends Component {
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <NavLink to="/" className="navbar-brand">
           <ImGift className="mr-2" />
-          WishBucket
+          <span className="navbar__title">WishBucket</span>
         </NavLink>
         <button
           className="navbar-toggler"
@@ -34,7 +34,7 @@ export default class Navbar extends Component {
               value.userAuthenticated ? (
                 // (if userAuthenticated is true)
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item active">
+                  <li className="nav-item mx-5 active">
                     <NavLink className="nav-link" to="/wishlist">
                       Wishlists
                     </NavLink>
@@ -53,7 +53,7 @@ export default class Navbar extends Component {
               ) : (
                 // OR (if userAuthenticated is false)
                 <ul className="navbar-nav ml-auto">
-                  <li className="nav-item">
+                  <li className="nav-item mx-5">
                     <NavLink className="nav-link" to="/register">
                       Register
                     </NavLink>
