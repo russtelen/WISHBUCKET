@@ -35,7 +35,10 @@ export default class Navbar extends Component {
                 // (if userAuthenticated is true)
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item mx-5 active">
-                    <NavLink className="nav-link" to="/wishlist">
+                    <NavLink
+                      className="nav-link navbar__link-custom"
+                      to="/wishlist"
+                    >
                       Wishlists
                     </NavLink>
                   </li>
@@ -43,7 +46,7 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <NavLink
                       onClick={this.handleLogoutClick}
-                      className="nav-link"
+                      className="nav-link navbar__link-custom"
                       to="/"
                     >
                       Logout
@@ -54,13 +57,19 @@ export default class Navbar extends Component {
                 // OR (if userAuthenticated is false)
                 <ul className="navbar-nav ml-auto">
                   <li className="nav-item mx-5">
-                    <NavLink className="nav-link" to="/register">
+                    <NavLink
+                      className="nav-link navbar__link-custom"
+                      to="/register"
+                    >
                       Register
                     </NavLink>
                   </li>
 
                   <li className="nav-item">
-                    <NavLink className="nav-link" to="/login">
+                    <NavLink
+                      className="nav-link navbar__link-custom"
+                      to="/login"
+                    >
                       Login
                     </NavLink>
                   </li>

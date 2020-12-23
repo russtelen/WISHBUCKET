@@ -137,6 +137,11 @@ body {
   font-family: "GloriaHallelujah-Regular";
 }
 
+.navbar__link-custom {
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+
 .home__banner {
   width: 100%;
   margin: 0;
